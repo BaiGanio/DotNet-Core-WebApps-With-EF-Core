@@ -9,7 +9,7 @@ namespace Project.Common
 {
     public class HashUtils
     {
-        /* Create Hash Password so we can secure the user */
+        /* Create Hash Password so we can secure the user From branch*/
         public static string CreateHashCode(string stringInput)
         {
             /* STEP 1 - Create the salt value with a cryptographic PRNG: */
