@@ -9,7 +9,7 @@ namespace AsyncAndAwait
     {
         static void Main()
         {
-			/* Check how much cores are in the processor */
+	    /* Check how much cores are in the processor */
             int processors = Environment.ProcessorCount;
             Console.WriteLine(processors);
 			
