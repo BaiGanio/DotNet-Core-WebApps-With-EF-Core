@@ -8,7 +8,7 @@ namespace Project.Common
 
         public CustomId()
         {
-            this._id = new Guid();
+            this._id = Guid.NewGuid();
         }
 
         public CustomId(Guid guid)
