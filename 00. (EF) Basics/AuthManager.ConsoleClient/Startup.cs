@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using AthManager.Model;
+using AuthManager.DB;
 
 namespace AuthManager.ConsoleClient
 {
@@ -11,7 +13,35 @@ namespace AuthManager.ConsoleClient
         {
             Console.OutputEncoding = Encoding.UTF8;
             //TasksStatePreview();
-            PrintObjectsInfo();            
+            //PrintObjectsInfo();            
+            List<AppConsumer> appConsumers = GetDefaultAppConsumers();
+            List<User> users = GetDefaultUsers();
+            var context = new AuthManagerDbContext();
+            context.Database.Initialize(true);
+
+
+            if (!context.AppConsumers.Any())
+            {
+                foreach (var item in appConsumers)
+                {
+                    context.AppConsumers.Add(item);
+                }
+            }
+
+            if (!context.Users.Any())
+            {
+                foreach (var item in users)
+                {
+                    context.Users.Add(item);
+                }
+            }
+
+           
+            context.SaveChanges();
+
+
+            Console.WriteLine("Database is populated!");
+
         }
 
 
