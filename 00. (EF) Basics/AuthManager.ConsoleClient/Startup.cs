@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using AthManager.Model;
 
 namespace AuthManager.ConsoleClient
 {
@@ -6,7 +9,73 @@ namespace AuthManager.ConsoleClient
     {
         static void Main(string[] args)
         {
+            Console.OutputEncoding = Encoding.UTF8;
             //TasksStatePreview();
+            PrintObjectsInfo();            
+        }
+
+
+        private static void PrintObjectInfo(BaseUser user)
+        {
+            Console.WriteLine(user.Introduce());
+        }
+
+        private static void PrintObjectsInfo()
+        {
+            List<User> users = GetDefaultUsers();
+            List<AppConsumer> appConsumers = GetDefaultAppConsumers();
+
+            PrintObjectInfo(users[0]);
+
+            //foreach (var item in users)
+            //{
+            //    PrintObjectInfo(item);
+            //    Console.WriteLine("----------------------------------------------------");
+            //    Console.WriteLine();
+            //}
+
+            Console.WriteLine();
+            Console.WriteLine("#########################################################");
+            Console.WriteLine();
+
+            PrintObjectInfo(appConsumers[0]);
+
+            //foreach (var item in appConsumers)
+            //{
+            //    PrintObjectInfo(item);
+            //    Console.WriteLine("----------------------------------------------------");
+            //    Console.WriteLine();
+            //}
+        }
+
+        private static List<User> GetDefaultUsers()
+        {
+            List<User> users = new List<User>();
+
+            User lyuben = new User("Lyuben", "Kikov", "Aksakovo", "123", "fake@mail.com", TypeOfUser.Кибик, DateTime.Now, false, null);
+            User bunny = new User("Bugs", "Bunny", "Acme", "123", "bunny@mail.com", TypeOfUser.Singer, DateTime.Now, false, null);
+            User daffy = new User("Daffy", "Duck", "Acme", "123", "duck@mail.com", TypeOfUser.Writer, DateTime.Now, false, null);
+                        
+            users.Add(lyuben);
+            users.Add(bunny);
+            users.Add(daffy);
+
+            return users;
+        }
+
+        private static List<AppConsumer> GetDefaultAppConsumers()
+        {
+            List<AppConsumer> appConsumers = new List<AppConsumer>();
+
+            AppConsumer taz = new AppConsumer("Tazmanian", "Devil", "Sidney", DateTime.Now, false);
+            AppConsumer fiki = new AppConsumer("Fiki", "Kra4eto", "4irpan", DateTime.Now, false);
+            AppConsumer bygi = new AppConsumer("Bygi", "Barabata", "Kaspi4an", DateTime.Now, false);
+            
+            appConsumers.Add(taz);
+            appConsumers.Add(fiki);
+            appConsumers.Add(bygi);
+
+            return appConsumers;
         }
 
         private static void TasksStatePreview()
@@ -24,11 +93,11 @@ namespace AuthManager.ConsoleClient
             };
 
             Console.WriteLine(new string('-', 70));
-            Console.WriteLine($"{helloMsg, 60}");
+            Console.WriteLine($"{helloMsg,60}");
             Console.WriteLine(new string('-', 70));
             Console.WriteLine();
             Console.WriteLine("|---------------------------------------------|");
-            Console.WriteLine($"{"|Task",-32} | {"Task state", 5} |");
+            Console.WriteLine($"{"|Task",-32} | {"Task state",5} |");
             Console.WriteLine("|---------------------------------------------|");
             foreach (var item in tasks)
             {
