@@ -2,7 +2,7 @@
 Plovdiv University - elective course. 
 
 ## Course Objectives & Concepts
-
+* Introduction to basic Design Patterns (Strategy, Singleton, etc.)
 * Using the Http objects for Ajax calls
 * Performing GET and PUT requests to the server
 
