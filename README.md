@@ -5,6 +5,7 @@
 
 ## Course Objectives & Concepts
 * Introduction to basic Design Patterns (Strategy, Singleton, etc.)
+* What is Object Relation Mapping (ORM).
 * Using the Http objects for Ajax calls
 * Performing GET and PUT requests to the server
 
