@@ -12,8 +12,8 @@ namespace AuthManager.ConsoleClient
         static void Main(string[] args)
         {
             Console.OutputEncoding = Encoding.UTF8;
-            //TasksStatePreview();
-            //PrintObjectsInfo();            
+            TasksStatePreview();
+            PrintObjectsInfo();            
             List<AppConsumer> appConsumers = GetDefaultAppConsumers();
             List<User> users = GetDefaultUsers();
             var context = new AuthManagerDbContext();
@@ -133,7 +133,7 @@ namespace AuthManager.ConsoleClient
             {
                 if (item.Equals("Nothing done yet"))
                 {
-                    Console.WriteLine($"|{item,-31} | {taskStates[1],10} |");
+                    Console.WriteLine($"|{item,-31} | {taskStates[1],9} |");
                 }
                 else
                 {
