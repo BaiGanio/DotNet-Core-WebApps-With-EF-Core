@@ -12,8 +12,8 @@ namespace AuthManager.ConsoleClient
         static void Main(string[] args)
         {
             Console.OutputEncoding = Encoding.UTF8;
-            TasksStatePreview();
-            PrintObjectsInfo();            
+            //TasksStatePreview();
+            //PrintObjectsInfo();            
             List<AppConsumer> appConsumers = GetDefaultAppConsumers();
             List<User> users = GetDefaultUsers();
             var context = new AuthManagerDbContext();

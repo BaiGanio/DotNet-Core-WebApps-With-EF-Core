@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27004.2010
+VisualStudioVersion = 15.0.27130.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthManager.ConsoleClient", "AuthManager.ConsoleClient\AuthManager.ConsoleClient.csproj", "{9E2E247B-2C23-4CB0-8D46-80BD94514576}"
 EndProject
@@ -11,7 +11,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthManager.DB", "AuthManag
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Project.Common", "..\00. (Common)\Project.Common\Project.Common.csproj", "{2027985E-3455-4253-AEF2-8341EAC83771}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp1", "ConsoleApp1\ConsoleApp1.csproj", "{B93BBFCC-59FA-46F4-8419-5BE5058FA45B}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".net452", ".net452", "{A1BD7D67-7110-4529-830D-178BBCF3034F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".netcore11", ".netcore11", "{86E9DEE3-90F7-4BF7-A1D0-8578CF582F22}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthManager452.ConsoleClient", "AuthManager452.ConsoleClient\AuthManager452.ConsoleClient.csproj", "{6EC7B767-45DA-4464-BF4B-7B904741248C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthManager452.DB", "AuthManager452.DB\AuthManager452.DB.csproj", "{2F0A9E79-AC15-40D6-860B-9760DB36EC11}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthManager452.Models", "AuthManager452.Models\AuthManager452.Models.csproj", "{6F30E083-F82F-442B-93CE-CF499CD1EAC0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,13 +43,26 @@ Global
 		{2027985E-3455-4253-AEF2-8341EAC83771}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2027985E-3455-4253-AEF2-8341EAC83771}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2027985E-3455-4253-AEF2-8341EAC83771}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B93BBFCC-59FA-46F4-8419-5BE5058FA45B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B93BBFCC-59FA-46F4-8419-5BE5058FA45B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B93BBFCC-59FA-46F4-8419-5BE5058FA45B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B93BBFCC-59FA-46F4-8419-5BE5058FA45B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6EC7B767-45DA-4464-BF4B-7B904741248C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6EC7B767-45DA-4464-BF4B-7B904741248C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6EC7B767-45DA-4464-BF4B-7B904741248C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6EC7B767-45DA-4464-BF4B-7B904741248C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2F0A9E79-AC15-40D6-860B-9760DB36EC11}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F0A9E79-AC15-40D6-860B-9760DB36EC11}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F0A9E79-AC15-40D6-860B-9760DB36EC11}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F0A9E79-AC15-40D6-860B-9760DB36EC11}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F30E083-F82F-442B-93CE-CF499CD1EAC0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F30E083-F82F-442B-93CE-CF499CD1EAC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F30E083-F82F-442B-93CE-CF499CD1EAC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F30E083-F82F-442B-93CE-CF499CD1EAC0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{6EC7B767-45DA-4464-BF4B-7B904741248C} = {A1BD7D67-7110-4529-830D-178BBCF3034F}
+		{2F0A9E79-AC15-40D6-860B-9760DB36EC11} = {A1BD7D67-7110-4529-830D-178BBCF3034F}
+		{6F30E083-F82F-442B-93CE-CF499CD1EAC0} = {A1BD7D67-7110-4529-830D-178BBCF3034F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B001AFDB-7981-4B5D-9CB9-97DF9F08EF41}
