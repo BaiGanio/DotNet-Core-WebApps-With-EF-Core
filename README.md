@@ -9,6 +9,7 @@
 * What is Object Relation Mapping (ORM).
 * Using the Http objects for Ajax calls
 * Performing GET and PUT requests to the server
+* Basics with the Visual Studio Community boilerplates (MVC, API, Angular)
 
 ### For resources, examples and how to navigate into the repo... check out our [Wiki](https://github.com/BaiGanio/PU-DB-Apps-With-EF/wiki).
 
