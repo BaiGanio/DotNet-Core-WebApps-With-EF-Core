@@ -11,7 +11,7 @@
 * Performing GET and PUT requests to the server
 * Basics with the Visual Studio Community boilerplates (MVC, API, Angular)
 
-### For resources, examples and how to navigate into the repo... check out our [Wiki](https://github.com/BaiGanio/PU-DB-Apps-With-EF/wiki).
+### For resources, video examples and how to navigate into the repo... check out our [Wiki](https://github.com/BaiGanio/PU-DB-Apps-With-EF/wiki).
 
 ![wiki](https://github.com/BaiGanio/PU-DB-Apps-With-EF/blob/master/repo-images/Wiki.png)
     
