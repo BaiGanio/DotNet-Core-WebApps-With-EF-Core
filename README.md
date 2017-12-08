@@ -10,7 +10,7 @@
 * Using the Http objects for Ajax calls
 * Performing GET and PUT requests to the server
 
-### For resources, examples and much more... check out our [Wiki](https://github.com/BaiGanio/PU-DB-Apps-With-EF/wiki)
+### For resources, examples and how to navigate into the repo... check out our [Wiki](https://github.com/BaiGanio/PU-DB-Apps-With-EF/wiki).
 
 ![wiki](https://github.com/BaiGanio/PU-DB-Apps-With-EF/blob/master/repo-images/Wiki.png)
     
