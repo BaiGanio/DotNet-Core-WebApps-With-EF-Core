@@ -1,4 +1,4 @@
-# .NET apps using EF
+# .NET apps & EF
 - Elective course in the program of Department Software Technologies of Plovdiv University "Paisii Hilendarski"
 
 ### Plovdiv University requirements. 
