@@ -6,8 +6,8 @@
 
 ### Course Objectives & Concepts
 * Introduction to basic Design Patterns (Strategy, Singleton, etc.)
-* What is Object Relation Mapping (ORM)? Introduction to ORM(object-relational mapping) technologies like EF(Entity Framework 6.x, Core 1.x, 2.x)
-* What is Object Relation Mapping (ORM).
+* Introduction to ORM(object-relational mapping) technologies like EF(Entity Framework 6.x, Core 1.x, 2.x)
+* Getting familiar with IDE's(Integrated Development Environment) like `Visual Studio Community 2017` & `Visual Studio Code`
 * Using the Http objects for Ajax calls
 * Performing GET and PUT requests to the server
 * Basics with the Visual Studio Community boilerplates (MVC, API, Angular)
