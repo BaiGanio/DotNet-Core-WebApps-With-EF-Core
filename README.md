@@ -20,7 +20,10 @@
 * Using the Http objects for Ajax calls
 * Performing GET and PUT requests to the server
 * Basics to the boilerplates (MVC, API, Angular)
-* 
+* Basics to web-based Git version control repository hosting services like `GitHub`
+* Basics to cloud-computing services like `Microsoft Azure`
+* Basics of .NET Platform as a Service web-based hosting providers like `AppHarbor`
+* Basics of backend-as-a-service web-based providers like `Kinvey`
 
 ### For resources, video examples and how to navigate into the repo... check out our [Wiki](https://github.com/BaiGanio/PU-DB-Apps-With-EF/wiki).
 
