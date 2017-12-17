@@ -25,6 +25,10 @@
 * Basics of .NET Platform as a Service web-based hosting providers like `AppHarbor`
 * Basics of backend-as-a-service web-based providers like `Kinvey`
 
+* & much more...
+
+***
+
 ### For resources, video examples and how to navigate into the repo... check out our [Wiki](https://github.com/BaiGanio/PU-DB-Apps-With-EF/wiki).
 
 ![wiki](https://github.com/BaiGanio/PU-DB-Apps-With-EF/blob/master/repo-images/Wiki.png)
