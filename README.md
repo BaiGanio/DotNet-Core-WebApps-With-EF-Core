@@ -1,4 +1,4 @@
-# .NET apps & EF
+# .NET apps & EF - Still in progress. Keep in mind.
 - Elective course in the program of Department Software Technologies of Plovdiv University "Paisii Hilendarski"
 
 ### Plovdiv University requirements. 
@@ -16,7 +16,7 @@
 
     - `EF 6.x`
     
-    - `EF Core 1.x, 2.x)`
+    - `EF Core`
 * Using the Http objects for Ajax calls
 * Performing GET and PUT requests to the server
 * Basics to the boilerplates (MVC, API, Angular)
