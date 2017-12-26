@@ -45,7 +45,7 @@ namespace AuthManager.ConsoleClient
         }
 
 
-        private static void PrintObjectInfo(BaseUser user)
+        private static void PrintObjectInfo(IBaseUser user)
         {
             Console.WriteLine(user.Introduce());
         }

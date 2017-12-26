@@ -9,6 +9,6 @@ namespace AuthManager452.DB
             : base("name=AuthManager452Connection")
         { }
 
-        public DbSet<FunckyUser> FunckyUsers { get; set; }
+        public DbSet<FunkyUser> FunkyUsers { get; set; }
     }
 }

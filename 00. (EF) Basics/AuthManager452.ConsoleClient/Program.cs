@@ -10,7 +10,7 @@ namespace AuthManager452.ConsoleClient
     {
         static void Main(string[] args)
         {
-            List<FunckyUser> funckyUsers = InitializeDefaultFunckyUsers();
+            List<FunkyUser> funckyUsers = InitializeDefaultFunckyUsers();
             SeedDB(funckyUsers);
             Console.WriteLine("------------------------------------");
             PrintAktiveUsers();
@@ -59,16 +59,16 @@ namespace AuthManager452.ConsoleClient
             Console.WriteLine();
         }       
 
-        private static void SeedDB(List<FunckyUser> funckyUsers)
+        private static void SeedDB(List<FunkyUser> funckyUsers)
         {
             var context = new AuthManager452DbContext();
             context.Database.Initialize(true);
 
-            if (!context.FunckyUsers.Any())
+            if (!context.FunkyUsers.Any())
             {
                 foreach (var item in funckyUsers)
                 {
-                    context.FunckyUsers.Add(item);
+                    context.FunkyUsers.Add(item);
                 }
                 Console.WriteLine("Database is populated!");
                 Console.WriteLine("------------------------------------");
@@ -86,7 +86,7 @@ namespace AuthManager452.ConsoleClient
         {
             var context = new AuthManager452DbContext();
             context.Database.Initialize(true);
-            List<FunckyUser> funckyUsers = context.FunckyUsers.ToList();
+            List<FunkyUser> funckyUsers = context.FunkyUsers.ToList();
             Console.WriteLine("Users:");
             foreach (var item in funckyUsers)
             {
@@ -97,7 +97,7 @@ namespace AuthManager452.ConsoleClient
             }
         }
 
-        private static void PriPrintAktiveUsers(List<FunckyUser> funckyUsers)
+        private static void PriPrintAktiveUsers(List<FunkyUser> funckyUsers)
         {
             Console.WriteLine("Users:");
             foreach (var item in funckyUsers)
@@ -109,13 +109,13 @@ namespace AuthManager452.ConsoleClient
             }
         }
 
-        private static List<FunckyUser> InitializeDefaultFunckyUsers()
+        private static List<FunkyUser> InitializeDefaultFunckyUsers()
         {
-            List<FunckyUser> users = new List<FunckyUser>();
+            List<FunkyUser> users = new List<FunkyUser>();
 
-            FunckyUser lyuben = new FunckyUser(1, "Lyuben Kikov", "123");
-            FunckyUser bunny = new FunckyUser(2, "Bugs Bunny", "123");
-            FunckyUser daffy = new FunckyUser(3, "Daffy Duck", "123");
+            FunkyUser lyuben = new FunkyUser(1, "Lyuben Kikov", "123");
+            FunkyUser bunny = new FunkyUser(2, "Bugs Bunny", "123");
+            FunkyUser daffy = new FunkyUser(3, "Daffy Duck", "123");
 
             users.Add(lyuben);
             users.Add(bunny);

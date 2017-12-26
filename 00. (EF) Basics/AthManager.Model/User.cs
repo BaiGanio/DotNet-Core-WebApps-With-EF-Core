@@ -3,7 +3,7 @@ using Project.Common;
 
 namespace AthManager.Model
 {
-    public sealed class User : BaseUser
+    public sealed class User : IBaseUser
     {
         public User(string firstName, string lastName, string town, string password, string email,
             TypeOfUser typeOfUser, DateTime dataSavedOn, bool isRegistered, DateTime? dataChangedOn, string ipAddress = null, string id = null) 

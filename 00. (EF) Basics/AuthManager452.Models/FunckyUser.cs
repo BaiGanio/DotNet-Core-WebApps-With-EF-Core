@@ -1,10 +1,10 @@
 ﻿namespace AuthManager452.Models
 {
-    public class FunckyUser
+    public class FunkyUser
     {
-        public FunckyUser() { }
+        public FunkyUser() { }
 
-        public FunckyUser(int funckyId, string funckyName, string funckyPassword)
+        public FunkyUser(int funckyId, string funckyName, string funckyPassword)
         {
             this.Id = funckyId;
             this.FunckyName = funckyName;

@@ -3,9 +3,9 @@ using Project.Common;
 
 namespace AthManager.Model
 {
-    public abstract class BaseUser
+    public abstract class IBaseUser
     {
-        public BaseUser(string firstName, string lastName, string town, DateTime dataSavedOn, bool isRegistered, string ipAddress = null, string id = null)
+        public IBaseUser(string firstName, string lastName, string town, DateTime dataSavedOn, bool isRegistered, string ipAddress = null, string id = null)
         {
             this.Id = id ?? new CustomId().ToString();
             this.FirstName = firstName;
