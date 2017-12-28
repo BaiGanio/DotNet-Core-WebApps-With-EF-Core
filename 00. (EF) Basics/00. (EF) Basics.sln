@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthManager452.Models", "Au
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "utils", "utils", "{D44E6412-F311-44FA-A578-884F285072BF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.ConsoleClient", "Core.ConsoleClient\Core.ConsoleClient.csproj", "{10C68CA3-012C-4B6D-BD3E-C6882DD15D49}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{6F30E083-F82F-442B-93CE-CF499CD1EAC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6F30E083-F82F-442B-93CE-CF499CD1EAC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6F30E083-F82F-442B-93CE-CF499CD1EAC0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{10C68CA3-012C-4B6D-BD3E-C6882DD15D49}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{10C68CA3-012C-4B6D-BD3E-C6882DD15D49}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{10C68CA3-012C-4B6D-BD3E-C6882DD15D49}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{10C68CA3-012C-4B6D-BD3E-C6882DD15D49}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -41,6 +47,7 @@ Global
 		{6EC7B767-45DA-4464-BF4B-7B904741248C} = {A1BD7D67-7110-4529-830D-178BBCF3034F}
 		{2F0A9E79-AC15-40D6-860B-9760DB36EC11} = {A1BD7D67-7110-4529-830D-178BBCF3034F}
 		{6F30E083-F82F-442B-93CE-CF499CD1EAC0} = {A1BD7D67-7110-4529-830D-178BBCF3034F}
+		{10C68CA3-012C-4B6D-BD3E-C6882DD15D49} = {86E9DEE3-90F7-4BF7-A1D0-8578CF582F22}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B001AFDB-7981-4B5D-9CB9-97DF9F08EF41}
