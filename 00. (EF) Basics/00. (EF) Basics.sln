@@ -5,13 +5,15 @@ VisualStudioVersion = 15.0.27130.2010
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".net452", ".net452", "{A1BD7D67-7110-4529-830D-178BBCF3034F}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".netcore11", ".netcore11", "{86E9DEE3-90F7-4BF7-A1D0-8578CF582F22}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".netcore", ".netcore", "{86E9DEE3-90F7-4BF7-A1D0-8578CF582F22}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthManager452.ConsoleClient", "AuthManager452.ConsoleClient\AuthManager452.ConsoleClient.csproj", "{6EC7B767-45DA-4464-BF4B-7B904741248C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthManager452.DB", "AuthManager452.DB\AuthManager452.DB.csproj", "{2F0A9E79-AC15-40D6-860B-9760DB36EC11}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthManager452.Models", "AuthManager452.Models\AuthManager452.Models.csproj", "{6F30E083-F82F-442B-93CE-CF499CD1EAC0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "utils", "utils", "{D44E6412-F311-44FA-A578-884F285072BF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
