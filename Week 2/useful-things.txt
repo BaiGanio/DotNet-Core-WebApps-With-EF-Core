@@ -1,0 +1,7 @@
+----------------------------------------------------------
+/* AppHarbor (tech-corp.apphb.com) -> Yacto free SQL Server credentials */
+
+Server=0c5b8b47-6576-44ff-adbe-a86900d137b4.sqlserver.sequelizer.com;
+Database=db0c5b8b47657644ffadbea86900d137b4;
+User ID=fsdsbrgwjqwcmddy;
+Password=LTpyatfBAA3EVxTFmPshph2g66arYymJJk2MBn62LNqKVSga3t2XW8QD2hAcsWKc;	

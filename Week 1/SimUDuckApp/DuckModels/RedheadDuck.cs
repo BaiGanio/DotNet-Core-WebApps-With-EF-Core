@@ -2,7 +2,7 @@
 {
     public class RedheadDuck : IDuck
     {
-        public RedheadDuck(IQuackBehavior qb) : base(qb)
+        public RedheadDuck(IQuackBehavior qb, IFlyBehavior fb) : base(qb, fb)
         {
         }
     }
