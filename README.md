@@ -31,5 +31,5 @@
 ### For resources, video examples and how to navigate into the repo... check out our [`Wiki`](https://github.com/BaiGanio/PU-DB-Apps-With-EF/wiki).
 
 
-![wiki](https://github.com/BaiGanio/PU-DB-Apps-With-EF/blob/master/repo-images/Wiki.png)
+![wiki](https://github.com/BaiGanio/PU-DB-Apps-With-EF/blob/master/useful-things/Wiki.png)
     
