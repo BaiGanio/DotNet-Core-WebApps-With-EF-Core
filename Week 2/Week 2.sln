@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.27130.2020
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthManager", "AuthManager\AuthManager.csproj", "{4CEFC173-7AFD-4DEA-B423-40A384B5D960}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthManager2", "AuthManager2\AuthManager2.csproj", "{200A317F-EE23-447C-A124-03F6298FFA0C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthManager.Db1st", "AuthManager.Db1st\AuthManager.Db1st.csproj", "{628EE41F-5635-42D0-B514-F2C6091A94B8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{4CEFC173-7AFD-4DEA-B423-40A384B5D960}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4CEFC173-7AFD-4DEA-B423-40A384B5D960}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4CEFC173-7AFD-4DEA-B423-40A384B5D960}.Release|Any CPU.Build.0 = Release|Any CPU
-		{200A317F-EE23-447C-A124-03F6298FFA0C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{200A317F-EE23-447C-A124-03F6298FFA0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{200A317F-EE23-447C-A124-03F6298FFA0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{200A317F-EE23-447C-A124-03F6298FFA0C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{628EE41F-5635-42D0-B514-F2C6091A94B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{628EE41F-5635-42D0-B514-F2C6091A94B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{628EE41F-5635-42D0-B514-F2C6091A94B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{628EE41F-5635-42D0-B514-F2C6091A94B8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

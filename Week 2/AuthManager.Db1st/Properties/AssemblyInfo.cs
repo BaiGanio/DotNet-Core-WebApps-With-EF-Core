@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("AuthManager2")]
+[assembly: AssemblyTitle("AuthManager.Db1st")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("AuthManager2")]
+[assembly: AssemblyProduct("AuthManager.Db1st")]
 [assembly: AssemblyCopyright("Copyright ©  2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("200a317f-ee23-447c-a124-03f6298ffa0c")]
+[assembly: Guid("628ee41f-5635-42d0-b514-f2c6091a94b8")]
 
 // Version information for an assembly consists of the following four values:
 //
