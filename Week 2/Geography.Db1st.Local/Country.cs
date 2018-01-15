@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AuthManager
+namespace Geography.Db1st.Local
 {
     using System;
     using System.Collections.Generic;

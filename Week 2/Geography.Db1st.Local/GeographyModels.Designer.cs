@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'D:\PROJECTS\GitHub\PU-DB-Apps-With-EF\Week 2\AuthManager\AuthManagerEntityModels.edmx'. 
+﻿// T4 code generation is enabled for model 'D:\PROJECTS\GitHub\PU-DB-Apps-With-EF\Week 2\Geography.Db1st.Local\GeographyModels.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

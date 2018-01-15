@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{628EE41F-5635-42D0-B514-F2C6091A94B8}</ProjectGuid>
+    <ProjectGuid>{83427B23-071B-4A40-ADE3-BA177388A7D0}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>AuthManager.Db1st</RootNamespace>
-    <AssemblyName>AuthManager.Db1st</AssemblyName>
+    <RootNamespace>TechCorp.Db1st.External</RootNamespace>
+    <AssemblyName>TechCorp.Db1st.External</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>

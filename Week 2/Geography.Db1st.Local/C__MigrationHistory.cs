@@ -7,17 +7,16 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AuthManager
+namespace Geography.Db1st.Local
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Monastery
+    public partial class C__MigrationHistory
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public string CountryCode { get; set; }
-    
-        public virtual Country Country { get; set; }
+        public string MigrationId { get; set; }
+        public string ContextKey { get; set; }
+        public byte[] Model { get; set; }
+        public string ProductVersion { get; set; }
     }
 }

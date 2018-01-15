@@ -4,7 +4,17 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="GeographyModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="GeographyModels.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+          <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+        </EntityType>
         <EntityType Name="Continents">
           <Key>
             <PropertyRef Name="ContinentCode" />
@@ -58,6 +68,14 @@
           <Property Name="DrainageArea" Type="int" />
           <Property Name="AverageDischarge" Type="int" />
           <Property Name="Outflow" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="CreatedOn" Type="datetime" />
         </EntityType>
         <Association Name="FK_Countries_Continents">
           <End Role="Continents" Type="Self.Continents" Multiplicity="1" />
@@ -119,13 +137,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="GeographyModelStoreContainer">
+        <EntityContainer Name="GeographyModelsStoreContainer">
+          <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Continents" EntityType="Self.Continents" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Countries" EntityType="Self.Countries" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CountriesRivers" EntityType="Self.CountriesRivers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Currencies" EntityType="Self.Currencies" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Monasteries" EntityType="Self.Monasteries" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Rivers" EntityType="Self.Rivers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Countries_Continents" Association="Self.FK_Countries_Continents">
             <End Role="Continents" EntitySet="Continents" />
             <End Role="Countries" EntitySet="Countries" />
@@ -151,7 +171,17 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="GeographyModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="GeographyModels" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="C__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ContextKey" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
         <EntityType Name="Continent">
           <Key>
             <PropertyRef Name="ContinentCode" />
@@ -206,6 +236,14 @@
           <Property Name="Outflow" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Countries" Relationship="Self.CountriesRivers" FromRole="Rivers" ToRole="Countries" />
         </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+        </EntityType>
         <Association Name="FK_Countries_Continents">
           <End Role="Continents" Type="Self.Continent" Multiplicity="1" />
           <End Role="Countries" Type="Self.Country" Multiplicity="*" />
@@ -247,11 +285,13 @@
           <End Role="Rivers" Type="Self.River" Multiplicity="*" />
         </Association>
         <EntityContainer Name="GeographyEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
           <EntitySet Name="Continents" EntityType="Self.Continent" />
           <EntitySet Name="Countries" EntityType="Self.Country" />
           <EntitySet Name="Currencies" EntityType="Self.Currency" />
           <EntitySet Name="Monasteries" EntityType="Self.Monastery" />
           <EntitySet Name="Rivers" EntityType="Self.River" />
+          <EntitySet Name="Users" EntityType="Self.User" />
           <AssociationSet Name="FK_Countries_Continents" Association="Self.FK_Countries_Continents">
             <End Role="Continents" EntitySet="Continents" />
             <End Role="Countries" EntitySet="Countries" />
@@ -274,9 +314,19 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="GeographyModelStoreContainer" CdmEntityContainer="GeographyEntities">
+        <EntityContainerMapping StorageEntityContainer="GeographyModelsStoreContainer" CdmEntityContainer="GeographyEntities">
+          <EntitySetMapping Name="C__MigrationHistory">
+            <EntityTypeMapping TypeName="GeographyModels.C__MigrationHistory">
+              <MappingFragment StoreEntitySet="__MigrationHistory">
+                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+                <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Continents">
-            <EntityTypeMapping TypeName="GeographyModel.Continent">
+            <EntityTypeMapping TypeName="GeographyModels.Continent">
               <MappingFragment StoreEntitySet="Continents">
                 <ScalarProperty Name="ContinentCode" ColumnName="ContinentCode" />
                 <ScalarProperty Name="ContinentName" ColumnName="ContinentName" />
@@ -284,7 +334,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Countries">
-            <EntityTypeMapping TypeName="GeographyModel.Country">
+            <EntityTypeMapping TypeName="GeographyModels.Country">
               <MappingFragment StoreEntitySet="Countries">
                 <ScalarProperty Name="CountryCode" ColumnName="CountryCode" />
                 <ScalarProperty Name="IsoCode" ColumnName="IsoCode" />
@@ -298,7 +348,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Currencies">
-            <EntityTypeMapping TypeName="GeographyModel.Currency">
+            <EntityTypeMapping TypeName="GeographyModels.Currency">
               <MappingFragment StoreEntitySet="Currencies">
                 <ScalarProperty Name="CurrencyCode" ColumnName="CurrencyCode" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
@@ -306,7 +356,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Monasteries">
-            <EntityTypeMapping TypeName="GeographyModel.Monastery">
+            <EntityTypeMapping TypeName="GeographyModels.Monastery">
               <MappingFragment StoreEntitySet="Monasteries">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -315,7 +365,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Rivers">
-            <EntityTypeMapping TypeName="GeographyModel.River">
+            <EntityTypeMapping TypeName="GeographyModels.River">
               <MappingFragment StoreEntitySet="Rivers">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="RiverName" ColumnName="RiverName" />
@@ -326,7 +376,16 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="CountriesRivers" TypeName="GeographyModel.CountriesRivers" StoreEntitySet="CountriesRivers">
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="GeographyModels.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="CountriesRivers" TypeName="GeographyModels.CountriesRivers" StoreEntitySet="CountriesRivers">
             <EndProperty Name="Countries">
               <ScalarProperty Name="CountryCode" ColumnName="CountryCode" />
             </EndProperty>

@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{4CEFC173-7AFD-4DEA-B423-40A384B5D960}</ProjectGuid>
+    <ProjectGuid>{E1138A5C-93E4-4AEA-B5BD-24EAA0E5CF16}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>AuthManager</RootNamespace>
-    <AssemblyName>AuthManager</AssemblyName>
+    <RootNamespace>Geography.Db1st.Local</RootNamespace>
+    <AssemblyName>Geography.Db1st.Local</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -51,60 +51,66 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AuthManagerEntityModels.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>AuthManagerEntityModels.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="AuthManagerEntityModels.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>AuthManagerEntityModels.tt</DependentUpon>
-    </Compile>
-    <Compile Include="AuthManagerEntityModels.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>AuthManagerEntityModels.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Continent.cs">
-      <DependentUpon>AuthManagerEntityModels.tt</DependentUpon>
+      <DependentUpon>GeographyModels.tt</DependentUpon>
     </Compile>
     <Compile Include="Country.cs">
-      <DependentUpon>AuthManagerEntityModels.tt</DependentUpon>
+      <DependentUpon>GeographyModels.tt</DependentUpon>
     </Compile>
     <Compile Include="Currency.cs">
-      <DependentUpon>AuthManagerEntityModels.tt</DependentUpon>
+      <DependentUpon>GeographyModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="C__MigrationHistory.cs">
+      <DependentUpon>GeographyModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GeographyModels.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GeographyModels.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GeographyModels.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GeographyModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GeographyModels.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GeographyModels.edmx</DependentUpon>
     </Compile>
     <Compile Include="Monastery.cs">
-      <DependentUpon>AuthManagerEntityModels.tt</DependentUpon>
+      <DependentUpon>GeographyModels.tt</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="River.cs">
-      <DependentUpon>AuthManagerEntityModels.tt</DependentUpon>
+      <DependentUpon>GeographyModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="User.cs">
+      <DependentUpon>GeographyModels.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <EntityDeploy Include="AuthManagerEntityModels.edmx">
+    <EntityDeploy Include="GeographyModels.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>AuthManagerEntityModels.Designer.cs</LastGenOutput>
+      <LastGenOutput>GeographyModels.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="AuthManagerEntityModels.edmx.diagram">
-      <DependentUpon>AuthManagerEntityModels.edmx</DependentUpon>
+    <None Include="GeographyModels.edmx.diagram">
+      <DependentUpon>GeographyModels.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="AuthManagerEntityModels.Context.tt">
+    <Content Include="GeographyModels.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>AuthManagerEntityModels.Context.cs</LastGenOutput>
-      <DependentUpon>AuthManagerEntityModels.edmx</DependentUpon>
+      <LastGenOutput>GeographyModels.Context.cs</LastGenOutput>
+      <DependentUpon>GeographyModels.edmx</DependentUpon>
     </Content>
-    <Content Include="AuthManagerEntityModels.tt">
+    <Content Include="GeographyModels.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>AuthManagerEntityModels.edmx</DependentUpon>
-      <LastGenOutput>AuthManagerEntityModels.cs</LastGenOutput>
+      <DependentUpon>GeographyModels.edmx</DependentUpon>
+      <LastGenOutput>GeographyModels.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <ItemGroup>

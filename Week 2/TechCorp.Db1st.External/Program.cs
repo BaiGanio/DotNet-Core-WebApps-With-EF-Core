@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AuthManager.Db1st
+namespace TechCorp.Db1st.External
 {
     class Program
     {

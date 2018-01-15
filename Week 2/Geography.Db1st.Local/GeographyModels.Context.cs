@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AuthManager
+namespace Geography.Db1st.Local
 {
     using System;
     using System.Data.Entity;
@@ -25,10 +25,12 @@ namespace AuthManager
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<C__MigrationHistory> C__MigrationHistory { get; set; }
         public virtual DbSet<Continent> Continents { get; set; }
         public virtual DbSet<Country> Countries { get; set; }
         public virtual DbSet<Currency> Currencies { get; set; }
         public virtual DbSet<Monastery> Monasteries { get; set; }
         public virtual DbSet<River> Rivers { get; set; }
+        public virtual DbSet<User> Users { get; set; }
     }
 }

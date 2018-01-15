@@ -7,30 +7,23 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AuthManager
+namespace Geography.Db1st.Local
 {
+    using System;
     using System.Collections.Generic;
-
-    public partial class Continent
+    
+    public partial class Currency
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Continent()
+        public Currency()
         {
             this.Countries = new HashSet<Country>();
         }
-
-        public string ContinentCode { get; set; }
-        public string ContinentName { get; set; }
-
+    
+        public string CurrencyCode { get; set; }
+        public string Description { get; set; }
+    
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Country> Countries { get; set; }
-
-
-
-        public override string ToString()
-        {
-            return $"{this.ContinentCode} => {this.ContinentName}";
-        }
-
     }
 }
