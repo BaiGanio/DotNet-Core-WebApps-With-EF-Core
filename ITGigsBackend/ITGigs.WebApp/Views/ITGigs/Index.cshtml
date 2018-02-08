@@ -1,0 +1,57 @@
+﻿@model IEnumerable<ITGigs.ITGigService.Domain.Models.ITGig>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+@*<h2>Index</h2>
+
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>*@
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Event slogan/Event brand
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Performer)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Venue)
+            </th>
+            <th>
+                Info
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                    <br />
+                    <img style="width:100%;" src="@item.ImgUrl" />
+                </td>
+                <td>
+                    <img style="width:80%;" src="@item.Performer.ImgUrl" />
+                    <br />
+                    @Html.DisplayFor(modelItem => item.Performer.Username)
+                </td>
+                <td>
+                    <img style="width:70%;" src="@item.Venue.ImgUrl" />
+                    <br />
+                    @Html.DisplayFor(modelItem => item.Venue.Name)
+                </td>
+                <td colspan="2" style="font-size:0.6em">
+                    -  @Html.DisplayFor(modelItem => item.Venue.Capacity) seats
+                    <br />
+                    - $ @Html.DisplayFor(modelItem => item.TicketPrice) / ticket
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

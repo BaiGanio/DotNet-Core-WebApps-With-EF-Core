@@ -1,0 +1,46 @@
+﻿@model IEnumerable<ITGigs.UserService.Domain.Models.User>
+
+@{
+    ViewData["Title"] = "AllUsers";
+}
+
+<h2>All Users</h2>
+<hr />
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Username)
+            </th>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.DateCreated)
+                </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.ImgUrl)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Username)
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.DateCreated)
+                    </td>*@
+                <td>
+                    <img style="width:60%;" src="@item.ImgUrl" />
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
