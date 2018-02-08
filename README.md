@@ -18,15 +18,20 @@
     - `Web API`
     - `Empty - from scratch`
   * Basics to web-based Git version control repository hosting services like `GitHub`
+    - `Repository management`
+    - `Workflow tracking`
   * Basics to cloud-computing services like `Microsoft Azure`
+    - `Managing resources`
+    - `Integrations` ex.: deploy from GitHub
+    - `Hosting real-time pllications on Azure websites`
   * Basics of .NET Platform as a Service web-based hosting providers like `AppHarbor`
-  * Basics of backend-as-a-service web-based providers like `Kinvey`
+    - `Create applications`
+    - `Configure and extract db tier`
 * & much more...
 
 ***
 
 ### For resources, video examples and how to navigate into the repo... check out our [`Wiki`](https://github.com/BaiGanio/PU-DB-Apps-With-EF/wiki).
-
 
 ![wiki](https://github.com/BaiGanio/PU-DB-Apps-With-EF/blob/master/useful-things/Wiki.png)
     
