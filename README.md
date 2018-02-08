@@ -23,9 +23,9 @@
   * Basics to cloud-computing services like `Microsoft Azure`
     - `Managing resources`
     - `Integrations` ex.: deploy from GitHub
-    - `Hosting real-time pllications on Azure websites`
+    - `Hosting real-time applications on Azure websites`
   * Basics of .NET Platform as a Service web-based hosting providers like `AppHarbor`
-    - `Create applications`
+    - `Create .NET 4.6.x applications` - doesn't provide .NET Core hosting!!!
     - `Configure and extract db tier`
 * & much more...
 
