@@ -5,30 +5,22 @@
 
 - Course Objectives & Concepts
   * Working with `IDE`'s like:
-
-    - `Visual Studio Community 2017`
-    
-    - `Visual Studio Code`
-    
+    - `Visual Studio Community 2017`    
+    - `Visual Studio Code`    
   * Introduction to basic Design Patterns:
     - `Strategy`
     - `Singleton`
-    - `etc.`
   * Introduction to `ORM`(object-relational mapping) like:
-
-    - `EF 6.x`
-    
-    - `EF Core`
-    
+    - `EF 6.x`    
+    - `EF Core`    
   * Basics to the boilerplates (MVC, API, Angular)
     - `MVC web app`
     - `Web API`
     - `Empty - from scratch`
-* Basics to web-based Git version control repository hosting services like `GitHub`
-* Basics to cloud-computing services like `Microsoft Azure`
-* Basics of .NET Platform as a Service web-based hosting providers like `AppHarbor`
-* Basics of backend-as-a-service web-based providers like `Kinvey`
-* Performing CRUD requests to the server
+  * Basics to web-based Git version control repository hosting services like `GitHub`
+  * Basics to cloud-computing services like `Microsoft Azure`
+  * Basics of .NET Platform as a Service web-based hosting providers like `AppHarbor`
+  * Basics of backend-as-a-service web-based providers like `Kinvey`
 * & much more...
 
 ***
