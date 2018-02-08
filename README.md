@@ -4,6 +4,7 @@
 - Plovdiv University requirements -> [click here](https://github.com/BaiGanio/PU-DB-Apps-With-EF/blob/master/%D0%A3%D1%87%D0%B5%D0%B1%D0%BD%D0%B0%20%D0%BF%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%B0%20DB%20Apps.pdf) for details.
 
 - Course Objectives & Concepts
+  * Base coverage of the points affected in the article [`Pragmatic Thinking and Learning`](https://github.com/BaiGanio/PU-DB-Apps-with-EF/blob/master/Pragmatic%20Thinking%20and%20Learning.pdf)
   * Working with `IDE`'s & text editors like:
     - `Visual Studio Community 2017`    
     - `Visual Studio Code`    
