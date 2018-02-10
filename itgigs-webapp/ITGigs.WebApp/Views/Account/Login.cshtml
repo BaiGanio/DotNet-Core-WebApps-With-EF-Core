@@ -1,28 +1,69 @@
 ﻿@model LoginEntry
 @{
     ViewData["Title"] = "Login";
+    bool isWrong = ViewData["WrongLogin"] != null;
 }
 
-<h2>@ViewData["WrongLogin"]</h2>
+<!-- START LOGIN CONTENT -->
+<section id="viewLogin" style="text-align:center;">
+    <h1 class="theMonkiesAteMySoul" style="color: #c0a16b">
+        <b>login</b>
+    </h1>
+    <h4 class="theMonkiesAteMySoul" style="color: #c0a16b">
+        <b>Use a local account to log in</b>
+    </h4>
+    <hr>
+    <br>
+    @if (isWrong)
+    {
+        <p class="alert">@ViewData["WrongLogin"]</p>
+    }
 
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Login">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Username" class="control-label"></label>
-                <input asp-for="Username" class="form-control" />
-                <span asp-validation-for="Username" class="text-danger"></span>
+    <br>
+    <!-- START FORM -->
+    <div class="login-form-1">
+        <div id="login-form" class="text-left">
+            <div class="main-login-form">
+                <form asp-action="Login">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-container">
+                        <!--Username-->
+                        @*<span asp-validation-for="Username" class="text-danger"></span>*@
+                        <div class="form-group">
+                            <input type="text" placeholder="username" asp-for="Username" class="form-control">
+                        </div>
+                        <!--Password-->
+                        @*<span asp-validation-for="Password" class="text-danger"></span>*@
+                        <div class="form-group">
+                            <input type="password" placeholder="password" asp-for="Password" class="form-control">
+                        </div>
+                        <!--Button GO-->
+                        <div class="form-group">
+                            <input type="submit" class="login-button" value="GO" [disabled]="!reactiveForm.valid" />
+                        </div>
+                    </div>
+                </form>
             </div>
-            <div class="form-group">
-                <label asp-for="Password" class="control-label"></label>
-                <input asp-for="Password" class="form-control" />
-                <span asp-validation-for="Password" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
-        </form>
+        </div>
     </div>
-</div>
-
+    <!-- END FORM -->
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <hr>
+    <h3>
+        <a routerLink="/register">Register as a new user</a>
+        ||
+        <a routerLink="/forgotten-password">Forgot your password?</a>
+        @*||
+            <a routerLink="/forgotten-password">Use another service to log in</a>*@
+    </h3>
+    <hr>
+    <!-- <h1 class="theMonkiesAteMySoul" style="color: #c0a16b"><b>Use another service to log in.</b></h1> -->
+</section>
+<!-- END LOGIN CONTENT -->
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

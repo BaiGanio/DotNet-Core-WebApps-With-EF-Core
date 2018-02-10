@@ -33,3 +33,142 @@
         display: none;
     }
 }
+
+/* Login-Register */
+
+#viewLogin, #viewRegister {
+    font-family: 'Garamond';
+}
+
+section input {
+    border: none;
+}
+
+input:focus {
+    outline: none;
+}
+
+input[type="text"], input[type="email"], input[type="password"] {
+    border: none;
+    width: 100%;
+    font-size: 1em;
+    padding: 5px;
+    margin: 5px;
+    color: black;
+    background-color: transparent;
+}
+
+.form-control:focus {
+    border-color: inherit;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.login-form-1, .register-form-1 {
+    width: 45%;
+    text-decoration: none;
+    border-radius: 5px;
+    display: inline-block;
+}
+
+    .login-form-1, .register-form-1 .form-control::-webkit-input-placeholder {
+        color: #999999;
+    }
+
+        .login-form-1 .form-control:-moz-placeholder,
+        .login-form-1 .form-control::-moz-placeholder,
+        .login-form-1 .form-control:-ms-input-placeholder {
+            color: #999999;
+        }
+
+    .register-form-1 .form-control:-moz-placeholder,
+    .register-form-1 .form-control::-moz-placeholder,
+    .register-form-1 .form-control:-ms-input-placeholder {
+        color: #999999;
+    }
+
+    .login-form-1 .form-group {
+        margin-bottom: 0;
+        border-bottom: 2px solid #efefef;
+        padding-right: 20px;
+        position: relative;
+    }
+
+    .register-form-1 .form-group {
+        margin-bottom: 0;
+        border-bottom: 2px solid #efefef;
+        padding-right: 20px;
+        position: relative;
+    }
+
+    .login-form-1 .form-group:last-child {
+        border-bottom: 0;
+    }
+
+    .register-form-1 .form-group:last-child {
+        border-bottom: 0;
+    }
+
+/*=== Buttons ===*/
+.login-button, .register-button {
+    position: absolute;
+    right: -25px;
+    top: 50%;
+    background: #ffffff;
+    /*color: #999999;*/
+    font-size: 1.6em;
+    padding: 10px 0;
+    width: 100px;
+    height: 100px;
+    margin-top: -45px;
+    border: 5px solid #efefef;
+    border-radius: 50%;
+    -moz-transition: all ease-in-out 500ms;
+    -o-transition: all ease-in-out 500ms;
+    -webkit-transition: all ease-in-out 500ms;
+    transition: all ease-in-out 500ms;
+}
+
+
+
+    .login-button:enabled, .register-button:enabled {
+        color: whitesmoke;
+        background: rgb(52, 199, 243);
+        /* -moz-transform: rotate(720deg);
+    -ms-transform: rotate(720deg);
+    -o-transform: rotate(720deg);
+    -webkit-transform: rotate(720deg);
+    transform: rotate(720deg); */
+    }
+
+        .login-button:enabled:hover, .register-button:enabled:hover {
+            color: #b13737;
+            background: greenyellow;
+            -moz-transform: rotate(720deg);
+            -ms-transform: rotate(720deg);
+            -o-transform: rotate(720deg);
+            -webkit-transform: rotate(720deg);
+            transform: rotate(720deg);
+        }
+
+.alert {
+    background: rgb(231, 9, 9);
+    padding: 7px;
+    font-size: 0.8em;
+    color: whitesmoke;
+    display: inline-block;
+    animation: 2s alertAnimation forward;
+}
+
+@keyframes alertAnimation {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+

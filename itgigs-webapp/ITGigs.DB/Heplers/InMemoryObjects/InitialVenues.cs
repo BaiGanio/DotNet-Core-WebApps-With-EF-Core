@@ -1,17 +1,24 @@
 ﻿using ITGigs.Common.Extensions;
-using ITGigs.ITGigService.Domain.Models;
-using ITGigs.UserService.Domain.Models;
 using ITGigs.VenueService.Domain.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
-namespace ITGigs.DB.Helpers
+namespace ITGigs.DB.Heplers.InMemoryObjects
 {
-    public static class Constants
+    public class InitialVenues
     {
-        
+        public static void Seed(AppDbContext context)
+        {
+            if (context.Venues.Any()) return;
+            foreach (var initalVenue in GetInitialVenues())
+            {
+                context.Venues.Add(initalVenue);
+            }
+            context.SaveChanges();
+        }
 
-        public static List<Venue> GetInitialVenues()
+        private static List<Venue> GetInitialVenues()
         {
             return new List<Venue>()
             {
@@ -33,9 +40,5 @@ namespace ITGigs.DB.Helpers
                 )
             };
         }
-
-        
-
-
     }
 }

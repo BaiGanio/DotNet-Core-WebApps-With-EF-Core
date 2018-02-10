@@ -1,38 +1,70 @@
 ﻿@model RegisterEntry
 @{
     ViewData["Title"] = "RegisterView";
+    bool isWrong = ViewData["WrongRegister"] != null;
 }
 
-<h2>RegisterView</h2>
 
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Register">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Username" class="control-label"></label>
-                <input asp-for="Username" class="form-control" />
-                <span asp-validation-for="Username" class="text-danger"></span>
+<!-- START REGISTRATION CONTENT -->
+<section id="viewRegister" style="text-align:center;">
+    <h1 style="color: #c0a16b">
+        <b>Register</b>
+    </h1>
+    <h4 style="color: #c0a16b">
+        <b>Create a new account</b>
+    </h4>
+    <hr />
+    <br>
+    @if (isWrong)
+    {
+        <p class="alert">@ViewData["WrongRegister"]</p>
+    }
+    <br>
+    <!-- START FORM -->
+    <div class="register-form-1">
+        <!-- START: register-form -->
+        <div id="register-form" class="text-left">
+            <div class="main-register-form">
+                <form asp-action="Register">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-container">
+                        <!--Username-->
+                        @*<span asp-validation-for="Username" class="text-danger"></span>*@
+                        <div class="form-group">
+                            <input type="text" placeholder="username" asp-for="Username" class="form-control">
+                        </div>
+                        <!--Password-->
+                        @*<span asp-validation-for="Email" class="text-danger"></span>*@
+                        <div class="form-group">
+                            <input type="email" placeholder="email" asp-for="Email" class="form-control">
+                        </div>
+                        <!--Password-->
+                        @*<span asp-validation-for="Password" class="text-danger"></span>*@
+                        <div class="form-group">
+                            <input type="password" placeholder="password" asp-for="Password" class="form-control">
+                        </div>
+                        <!--Button GO-->
+                        <div class="form-group">
+                            <input type="submit" class="login-button" value="GO" [disabled]="!reactiveForm.valid" />
+                        </div>
+                    </div>
+                </form>
             </div>
-            <div class="form-group">
-                <label asp-for="Email" class="control-label"></label>
-                <input asp-for="Email" class="form-control" />
-                <span asp-validation-for="Email" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Password" class="control-label"></label>
-                <input asp-for="Password" class="form-control" />
-                <span asp-validation-for="Password" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ImgUrl" class="control-label"></label>
-                <input asp-for="ImgUrl" class="form-control" />
-                <span asp-validation-for="ImgUrl" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
-        </form>
+        </div>
+        <!-- END: register-form -->
     </div>
-</div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <hr>
+
+    <!-- END REGISTRATION CONTENT -->
+    <hr>
+    <h3>
+        Already have an account? Click
+        <a routerLink="/login">here!</a>
+    </h3>
+</section>
 

@@ -27,8 +27,9 @@ namespace ITGigs.WebApp.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(LoginEntry entry)
         {
+            ViewData["WrongLogin"] = null;
             var users = await _userManager.GetAllUsersAsync();
-            var user = users.FirstOrDefault(u => u.Username == entry.Username);
+            var user = users.FirstOrDefault(u => u.Username == entry.Username.Trim());
             if (user != null)
             {
                 if (HashUtils.VerifyPassword(entry.Password, user.Password))
@@ -36,7 +37,7 @@ namespace ITGigs.WebApp.Controllers
                     return RedirectToAction("Index", "ITGigs");
                 }
             }
-            ViewData["WrongLogin"] = "Ей шибаняк, вкарвай коректни данни!";
+            ViewData["WrongLogin"] = "Incorrect username or password!";
             return View(entry);
         }
 
@@ -47,13 +48,26 @@ namespace ITGigs.WebApp.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(RegisterEntry entry)
         {
+            ViewData["WrongRegister"] = null;
+            if (entry.Username == null || entry.Password == null || entry.Email == null)
+            {
+                ViewData["WrongRegister"] = "Incorrect form!";
+                return View();
+            }
             try
             {
+                User user = await _userManager.GetUserByEmailAsync(entry.Email);
+                if (user != null)
+                {
+                    ViewData["WrongRegister"] = "Email already taken!";
+                    return View();
+                }
                 string password = HashUtils.CreateHashCode(entry.Password);
-                User user = new User(entry.Username, entry.Email, password, entry.ImgUrl);
-                await _userManager.RegisterAsync(user);
+                User newuser = new User(entry.Username, entry.Email, password, entry.ImgUrl);
+                await _userManager.RegisterAsync(newuser);
             }
             catch (Exception ex)
             {
