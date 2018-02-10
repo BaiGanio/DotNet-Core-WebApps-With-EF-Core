@@ -18,23 +18,21 @@
     {
         <p class="alert">@ViewData["WrongLogin"]</p>
     }
-
     <br>
     <!-- START FORM -->
     <div class="login-form-1">
         <div id="login-form" class="text-left">
             <div class="main-login-form">
-                <form asp-action="Login">
-                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <form method="post">
                     <div class="form-container">
                         <!--Username-->
-                        @*<span asp-validation-for="Username" class="text-danger"></span>*@
                         <div class="form-group">
+                            <span asp-validation-for="Username" class="text-danger"></span>
                             <input type="text" placeholder="username" asp-for="Username" class="form-control">
                         </div>
                         <!--Password-->
-                        @*<span asp-validation-for="Password" class="text-danger"></span>*@
                         <div class="form-group">
+                            <span asp-validation-for="Password" class="text-danger"></span>
                             <input type="password" placeholder="password" asp-for="Password" class="form-control">
                         </div>
                         <!--Button GO-->
@@ -54,9 +52,9 @@
     <br>
     <hr>
     <h3>
-        <a routerLink="/register">Register as a new user</a>
-        ||
-        <a routerLink="/forgotten-password">Forgot your password?</a>
+        <a asp-action="Register" asp-route-returnurl="@ViewData["ReturnUrl"]">Register as a new user.</a>
+        @*||
+            <a asp-action="ForgotPassword">Forgot your password?</a>*@
         @*||
             <a routerLink="/forgotten-password">Use another service to log in</a>*@
     </h3>

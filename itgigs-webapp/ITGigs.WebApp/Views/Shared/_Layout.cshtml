@@ -16,7 +16,7 @@
         <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
     </environment>
 </head>
-<body style="font-family:'Garamond'; font-size:2.6em;">
+<body style="font-family:'Garamond'; font-size:2.2em;">
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -26,7 +26,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">ITGigs.WebApp</a>
+                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">ITGigs</a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
@@ -36,9 +36,10 @@
                     <li><a asp-area="" asp-controller="Home" asp-action="AllUsers">All Users</a></li>
                     <li><a asp-area="" asp-controller="Venues" asp-action="Index">All Venues</a></li>
                     <li><a asp-area="" asp-controller="ITGigs" asp-action="Index">All ITGigs</a></li>
-
-                    <li><a asp-area="" asp-controller="Account" asp-action="Login">Login</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
                     <li><a asp-area="" asp-controller="Account" asp-action="Register">Register</a></li>
+                    <li><a asp-area="" asp-controller="Account" asp-action="Login">Log in</a></li>
                 </ul>
             </div>
         </div>

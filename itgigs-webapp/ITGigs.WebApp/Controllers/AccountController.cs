@@ -19,6 +19,11 @@ namespace ITGigs.WebApp.Controllers
             return View();
         }
 
+        public IActionResult Welcome()
+        {
+            return View();
+        }
+
         public IActionResult Login()
         {
             return View();
@@ -28,15 +33,30 @@ namespace ITGigs.WebApp.Controllers
         public async Task<IActionResult> Login(LoginEntry entry)
         {
             ViewData["WrongLogin"] = null;
-            var users = await _userManager.GetAllUsersAsync();
-            var user = users.FirstOrDefault(u => u.Username == entry.Username.Trim());
-            if (user != null)
+            if (entry.Username == null || entry.Password == null)
             {
-                if (HashUtils.VerifyPassword(entry.Password, user.Password))
+                ViewData["WrongLogin"] = "Incorrect form!";
+                return View();
+            }
+
+            try
+            {
+                var users = await _userManager.GetAllUsersAsync();
+                var user = users.FirstOrDefault(u => u.Username == entry.Username.Trim());
+                if (user != null)
                 {
-                    return RedirectToAction("Index", "ITGigs");
+                    if (HashUtils.VerifyPassword(entry.Password, user.Password))
+                    {
+                        return RedirectToAction("Index", "ITGigs");//redirect to user manager page
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                //TODO: log the error
+                return RedirectToAction("Index", "ITGigs"); // Error page
+            }
+
             ViewData["WrongLogin"] = "Incorrect username or password!";
             return View(entry);
         }
@@ -48,7 +68,6 @@ namespace ITGigs.WebApp.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(RegisterEntry entry)
         {
             ViewData["WrongRegister"] = null;
@@ -71,10 +90,11 @@ namespace ITGigs.WebApp.Controllers
             }
             catch (Exception ex)
             {
+                //TODO: log the error
                 return RedirectToAction("Index", "ITGigs"); // Error page
             }
 
-            return RedirectToAction("AllUsers", "Home");
+            return View("Welcome");
         }
 
     }

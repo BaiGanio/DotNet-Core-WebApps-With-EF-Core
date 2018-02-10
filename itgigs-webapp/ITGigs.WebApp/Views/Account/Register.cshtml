@@ -25,27 +25,26 @@
         <!-- START: register-form -->
         <div id="register-form" class="text-left">
             <div class="main-register-form">
-                <form asp-action="Register">
-                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <form method="post">
                     <div class="form-container">
                         <!--Username-->
-                        @*<span asp-validation-for="Username" class="text-danger"></span>*@
                         <div class="form-group">
+                            <span asp-validation-for="Username" class="text-danger"></span>
                             <input type="text" placeholder="username" asp-for="Username" class="form-control">
                         </div>
                         <!--Password-->
-                        @*<span asp-validation-for="Email" class="text-danger"></span>*@
                         <div class="form-group">
+                            <span asp-validation-for="Email" class="text-danger"></span>
                             <input type="email" placeholder="email" asp-for="Email" class="form-control">
                         </div>
                         <!--Password-->
-                        @*<span asp-validation-for="Password" class="text-danger"></span>*@
                         <div class="form-group">
+                            <span asp-validation-for="Password" class="text-danger"></span>
                             <input type="password" placeholder="password" asp-for="Password" class="form-control">
                         </div>
                         <!--Button GO-->
                         <div class="form-group">
-                            <input type="submit" class="login-button" value="GO" [disabled]="!reactiveForm.valid" />
+                            <input type="submit" class="register-button" value="GO" [disabled]="!reactiveForm.valid" />
                         </div>
                     </div>
                 </form>
@@ -64,7 +63,10 @@
     <hr>
     <h3>
         Already have an account? Click
-        <a routerLink="/login">here!</a>
+        <a asp-action="Login"> here!</a>
     </h3>
 </section>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
 
