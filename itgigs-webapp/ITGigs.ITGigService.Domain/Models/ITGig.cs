@@ -19,16 +19,16 @@ namespace ITGigs.ITGigService.Domain.Models
             this.VenueId = venueId;
             this.ImgUrl = imgUrl;
             this.TicketPrice = ticketPrice;
-            this.Id = string.IsNullOrEmpty(id.ToString()) ? new CustomId().ToString() : id.ToString();
-            //this._id = id ?? new CustomId();
+            //this.Id = string.IsNullOrEmpty(id.ToString()) ? new CustomId().ToString() : id.ToString();
+            this._id = id ?? new CustomId();
         }
 
         [Key]
-        public string Id { get; private set; }
-        //{
-        //    get { return this._id.ToString() ?? new CustomId().ToString(); }
-        //    private set { this._id = new CustomId(new Guid(value)); }
-        //}
+        public string Id
+        {
+            get { return this._id.ToString() ?? new CustomId().ToString(); }
+            private set { this._id = new CustomId(new Guid(value)); }
+        }
 
         public string Name { get; private set; }
 
