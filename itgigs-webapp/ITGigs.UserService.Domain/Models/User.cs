@@ -18,6 +18,15 @@ namespace ITGigs.UserService.Domain.Models
             this.DateChanged = dateChanged ?? DateTime.MinValue;
             this._id = id ?? new CustomId();
         }
+        public User(string username, string email, string password, string imgUrl = null, CustomId id = null)
+        {
+            this.Username = username;
+            this.Email = email;
+            this.ImgUrl = imgUrl ?? string.Empty;
+            this.Password = password;
+            this.DateCreated = DateTime.Now;
+            this._id = id ?? new CustomId();
+        }
 
         [Key]
         public string Id
@@ -29,6 +38,10 @@ namespace ITGigs.UserService.Domain.Models
         public string Username { get; private set; }
 
         public string ImgUrl { get; private set; }
+
+        public string Email { get; private set; }
+
+        public string Password { get; private set; }
 
         public DateTime? DateCreated { get; private set; }
 
