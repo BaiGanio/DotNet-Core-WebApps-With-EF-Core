@@ -6,6 +6,8 @@ using ITGigs.WebApp.DTOs;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Threading.Tasks;
 
 namespace ITGigs.WebApp.Controllers
@@ -87,6 +89,8 @@ namespace ITGigs.WebApp.Controllers
                 string password = HashUtils.CreateHashCode(entry.Password);
                 User newuser = new User(entry.Username, entry.Email, password, entry.ImgUrl);
                 await _userManager.RegisterAsync(newuser);
+                var callbackUrl = "We will send confirmtion links soon.";
+                SendEmail(entry.Email, "ITGigs registration request", $"Please click on the link to confirm your emil: {callbackUrl}");
             }
             catch (Exception ex)
             {
@@ -96,6 +100,29 @@ namespace ITGigs.WebApp.Controllers
 
             return View("Welcome");
         }
+
+        private void SendEmail(string email, string subject, string message)
+        {
+            try
+            {
+                SmtpClient client = new SmtpClient("smtp.gmail.com", 587);
+                client.UseDefaultCredentials = false;
+                client.Credentials = new NetworkCredential("your-mail@gmail.com", "your-mail-pass");
+
+                MailMessage mailMessage = new MailMessage();
+                mailMessage.From = new MailAddress("whoever@me.com");
+                mailMessage.To.Add(email);
+                mailMessage.Body = message;
+                mailMessage.Subject = subject;
+                client.EnableSsl = true;
+                client.Send(mailMessage);
+            }
+            catch (Exception ex)
+            {
+                //do something here
+            }
+        }
+
 
     }
 }
