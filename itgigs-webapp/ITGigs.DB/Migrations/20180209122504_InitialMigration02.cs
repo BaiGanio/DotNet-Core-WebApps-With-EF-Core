@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace ITGigs.DB.Migrations
 {
-    public partial class initial01 : Migration
+    public partial class InitialMigration02 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

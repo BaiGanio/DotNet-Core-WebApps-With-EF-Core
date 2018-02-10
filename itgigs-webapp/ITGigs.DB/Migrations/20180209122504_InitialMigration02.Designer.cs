@@ -11,8 +11,8 @@ using System;
 namespace ITGigs.DB.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20180208150327_initial01")]
-    partial class initial01
+    [Migration("20180209122504_InitialMigration02")]
+    partial class InitialMigration02
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
