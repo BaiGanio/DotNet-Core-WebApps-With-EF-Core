@@ -21,6 +21,7 @@
     <ProjectReference Include="..\ITGigs.Common\ITGigs.Common.csproj" />
     <ProjectReference Include="..\ITGigs.DB\ITGigs.DB.csproj" />
     <ProjectReference Include="..\ITGigs.UserService.Domain\ITGigs.UserService.Domain.csproj" />
+    <ProjectReference Include="..\ITGigs.UserService\ITGigs.UserService.csproj" />
   </ItemGroup>
 
 </Project>
