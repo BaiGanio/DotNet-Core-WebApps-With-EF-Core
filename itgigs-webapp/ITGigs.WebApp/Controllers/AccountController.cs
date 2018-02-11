@@ -91,8 +91,8 @@ namespace ITGigs.WebApp.Controllers
                 string validationCode = HashUtils.CreateHashCode(new Guid().ToString());
                 User newUser = new User(entry.Username, entry.Email, password, validationCode);
                 await _userManager.RegisterAsync(newUser);
-                string local = "http://localhost:55766/account/ConfirmEmail";
-                string prod = "https://itgigs.azurewebsites.net/account/ConfirmEmail";
+                string local = "http://localhost:55766/account/ValidateEmail";
+                string prod = "https://itgigs.azurewebsites.net/account/ValidateEmail";
                 string callbackUrl = $"{local}?userId={newUser.Id}&validationCode={validationCode}";
                 string link = "<a href=\"" + callbackUrl + "\">here</a>";
                 await SendEmailAsync(entry.Email, "ITGigs registration request", $"To confirm your account click  -> {link}");
