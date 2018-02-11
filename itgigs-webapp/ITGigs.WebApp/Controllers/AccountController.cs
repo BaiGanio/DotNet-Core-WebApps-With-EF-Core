@@ -92,9 +92,10 @@ namespace ITGigs.WebApp.Controllers
                 User newUser = new User(entry.Username, entry.Email, password, validationCode);
                 await _userManager.RegisterAsync(newUser);
                 string local = "http://localhost:55766/account/ConfirmEmail";
-                string prod = "https://itgigs.azurewebsites.com/account/ConfirmEmail";
-                string callbackUrl = $"{prod}?userId={newUser.Id}&validationCode={validationCode}";
-                await SendEmailAsync(entry.Email, "ITGigs registration request", $"To confirm your emil click on the provided link -> {callbackUrl}");
+                string prod = "https://itgigs.azurewebsites.net/account/ConfirmEmail";
+                string callbackUrl = $"{local}?userId={newUser.Id}&validationCode={validationCode}";
+                string link = "<a href=\"" + callbackUrl + "\">here</a>";
+                await SendEmailAsync(entry.Email, "ITGigs registration request", $"To confirm your account click  -> {link}");
             }
             catch (Exception ex)
             {
@@ -105,9 +106,15 @@ namespace ITGigs.WebApp.Controllers
             return View("Welcome");
         }
 
+        //[HttpGet("ConfirmEmail")]
+        public  ActionResult ConfirmEmail()
+        {
+            return View();
+        }
+
         [HttpGet]
         [AllowAnonymous]
-        public async Task<ActionResult> ConfirmEmail(string userId, string validationCode)
+        public async Task<ActionResult> ValidateEmail(string userId, string validationCode)
         {
             if (userId == null || validationCode == null)
             {
@@ -124,7 +131,7 @@ namespace ITGigs.WebApp.Controllers
             }
             //var result = await _userManager.ConfirmEmailAsync(user, validationCode);
             //return View(result.Succeeded ? "ConfirmEmail" : "Error");
-            return View("ConfirmEmail");
+            return View("EmailConfirmed");
         }
 
         private async Task SendEmailAsync(string email, string subject, string message)
@@ -134,20 +141,21 @@ namespace ITGigs.WebApp.Controllers
                 SmtpClient client = new SmtpClient("smtp.gmail.com", 587)
                 {
                     UseDefaultCredentials = false,
-                    Credentials = new NetworkCredential("your-mail-name@gmail.com", "your-mail-pass")
+                    Credentials = new NetworkCredential("exceptionhelper@gmail.com", "b@40neHk@")
                 };
 
                 MailMessage mailMessage = new MailMessage();
                 mailMessage.From = new MailAddress("whoever@me.com");
                 mailMessage.To.Add(email);
                 mailMessage.Body = message;
+                mailMessage.IsBodyHtml = true;
                 mailMessage.Subject = subject;
                 client.EnableSsl = true;
                 await client.SendMailAsync(mailMessage);
             }
             catch (Exception ex)
             {
-                //do something here
+                throw new ApplicationException($"Unable to load : '{ex.Message}'.");
             }
         }
 
