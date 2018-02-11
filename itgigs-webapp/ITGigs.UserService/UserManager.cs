@@ -1,4 +1,5 @@
-﻿using ITGigs.DB;
+﻿using ITGigs.Common.Extensions;
+using ITGigs.DB;
 using ITGigs.UserService.Domain;
 using ITGigs.UserService.Domain.Models;
 using Microsoft.EntityFrameworkCore;
@@ -16,6 +17,22 @@ namespace ITGigs.UserService
         public UserManager()
         {
             this._ctx = new AppDbContext();
+        }
+
+        public async Task ConfirmEmailAsync(User user)
+        {
+            var updatedUser = new User(
+                user.Username,
+                user.Email,
+                user.Password,
+                user.ValidationCode,
+                true,
+                new CustomId(new Guid(user.Id)),
+                user.ImgUrl,
+                DateTime.Now
+            );
+            _ctx.Users.Update(updatedUser);
+            await _ctx.SaveChangesAsync();
         }
 
         public async Task<List<User>> GetAllUsersAsync() => await _ctx.Users.ToListAsync();

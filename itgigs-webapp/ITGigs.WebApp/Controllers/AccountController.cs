@@ -46,6 +46,11 @@ namespace ITGigs.WebApp.Controllers
                 var user = users.FirstOrDefault(u => u.Username == entry.Username.Trim());
                 if (user != null)
                 {
+                    if (!user.EmailConfirmed)
+                    {
+                        ViewData["WrongLogin"] = "Email is not confirmed!";
+                        return View(entry);
+                    }
                     if (HashUtils.VerifyPassword(entry.Password, user.Password))
                     {
                         return RedirectToAction("Index", "ITGigs");//redirect to user manager page
@@ -54,8 +59,8 @@ namespace ITGigs.WebApp.Controllers
             }
             catch (Exception ex)
             {
-                //TODO: log the error
-                return RedirectToAction("Index", "ITGigs"); // Error page
+                await _logger.LogCustomExceptionAsync(ex, null);
+                return RedirectToAction("Error", "Home");
             }
 
             ViewData["WrongLogin"] = "Incorrect username or password!";
@@ -93,7 +98,6 @@ namespace ITGigs.WebApp.Controllers
             }
             catch (Exception ex)
             {
-                //TODO: log the error
                 await _logger.LogCustomExceptionAsync(ex, null);
                 return RedirectToAction("Error", "Home");
             }
@@ -119,8 +123,7 @@ namespace ITGigs.WebApp.Controllers
             {
                 return RedirectToAction(nameof(HomeController.Index), "Home");
             }
-            //var result = await _userManager.ConfirmEmailAsync(user, validationCode);
-            //return View(result.Succeeded ? "ConfirmEmail" : "Error");
+            await _userManager.ConfirmEmailAsync(user);
             return View("ConfirmEmail");
         }
 

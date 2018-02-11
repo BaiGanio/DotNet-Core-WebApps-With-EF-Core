@@ -42,7 +42,7 @@ namespace ITGigs.DB.Heplers.InMemoryObjects
                     "Bloody Merry",
                     "Draculas's castle",
                     "Фейки Фейк",
-                    0,
+                    int.MinValue,
                     "../images/draculas-castle.png",
                     new CustomId(new Guid("a6dd6b71-8ec5-48cb-be30-4a365a16d696"))
                 )

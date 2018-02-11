@@ -1,4 +1,5 @@
 ﻿using ITGigs.Common.Extensions;
+using ITGigs.Common.Helpers;
 using ITGigs.UserService.Domain.Models;
 using System;
 using System.Collections.Generic;
@@ -37,8 +38,8 @@ namespace ITGigs.DB.Heplers.InMemoryObjects
                 new User(
                     "Фейки Фейк",
                     "lubenkikov@gmail.com",
-                    "1",
-                    string.Empty,
+                    HashUtils.CreateHashCode("1"),
+                    null,
                     true,
                     new CustomId(new Guid("fe3006d3-9e69-477f-ab96-638bc230a439")),
                     "../images/twins-bizzare.jpg"

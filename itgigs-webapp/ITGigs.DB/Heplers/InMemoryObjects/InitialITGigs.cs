@@ -35,7 +35,7 @@ namespace ITGigs.DB.Heplers.InMemoryObjects
                     650
                 ),
                  new ITGig(
-                    "Electricity binary flows in the blood cell!",
+                    "Electricity binary flows in the blood cell! How to convert the energy into immortality. 'No one leaves alive...' after party.",
                     "fe3006d3-9e69-477f-ab96-638bc230a439",
                     "a6dd6b71-8ec5-48cb-be30-4a365a16d696",
                     "../images/el-blood-cell.png",
