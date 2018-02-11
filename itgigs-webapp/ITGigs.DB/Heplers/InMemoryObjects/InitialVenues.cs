@@ -37,6 +37,14 @@ namespace ITGigs.DB.Heplers.InMemoryObjects
                     350,
                     "https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Kiernan_Building_-_Portland%2C_Oregon.jpg/1200px-Kiernan_Building_-_Portland%2C_Oregon.jpg",
                     new CustomId(new Guid("d7289be4-836d-47fe-b0dd-d19d1aae9f77"))
+                ),
+                new Venue(
+                    "Bloody Merry",
+                    "Draculas's castle",
+                    "Фейки Фейк",
+                    0,
+                    "../images/draculas-castle.png",
+                    new CustomId(new Guid("a6dd6b71-8ec5-48cb-be30-4a365a16d696"))
                 )
             };
         }
