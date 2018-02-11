@@ -19,22 +19,6 @@ namespace ITGigs.UserService
             this._ctx = new AppDbContext();
         }
 
-        public async Task ConfirmEmailAsync(User user)
-        {
-            var updatedUser = new User(
-                user.Username,
-                user.Email,
-                user.Password,
-                user.ValidationCode,
-                true,
-                new CustomId(new Guid(user.Id)),
-                user.ImgUrl,
-                DateTime.Now
-            );
-            _ctx.Users.Update(updatedUser);
-            await _ctx.SaveChangesAsync();
-        }
-
         public async Task<List<User>> GetAllUsersAsync() => await _ctx.Users.ToListAsync();
 
         public async Task<User> GetUserByEmailAsync(string email)

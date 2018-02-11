@@ -39,7 +39,7 @@ namespace ITGigs.DB.Heplers.InMemoryObjects
                     "Фейки Фейк",
                     "lubenkikov@gmail.com",
                     HashUtils.CreateHashCode("1"),
-                    null,
+                    HashUtils.CreateReferralCode(),
                     true,
                     new CustomId(new Guid("fe3006d3-9e69-477f-ab96-638bc230a439")),
                     "../images/twins-bizzare.jpg"

@@ -1,4 +1,6 @@
-﻿using ITGigs.Common.Helpers;
+﻿using ITGigs.Common.Extensions;
+using ITGigs.Common.Helpers;
+using ITGigs.DB;
 using ITGigs.LogService;
 using ITGigs.LogService.Domain;
 using ITGigs.UserService;
@@ -19,6 +21,8 @@ namespace ITGigs.WebApp.Controllers
     {
         private IUser _userManager = new UserManager();
         private ILog _logger = Logger.GetInstance;
+        private AppDbContext _ctx = new AppDbContext();
+
 
         public IActionResult Welcome()
         {
@@ -118,12 +122,22 @@ namespace ITGigs.WebApp.Controllers
             {
                 return RedirectToAction(nameof(HomeController.Index), "Home");
             }
-            User user = await _userManager.GetUserByIdAsync(userId);
-            if (user == null || validationCode.ToLower().Trim() != user.ValidationCode.ToLower().Trim())
+            try
             {
-                return RedirectToAction(nameof(HomeController.Index), "Home");
+                User user = await _userManager.GetUserByIdAsync(userId);
+                if (user == null || validationCode.ToLower().Trim() != user.ValidationCode.ToLower().Trim())
+                {
+                    return RedirectToAction(nameof(HomeController.Index), "Home");
+                }
+                user = UpdateUser(user);
+                _ctx.Update(user);
+                await _ctx.SaveChangesAsync();
             }
-            await _userManager.ConfirmEmailAsync(user);
+            catch (Exception ex)
+            {
+                await _logger.LogCustomExceptionAsync(ex, null);
+                return RedirectToAction("Error", "Home");
+            }
             return View("ConfirmEmail");
         }
 
@@ -152,6 +166,19 @@ namespace ITGigs.WebApp.Controllers
             }
         }
 
-
+        private User UpdateUser(User user)
+        {
+            var updatedUser = new User(
+                user.Username,
+                user.Email,
+                user.Password,
+                user.ValidationCode,
+                true,
+                new CustomId(new Guid(user.Id)),
+                user.ImgUrl,
+                DateTime.Now
+            );
+            return updatedUser;
+        }
     }
 }
