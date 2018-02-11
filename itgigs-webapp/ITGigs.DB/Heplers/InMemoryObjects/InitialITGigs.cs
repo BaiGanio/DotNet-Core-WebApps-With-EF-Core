@@ -33,6 +33,13 @@ namespace ITGigs.DB.Heplers.InMemoryObjects
                     "d7289be4-836d-47fe-b0dd-d19d1aae9f77",
                     "http://cdn.ebaumsworld.com/mediaFiles/picture/2298480/83181906.jpg",
                     650
+                ),
+                 new ITGig(
+                    "Electricity binary flows in the blood cell!",
+                    "fe3006d3-9e69-477f-ab96-638bc230a439",
+                    "a6dd6b71-8ec5-48cb-be30-4a365a16d696",
+                    "../images/el-blood-cell.png",
+                    1000
                 )
             };
         }
