@@ -18,12 +18,14 @@ namespace ITGigs.UserService.Domain.Models
             this.DateChanged = dateChanged ?? DateTime.MinValue;
             this._id = id ?? new CustomId();
         }
-        public User(string username, string email, string password, string imgUrl = null, CustomId id = null)
+        public User(string username, string email, string password, string validationCode = null, 
+            bool isEmailConfirmed = false, CustomId id = null)
         {
             this.Username = username;
             this.Email = email;
-            this.ImgUrl = imgUrl ?? string.Empty;
             this.Password = password;
+            this.ValidationCode = validationCode;
+            this.EmailConfirmed = isEmailConfirmed;
             this.DateCreated = DateTime.Now;
             this._id = id ?? new CustomId();
         }
@@ -42,6 +44,10 @@ namespace ITGigs.UserService.Domain.Models
         public string Email { get; private set; }
 
         public string Password { get; private set; }
+
+        public string ValidationCode { get; private set; }
+
+        public bool EmailConfirmed { get; private set; }
 
         public DateTime? DateCreated { get; private set; }
 

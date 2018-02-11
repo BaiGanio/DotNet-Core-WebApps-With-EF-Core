@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace ITGigs.DB.Migrations
 {
-    public partial class InitialMigration02 : Migration
+    public partial class Initial01 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -15,8 +15,12 @@ namespace ITGigs.DB.Migrations
                     Id = table.Column<string>(nullable: false),
                     DateChanged = table.Column<DateTime>(nullable: true),
                     DateCreated = table.Column<DateTime>(nullable: true),
+                    Email = table.Column<string>(nullable: true),
+                    EmailConfirmed = table.Column<bool>(nullable: false),
                     ImgUrl = table.Column<string>(nullable: true),
-                    Username = table.Column<string>(nullable: true)
+                    Password = table.Column<string>(nullable: true),
+                    Username = table.Column<string>(nullable: true),
+                    ValidationCode = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {

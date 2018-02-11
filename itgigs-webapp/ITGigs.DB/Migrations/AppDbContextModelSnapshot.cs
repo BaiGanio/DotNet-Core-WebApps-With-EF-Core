@@ -55,11 +55,15 @@ namespace ITGigs.DB.Migrations
 
                     b.Property<string>("Email");
 
+                    b.Property<bool>("EmailConfirmed");
+
                     b.Property<string>("ImgUrl");
 
                     b.Property<string>("Password");
 
                     b.Property<string>("Username");
+
+                    b.Property<string>("ValidationCode");
 
                     b.HasKey("Id");
 

@@ -11,8 +11,8 @@ using System;
 namespace ITGigs.DB.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20180209122504_InitialMigration02")]
-    partial class InitialMigration02
+    [Migration("20180211015406_Initial01")]
+    partial class Initial01
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -54,9 +54,17 @@ namespace ITGigs.DB.Migrations
 
                     b.Property<DateTime?>("DateCreated");
 
+                    b.Property<string>("Email");
+
+                    b.Property<bool>("EmailConfirmed");
+
                     b.Property<string>("ImgUrl");
 
+                    b.Property<string>("Password");
+
                     b.Property<string>("Username");
+
+                    b.Property<string>("ValidationCode");
 
                     b.HasKey("Id");
 

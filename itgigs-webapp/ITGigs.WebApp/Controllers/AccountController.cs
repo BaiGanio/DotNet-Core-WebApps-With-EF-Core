@@ -3,6 +3,7 @@ using ITGigs.UserService;
 using ITGigs.UserService.Domain;
 using ITGigs.UserService.Domain.Models;
 using ITGigs.WebApp.DTOs;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Linq;
@@ -87,10 +88,13 @@ namespace ITGigs.WebApp.Controllers
                     return View();
                 }
                 string password = HashUtils.CreateHashCode(entry.Password);
-                User newuser = new User(entry.Username, entry.Email, password, entry.ImgUrl);
-                await _userManager.RegisterAsync(newuser);
-                var callbackUrl = "We will send confirmtion links soon.";
-                SendEmail(entry.Email, "ITGigs registration request", $"Please click on the link to confirm your emil: {callbackUrl}");
+                string validationCode = HashUtils.CreateHashCode(new Guid().ToString());
+                User newUser = new User(entry.Username, entry.Email, password, validationCode);
+                await _userManager.RegisterAsync(newUser);
+                string local = "http://localhost:55766/account/ConfirmEmail";
+                string prod = "https://itgigs.azurewebsites.com/account/ConfirmEmail";
+                string callbackUrl = $"{prod}?userId={newUser.Id}&validationCode={validationCode}";
+                await SendEmailAsync(entry.Email, "ITGigs registration request", $"To confirm your emil click on the provided link -> {callbackUrl}");
             }
             catch (Exception ex)
             {
@@ -101,13 +105,37 @@ namespace ITGigs.WebApp.Controllers
             return View("Welcome");
         }
 
-        private void SendEmail(string email, string subject, string message)
+        [HttpGet]
+        [AllowAnonymous]
+        public async Task<ActionResult> ConfirmEmail(string userId, string validationCode)
+        {
+            if (userId == null || validationCode == null)
+            {
+                return RedirectToAction(nameof(HomeController.Index), "Home");
+            }
+            User user = await _userManager.GetUserByIdAsync(userId);
+            if (user == null)
+            {
+                throw new ApplicationException($"Unable to load user with ID '{validationCode}'.");
+            }
+            if (validationCode != user.ValidationCode)
+            {
+                return RedirectToAction(nameof(HomeController.Index), "Home");
+            }
+            //var result = await _userManager.ConfirmEmailAsync(user, validationCode);
+            //return View(result.Succeeded ? "ConfirmEmail" : "Error");
+            return View("ConfirmEmail");
+        }
+
+        private async Task SendEmailAsync(string email, string subject, string message)
         {
             try
             {
-                SmtpClient client = new SmtpClient("smtp.gmail.com", 587);
-                client.UseDefaultCredentials = false;
-                client.Credentials = new NetworkCredential("your-mail@gmail.com", "your-mail-pass");
+                SmtpClient client = new SmtpClient("smtp.gmail.com", 587)
+                {
+                    UseDefaultCredentials = false,
+                    Credentials = new NetworkCredential("your-mail-name@gmail.com", "your-mail-pass")
+                };
 
                 MailMessage mailMessage = new MailMessage();
                 mailMessage.From = new MailAddress("whoever@me.com");
@@ -115,7 +143,7 @@ namespace ITGigs.WebApp.Controllers
                 mailMessage.Body = message;
                 mailMessage.Subject = subject;
                 client.EnableSsl = true;
-                client.Send(mailMessage);
+                await client.SendMailAsync(mailMessage);
             }
             catch (Exception ex)
             {
