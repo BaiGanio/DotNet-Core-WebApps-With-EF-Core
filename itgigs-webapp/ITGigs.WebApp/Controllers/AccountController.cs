@@ -17,11 +17,6 @@ namespace ITGigs.WebApp.Controllers
     {
         private IUser _userManager = new UserManager();
 
-        public IActionResult Index()
-        {
-            return View();
-        }
-
         public IActionResult Welcome()
         {
             return View();
@@ -64,7 +59,6 @@ namespace ITGigs.WebApp.Controllers
             return View(entry);
         }
 
-        // Get
         public IActionResult Register()
         {
             return View();
@@ -74,27 +68,24 @@ namespace ITGigs.WebApp.Controllers
         public async Task<IActionResult> Register(RegisterEntry entry)
         {
             ViewData["WrongRegister"] = null;
-            if (entry.Username == null || entry.Password == null || entry.Email == null)
-            {
-                ViewData["WrongRegister"] = "Incorrect form!";
-                return View();
-            }
             try
             {
                 User user = await _userManager.GetUserByEmailAsync(entry.Email);
                 if (user != null)
                 {
                     ViewData["WrongRegister"] = "Email already taken!";
-                    return View();
+                    return View(entry);
                 }
                 string password = HashUtils.CreateHashCode(entry.Password);
                 string validationCode = HashUtils.CreateHashCode(new Guid().ToString());
                 User newUser = new User(entry.Username, entry.Email, password, validationCode);
+
                 await _userManager.RegisterAsync(newUser);
-                string local = "http://localhost:55766/account/ValidateEmail";
-                string prod = "https://itgigs.azurewebsites.net/account/ValidateEmail";
-                string callbackUrl = $"{local}?userId={newUser.Id}&validationCode={validationCode}";
-                string link = "<a href=\"" + callbackUrl + "\">here</a>";
+                string appUrl = "http://localhost:55766/account/ValidateEmail";
+                //string appUrl = "https://itgigs.azurewebsites.net/account/ValidateEmail";
+                string callbackUrl = $"{appUrl}?userId={newUser.Id}&validationCode={validationCode}";
+                string link = $"<a href='{ callbackUrl}'>here</a>";
+
                 await SendEmailAsync(entry.Email, "ITGigs registration request", $"To confirm your account click  -> {link}");
             }
             catch (Exception ex)
@@ -106,8 +97,7 @@ namespace ITGigs.WebApp.Controllers
             return View("Welcome");
         }
 
-        //[HttpGet("ConfirmEmail")]
-        public  ActionResult ConfirmEmail()
+        public ActionResult ConfirmEmail()
         {
             return View();
         }
@@ -121,17 +111,13 @@ namespace ITGigs.WebApp.Controllers
                 return RedirectToAction(nameof(HomeController.Index), "Home");
             }
             User user = await _userManager.GetUserByIdAsync(userId);
-            if (user == null)
-            {
-                throw new ApplicationException($"Unable to load user with ID '{validationCode}'.");
-            }
-            if (validationCode != user.ValidationCode)
+            if (user == null || validationCode != user.ValidationCode)
             {
                 return RedirectToAction(nameof(HomeController.Index), "Home");
             }
             //var result = await _userManager.ConfirmEmailAsync(user, validationCode);
             //return View(result.Succeeded ? "ConfirmEmail" : "Error");
-            return View("EmailConfirmed");
+            return View("ConfirmEmail");
         }
 
         private async Task SendEmailAsync(string email, string subject, string message)
@@ -141,7 +127,7 @@ namespace ITGigs.WebApp.Controllers
                 SmtpClient client = new SmtpClient("smtp.gmail.com", 587)
                 {
                     UseDefaultCredentials = false,
-                    Credentials = new NetworkCredential("your-mail-name@gmail.com", "your-mail-pass")
+                    Credentials = new NetworkCredential("your-name@gmail.com", "your-pass")
                 };
 
                 MailMessage mailMessage = new MailMessage();
