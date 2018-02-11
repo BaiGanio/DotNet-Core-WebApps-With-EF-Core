@@ -141,7 +141,7 @@ namespace ITGigs.WebApp.Controllers
                 SmtpClient client = new SmtpClient("smtp.gmail.com", 587)
                 {
                     UseDefaultCredentials = false,
-                    Credentials = new NetworkCredential("exceptionhelper@gmail.com", "b@40neHk@")
+                    Credentials = new NetworkCredential("your-mail-name@gmail.com", "your-mail-pass")
                 };
 
                 MailMessage mailMessage = new MailMessage();
