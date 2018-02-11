@@ -20,7 +20,6 @@ namespace ITGigs.DB.Migrations
                     DateCreated = table.Column<DateTime>(nullable: false),
                     HResult = table.Column<int>(nullable: false),
                     HelpLink = table.Column<string>(nullable: true),
-                    MethodName = table.Column<string>(nullable: true),
                     Source = table.Column<string>(nullable: true)
                 },
                 constraints: table =>

@@ -11,7 +11,7 @@ using System;
 namespace ITGigs.DB.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20180211113630_jojo")]
+    [Migration("20180211145219_jojo")]
     partial class jojo
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -63,8 +63,6 @@ namespace ITGigs.DB.Migrations
                     b.Property<int>("HResult");
 
                     b.Property<string>("HelpLink");
-
-                    b.Property<string>("MethodName");
 
                     b.Property<string>("Source");
 

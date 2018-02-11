@@ -63,8 +63,6 @@ namespace ITGigs.DB.Migrations
 
                     b.Property<string>("HelpLink");
 
-                    b.Property<string>("MethodName");
-
                     b.Property<string>("Source");
 
                     b.HasKey("Id");

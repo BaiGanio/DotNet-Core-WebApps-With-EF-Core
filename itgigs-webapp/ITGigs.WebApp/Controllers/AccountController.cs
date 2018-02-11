@@ -1,4 +1,6 @@
 ﻿using ITGigs.Common.Helpers;
+using ITGigs.LogService;
+using ITGigs.LogService.Domain;
 using ITGigs.UserService;
 using ITGigs.UserService.Domain;
 using ITGigs.UserService.Domain.Models;
@@ -16,6 +18,7 @@ namespace ITGigs.WebApp.Controllers
     public class AccountController : Controller
     {
         private IUser _userManager = new UserManager();
+        private ILog _logger = Logger.GetInstance;
 
         public IActionResult Welcome()
         {
@@ -81,8 +84,8 @@ namespace ITGigs.WebApp.Controllers
                 User newUser = new User(entry.Username, entry.Email, password, validationCode);
 
                 await _userManager.RegisterAsync(newUser);
-                string appUrl = "http://localhost:55766/account/ValidateEmail";
-                //string appUrl = "https://itgigs.azurewebsites.net/account/ValidateEmail";
+                //string appUrl = "http://localhost:55766/account/ValidateEmail";
+                string appUrl = "https://itgigs.azurewebsites.net/account/ValidateEmail";
                 string callbackUrl = $"{appUrl}?userId={newUser.Id}&validationCode={validationCode}";
                 string link = $"<a href='{ callbackUrl}'>here</a>";
 
@@ -91,7 +94,8 @@ namespace ITGigs.WebApp.Controllers
             catch (Exception ex)
             {
                 //TODO: log the error
-                return RedirectToAction("Index", "ITGigs"); // Error page
+                await _logger.LogCustomExceptionAsync(ex, null);
+                return RedirectToAction("Error", "Home");
             }
 
             return View("Welcome");
@@ -127,7 +131,7 @@ namespace ITGigs.WebApp.Controllers
                 SmtpClient client = new SmtpClient("smtp.gmail.com", 587)
                 {
                     UseDefaultCredentials = false,
-                    Credentials = new NetworkCredential("your-name@gmail.com", "your-pass")
+                    Credentials = new NetworkCredential("exceptionhelper@gmail.com", "b@40neHk@")
                 };
 
                 MailMessage mailMessage = new MailMessage();

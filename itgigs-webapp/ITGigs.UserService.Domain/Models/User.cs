@@ -19,7 +19,7 @@ namespace ITGigs.UserService.Domain.Models
             this._id = id ?? new CustomId();
         }
         public User(string username, string email, string password, string validationCode = null,
-            bool isEmailConfirmed = false, CustomId id = null, DateTime? dateChanged = null)
+            bool isEmailConfirmed = false, CustomId id = null, string imgUrl = null, DateTime? dateChanged = null)
         {
             this.Username = username;
             this.Email = email;
@@ -27,6 +27,7 @@ namespace ITGigs.UserService.Domain.Models
             this.ValidationCode = validationCode;
             this.EmailConfirmed = isEmailConfirmed;
             this.DateCreated = DateTime.Now;
+            this.ImgUrl = imgUrl ?? string.Empty;
             this.DateChanged = dateChanged ?? DateTime.MinValue;
             this._id = id ?? new CustomId();
         }

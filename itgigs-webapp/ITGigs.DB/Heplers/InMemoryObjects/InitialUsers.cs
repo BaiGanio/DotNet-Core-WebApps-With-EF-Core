@@ -33,6 +33,15 @@ namespace ITGigs.DB.Heplers.InMemoryObjects
                     "Пинко Розовата Пантера",
                     new CustomId(new Guid("e42837c5-96f1-436d-9688-44f4ce1817d8")),
                     "http://media.avtora.com/images/cut/660x495/articles/2014/04/41277.jpg"
+                ),
+                new User(
+                    "Фейки Фейк",
+                    "lubenkikov@gmail.com",
+                    "1",
+                    string.Empty,
+                    true,
+                    new CustomId(new Guid("fe3006d3-9e69-477f-ab96-638bc230a439")),
+                    "../images/twins-bizzare.jpg"
                 )
             };
         }
