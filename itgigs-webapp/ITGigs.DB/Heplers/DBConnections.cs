@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace ITGigs.DB.Heplers
+﻿namespace ITGigs.DB.Heplers
 {
     public static class DBConnections
     {
@@ -18,16 +14,18 @@ namespace ITGigs.DB.Heplers
                 "Encrypt = True; " +
                 "TrustServerCertificate = False; " +
                 "Connection Timeout = 30; ";
+         
         }
 
         public static string GetAppHarborConnection()
         {
             return
-                "Server=94e7bd52-eefe-4762-a4b5-a86b0087217e.sqlserver.sequelizer.com;" +
-                "Database=db94e7bd52eefe4762a4b5a86b0087217e;" +
-                "User ID=mvrolnlqbjwehnjl;" +
-                "Password=sU7YKg6pzNBGBkiqDg5X3UBD3YjTAv4xRd6hHKyw2BhVc2kZnLNiJFFErA6T6kVe;" +
+                "Server=GIUD.sqlserver.sequelizer.com;" +
+                "Database=SOMEHASH;" +
+                "User ID=SOMEHASH;" +
+                "Password=SOMEHASH;" +
                 "MultipleActiveResultSets=true";
+           
         }
     }
 }
