@@ -44,6 +44,34 @@ namespace ITGigs.DB.Migrations
                     b.ToTable("ITGigs");
                 });
 
+            modelBuilder.Entity("ITGigs.LogService.Domain.Models.CustomException", b =>
+                {
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("CustomInnerMessage");
+
+                    b.Property<string>("CustomInnerStackTrace");
+
+                    b.Property<string>("CustomMessage");
+
+                    b.Property<string>("CustomStackTrace");
+
+                    b.Property<DateTime>("DateCreated");
+
+                    b.Property<int>("HResult");
+
+                    b.Property<string>("HelpLink");
+
+                    b.Property<string>("MethodName");
+
+                    b.Property<string>("Source");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("CustomExceptions");
+                });
+
             modelBuilder.Entity("ITGigs.UserService.Domain.Models.User", b =>
                 {
                     b.Property<string>("Id")

@@ -1,0 +1,57 @@
+﻿@model IEnumerable<ITGigs.LogService.Domain.Models.CustomException>
+
+@{
+    ViewData["Title"] = "AllExceptions";
+}
+
+<h2>All Exceptions</h2>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CustomMessage)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CustomStackTrace)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CustomInnerMessage)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CustomInnerStackTrace)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateCreated)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CustomMessage)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CustomStackTrace)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CustomInnerMessage)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CustomInnerStackTrace)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateCreated)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

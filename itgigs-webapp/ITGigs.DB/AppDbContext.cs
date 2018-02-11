@@ -18,6 +18,8 @@ namespace ITGigs.DB
 
         public DbSet<ITGigs.ITGigService.Domain.Models.ITGig> ITGigs { get; set; }
 
+        public DbSet<ITGigs.LogService.Domain.Models.CustomException> CustomExceptions { get; set; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(this.connection);

@@ -8,13 +8,14 @@
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
         <link rel="stylesheet" href="~/css/site.css" />
-
+        <link href="~/css/login-register.css" rel="stylesheet" />
     </environment>
     <environment exclude="Development">
         <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
               asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
         <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+        <link href="~/css/login-register.css" rel="stylesheet" />
     </environment>
 </head>
 <body style="font-family:'Garamond'; font-size:2.2em;">
@@ -37,19 +38,28 @@
                     <li><a asp-area="" asp-controller="Home" asp-action="AllUsers">All Users</a></li>
                     <li><a asp-area="" asp-controller="Venues" asp-action="Index">All Venues</a></li>
                     <li><a asp-area="" asp-controller="ITGigs" asp-action="Index">All ITGigs</a></li>
+                    <li><a asp-area="" asp-controller="Home" asp-action="AllExceptions">All Exceptions</a></li>
                 </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a asp-area="" asp-controller="Account" asp-action="Register">Register</a></li>
-                    <li><a asp-area="" asp-controller="Account" asp-action="Login">Log in</a></li>
-                </ul>
+                @await Html.PartialAsync("_LoginPartial")
             </div>
         </div>
     </nav>
     <div class="container body-content">
         @RenderBody()
         <hr />
-        <footer style="text-align:center">
-            <p>&copy; 2018 - ITGigs.WebApp</p>
+        <footer style="text-align: center;">
+            <div>
+                <br>
+                <br>
+                <p>(C) itgigs - @DateTime.Now</p>
+                <p> All rights reserved. <br />Developed by BG Team</p>
+                <div>
+                    <a href="https://github.com/BaiGanio/PU-DB-Apps-with-EF/tree/itgigs-webapp" target="_blank">
+                        <img src="~/images/git.png" alt="GitHub" title="Github" style="width:5%;" />
+                    </a>
+                </div>
+                <p>MMXVII</p>
+            </div>
         </footer>
     </div>
 

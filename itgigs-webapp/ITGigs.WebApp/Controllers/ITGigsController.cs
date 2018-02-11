@@ -13,15 +13,17 @@ namespace ITGigs.WebApp.Controllers
     public class ITGigsController : Controller
     {
         private readonly AppDbContext _context;
-
+        private bool _isSignedIn;
         public ITGigsController(AppDbContext context)
         {
             _context = context;
+            _isSignedIn = true;// HttpContext.Session.GetObjectFromJson<string>("IsSignedIn");      
         }
 
         // GET: ITGigs
         public async Task<IActionResult> Index()
         {
+            ViewData["IsSignedIn"] = _isSignedIn;
             var appDbContext = _context.ITGigs.Include(i => i.Performer).Include(i => i.Venue);
             return View(await appDbContext.ToListAsync());
         }

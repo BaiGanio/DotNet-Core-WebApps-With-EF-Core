@@ -77,7 +77,7 @@ namespace ITGigs.WebApp.Controllers
                     return View(entry);
                 }
                 string password = HashUtils.CreateHashCode(entry.Password);
-                string validationCode = HashUtils.CreateHashCode(new Guid().ToString());
+                string validationCode = HashUtils.CreateReferralCode();
                 User newUser = new User(entry.Username, entry.Email, password, validationCode);
 
                 await _userManager.RegisterAsync(newUser);
@@ -111,7 +111,7 @@ namespace ITGigs.WebApp.Controllers
                 return RedirectToAction(nameof(HomeController.Index), "Home");
             }
             User user = await _userManager.GetUserByIdAsync(userId);
-            if (user == null || validationCode != user.ValidationCode)
+            if (user == null || validationCode.ToLower().Trim() != user.ValidationCode.ToLower().Trim())
             {
                 return RedirectToAction(nameof(HomeController.Index), "Home");
             }

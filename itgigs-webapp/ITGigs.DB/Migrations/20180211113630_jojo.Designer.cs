@@ -11,8 +11,8 @@ using System;
 namespace ITGigs.DB.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20180211015406_Initial01")]
-    partial class Initial01
+    [Migration("20180211113630_jojo")]
+    partial class jojo
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -43,6 +43,34 @@ namespace ITGigs.DB.Migrations
                     b.HasIndex("VenueId");
 
                     b.ToTable("ITGigs");
+                });
+
+            modelBuilder.Entity("ITGigs.LogService.Domain.Models.CustomException", b =>
+                {
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("CustomInnerMessage");
+
+                    b.Property<string>("CustomInnerStackTrace");
+
+                    b.Property<string>("CustomMessage");
+
+                    b.Property<string>("CustomStackTrace");
+
+                    b.Property<DateTime>("DateCreated");
+
+                    b.Property<int>("HResult");
+
+                    b.Property<string>("HelpLink");
+
+                    b.Property<string>("MethodName");
+
+                    b.Property<string>("Source");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("CustomExceptions");
                 });
 
             modelBuilder.Entity("ITGigs.UserService.Domain.Models.User", b =>

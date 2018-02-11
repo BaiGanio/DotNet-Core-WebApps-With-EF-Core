@@ -1,4 +1,5 @@
-﻿
+﻿/**/
+
 
 #viewLogin, #viewRegister {
     font-family: 'Garamond';
@@ -29,7 +30,7 @@ input[type="text"], input[type="email"], input[type="password"] {
 }
 
 .login-form-1, .register-form-1 {
-    width: 75%;
+    width: 45%;
     text-decoration: none;
     border-radius: 5px;
     display: inline-block;
@@ -105,12 +106,23 @@ input[type="text"], input[type="email"], input[type="password"] {
     transform: rotate(720deg); */
     }
 
-    .login-button:enabled:hover, .register-button:enabled:hover {
-        color: #b13737;
-        background: greenyellow;
-        -moz-transform: rotate(720deg);
-        -ms-transform: rotate(720deg);
-        -o-transform: rotate(720deg);
-        -webkit-transform: rotate(720deg);
-        transform: rotate(720deg);
+        .login-button:enabled:hover, .register-button:enabled:hover {
+            color: #b13737;
+            background: greenyellow;
+            -moz-transform: rotate(720deg);
+            -ms-transform: rotate(720deg);
+            -o-transform: rotate(720deg);
+            -webkit-transform: rotate(720deg);
+            transform: rotate(720deg);
+        }
+
+/* Hide/rearrange for smaller screens */
+@media screen and (max-width: 360px) {
+    /* Hide captions */
+    .login-form-1, .register-form-1 {
+        width: 75%;
+        text-decoration: none;
+        border-radius: 5px;
+        display: inline-block;
     }
+}
