@@ -14,7 +14,6 @@
                 "Encrypt = True; " +
                 "TrustServerCertificate = False; " +
                 "Connection Timeout = 30; ";
-         
         }
 
         public static string GetAppHarborConnection()
@@ -25,7 +24,6 @@
                 "User ID=SOMEHASH;" +
                 "Password=SOMEHASH;" +
                 "MultipleActiveResultSets=true";
-           
         }
     }
 }

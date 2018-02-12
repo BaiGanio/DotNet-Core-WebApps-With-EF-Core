@@ -12,7 +12,5 @@ namespace ITGigs.WebApp.DTOs
 
         [Required]
         public string Email { get; set; }
-
-        public string ImgUrl { get; set; }
     }
 }

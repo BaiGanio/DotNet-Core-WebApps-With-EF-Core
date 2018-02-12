@@ -9,8 +9,8 @@ namespace ITGigs.DB
 
         public AppDbContext()
         {
-            this.connection = DBConnections.GetAppHarborConnection();
-            //this.connection = DBConnections.GetAzureConnection();
+            //this.connection = DBConnections.GetAppHarborConnection();
+            this.connection = DBConnections.GetAzureConnection();
         }
 
         public DbSet<ITGigs.UserService.Domain.Models.User> Users { get; set; }

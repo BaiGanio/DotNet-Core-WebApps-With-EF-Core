@@ -37,7 +37,7 @@ namespace ITGigs.DB.Heplers.InMemoryObjects
                 ),
                 new User(
                     "Фейки Фейк",
-                    "lubenkikov@gmail.com",
+                    "feiki@feik.co.uk",
                     HashUtils.CreateHashCode("1"),
                     HashUtils.CreateReferralCode(),
                     true,

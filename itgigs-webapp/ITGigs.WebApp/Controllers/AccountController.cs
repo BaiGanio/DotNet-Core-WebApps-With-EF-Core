@@ -10,7 +10,6 @@ using ITGigs.WebApp.DTOs;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Linq;
 using System.Net;
 using System.Net.Mail;
 using System.Threading.Tasks;
@@ -23,7 +22,6 @@ namespace ITGigs.WebApp.Controllers
         private ILog _logger = Logger.GetInstance;
         private AppDbContext _ctx = new AppDbContext();
 
-
         public IActionResult Welcome()
         {
             return View();
@@ -34,11 +32,21 @@ namespace ITGigs.WebApp.Controllers
             return View();
         }
 
+        public IActionResult Register()
+        {
+            return View();
+        }
+
+        public ActionResult ConfirmEmail()
+        {
+            return View();
+        }
+
         [HttpPost]
         public async Task<IActionResult> Login(LoginEntry entry)
         {
             ViewData["WrongLogin"] = null;
-            if (entry.Username == null || entry.Password == null)
+            if (entry.Email == null || entry.Password == null)
             {
                 ViewData["WrongLogin"] = "Incorrect form!";
                 return View();
@@ -46,8 +54,7 @@ namespace ITGigs.WebApp.Controllers
 
             try
             {
-                var users = await _userManager.GetAllUsersAsync();
-                var user = users.FirstOrDefault(u => u.Username == entry.Username.Trim());
+                var user = await _userManager.GetUserByEmailAsync(entry.Email);
                 if (user != null)
                 {
                     if (!user.EmailConfirmed)
@@ -69,11 +76,6 @@ namespace ITGigs.WebApp.Controllers
 
             ViewData["WrongLogin"] = "Incorrect username or password!";
             return View(entry);
-        }
-
-        public IActionResult Register()
-        {
-            return View();
         }
 
         [HttpPost]
@@ -107,11 +109,6 @@ namespace ITGigs.WebApp.Controllers
             }
 
             return View("Welcome");
-        }
-
-        public ActionResult ConfirmEmail()
-        {
-            return View();
         }
 
         [HttpGet]
@@ -148,7 +145,7 @@ namespace ITGigs.WebApp.Controllers
                 SmtpClient client = new SmtpClient("smtp.gmail.com", 587)
                 {
                     UseDefaultCredentials = false,
-                    Credentials = new NetworkCredential("your-name@gmail.com", "your-pass")
+                    Credentials = new NetworkCredential("your-name@gmail.com", "your-pass@")
                 };
 
                 MailMessage mailMessage = new MailMessage();
@@ -162,6 +159,7 @@ namespace ITGigs.WebApp.Controllers
             }
             catch (Exception ex)
             {
+                await _logger.LogCustomExceptionAsync(ex, null);
                 throw new ApplicationException($"Unable to load : '{ex.Message}'.");
             }
         }
