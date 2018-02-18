@@ -3,6 +3,8 @@ using ITGigs.Common.Helpers;
 using ITGigs.DB;
 using ITGigs.LogService;
 using ITGigs.LogService.Domain;
+using ITGigs.NotificationService;
+using ITGigs.NotificationService.Domain;
 using ITGigs.UserService;
 using ITGigs.UserService.Domain;
 using ITGigs.UserService.Domain.Models;
@@ -10,8 +12,7 @@ using ITGigs.WebApp.DTOs;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Net;
-using System.Net.Mail;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace ITGigs.WebApp.Controllers
@@ -20,6 +21,7 @@ namespace ITGigs.WebApp.Controllers
     {
         private IUser _userManager = new UserManager();
         private ILog _logger = Logger.GetInstance;
+        private INotificationActor _notificationManager = new NotificationManager();
         private AppDbContext _ctx = new AppDbContext();
 
         public IActionResult Welcome()
@@ -62,20 +64,22 @@ namespace ITGigs.WebApp.Controllers
                         ViewData["WrongLogin"] = "Email is not confirmed!";
                         return View(entry);
                     }
-                    if (HashUtils.VerifyPassword(entry.Password, user.Password))
+                    if (!HashUtils.VerifyPassword(entry.Password, user.Password))
                     {
-                        return RedirectToAction("Index", "ITGigs");//redirect to user manager page
+                        /* Don't reveal which one is incorrect.  */
+                        ViewData["WrongLogin"] = "Incorrect username or password!";
+                        return View(entry);
+
                     }
                 }
+                await SetSessionVariables(user);
             }
             catch (Exception ex)
             {
                 await _logger.LogCustomExceptionAsync(ex, null);
                 return RedirectToAction("Error", "Home");
             }
-
-            ViewData["WrongLogin"] = "Incorrect username or password!";
-            return View(entry);
+            return RedirectToAction("Index", "Manage");
         }
 
         [HttpPost]
@@ -92,15 +96,10 @@ namespace ITGigs.WebApp.Controllers
                 }
                 string password = HashUtils.CreateHashCode(entry.Password);
                 string validationCode = HashUtils.CreateReferralCode();
-                User newUser = new User(entry.Username, entry.Email, password, validationCode);
+                User newUser = new User(entry.Username, entry.Email, password, TypeOfUser.Visitor, validationCode);
 
                 await _userManager.RegisterAsync(newUser);
-                //string appUrl = "http://localhost:55766/account/ValidateEmail";
-                string appUrl = "https://itgigs.azurewebsites.net/account/ValidateEmail";
-                string callbackUrl = $"{appUrl}?userId={newUser.Id}&validationCode={validationCode}";
-                string link = $"<a href='{ callbackUrl}'>here</a>";
-
-                await SendEmailAsync(entry.Email, "ITGigs registration request", $"To confirm your account click  -> {link}");
+                await _notificationManager.SendConfirmationEmailAsync(newUser);
             }
             catch (Exception ex)
             {
@@ -122,7 +121,7 @@ namespace ITGigs.WebApp.Controllers
             try
             {
                 User user = await _userManager.GetUserByIdAsync(userId);
-                if (user == null || validationCode.ToLower().Trim() != user.ValidationCode.ToLower().Trim())
+                if (user == null || validationCode != user.ValidationCode)
                 {
                     return RedirectToAction(nameof(HomeController.Index), "Home");
                 }
@@ -138,31 +137,7 @@ namespace ITGigs.WebApp.Controllers
             return View("ConfirmEmail");
         }
 
-        private async Task SendEmailAsync(string email, string subject, string message)
-        {
-            try
-            {
-                SmtpClient client = new SmtpClient("smtp.gmail.com", 587)
-                {
-                    UseDefaultCredentials = false,
-                    Credentials = new NetworkCredential("your-name@gmail.com", "your-pass@")
-                };
-
-                MailMessage mailMessage = new MailMessage();
-                mailMessage.From = new MailAddress("whoever@me.com");
-                mailMessage.To.Add(email);
-                mailMessage.Body = message;
-                mailMessage.IsBodyHtml = true;
-                mailMessage.Subject = subject;
-                client.EnableSsl = true;
-                await client.SendMailAsync(mailMessage);
-            }
-            catch (Exception ex)
-            {
-                await _logger.LogCustomExceptionAsync(ex, null);
-                throw new ApplicationException($"Unable to load : '{ex.Message}'.");
-            }
-        }
+        #region PrivateMethods
 
         private User UpdateUser(User user)
         {
@@ -170,6 +145,7 @@ namespace ITGigs.WebApp.Controllers
                 user.Username,
                 user.Email,
                 user.Password,
+                user.TypeOfUser,
                 user.ValidationCode,
                 true,
                 new CustomId(new Guid(user.Id)),
@@ -178,5 +154,13 @@ namespace ITGigs.WebApp.Controllers
             );
             return updatedUser;
         }
+
+        private async Task SetSessionVariables(User user)
+        {
+            //TODO: Set user Id & Name for first try
+            throw new NotImplementedException();
+        }
+
+        #endregion
     }
 }
