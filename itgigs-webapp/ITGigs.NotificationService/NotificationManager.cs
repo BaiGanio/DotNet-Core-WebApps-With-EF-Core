@@ -38,11 +38,12 @@ namespace ITGigs.NotificationService
                 {
                     UseDefaultCredentials = false,
                     Credentials = new NetworkCredential("your-name@gmail.com", "your-pass")
-                    //Credentials = new NetworkCredential("exceptionhelper@gmail.com", "b@40neHk@")
                 };
 
-                MailMessage mailMessage = new MailMessage();
-                mailMessage.From = new MailAddress("whoever@me.com");
+                MailMessage mailMessage = new MailMessage
+                {
+                    From = new MailAddress("whoever@me.com")
+                };
                 mailMessage.To.Add(email);
                 mailMessage.Body = message;
                 mailMessage.IsBodyHtml = true;
