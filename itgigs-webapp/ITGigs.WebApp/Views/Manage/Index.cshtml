@@ -2,14 +2,40 @@
 @{
     ViewData["Title"] = "Manage";
 }
+<style>
+    a {
+        text-decoration: none !important;
+    }
 
+    ul > li {
+        list-style: none !important;
+    }
+</style>
 <div style="text-align:center;">
     <h1 class="theMonkiesAteMySoul" style="color: #c0a16b">
-        <b>Welcome back, Lyuben Kikov</b>
+        <b>Welcome back, {username}</b>
     </h1>
     <h4 class="theMonkiesAteMySoul" style="color: #c0a16b">
         <b>This is your personal admin page</b>
     </h4>
     <hr>
+    <div class="row">
+        <div class="col-md-3" style="text-align:left">
+            <ul style="">
+                <li> <a asp-area="" asp-controller="" asp-action="">Performer request</a></li>
+                <li> <a asp-area="" asp-controller="" asp-action="">Venue owner request</a></li>
+                <li> <a asp-area="" asp-controller="" asp-action="">Set new password</a></li>
+                <li><a asp-area="" asp-controller="" asp-action="">Edit profile</a></li>
+            </ul>
+        </div>
+        <div class="col-md-9">
+            <h4 class="theMonkiesAteMySoul" style="color: #c0a16b">
+                <b>You don't have any activity yet!</b>
+                <br />
+                <br />
+                <img src="../images/no-activities.jpg" />
+            </h4>
+        </div>
+    </div>
 </div>
 

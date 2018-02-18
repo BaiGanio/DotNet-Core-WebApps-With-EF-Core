@@ -72,7 +72,7 @@ namespace ITGigs.WebApp.Controllers
 
                     }
                 }
-                await SetSessionVariables(user);
+               // await SetSessionVariables(user);
             }
             catch (Exception ex)
             {
