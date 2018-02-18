@@ -15,15 +15,19 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ITGigs.VenueService.Domain"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ITGigs.ITGigService.Domain", "ITGigs.ITGigService.Domain\ITGigs.ITGigService.Domain.csproj", "{3024F36D-B9E1-488F-BC08-BDAA572231B7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ITGigs.UserService", "ITGigs.UserService\ITGigs.UserService.csproj", "{90CFD8D5-B462-4190-9792-AE4F59F34430}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ITGigs.UserService", "ITGigs.UserService\ITGigs.UserService.csproj", "{90CFD8D5-B462-4190-9792-AE4F59F34430}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ITGigs.LogService.Domain", "ITGigs.LogService.Domain\ITGigs.LogService.Domain.csproj", "{1B5E0373-826B-4074-A9E7-20CB0CA66D34}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ITGigs.LogService.Domain", "ITGigs.LogService.Domain\ITGigs.LogService.Domain.csproj", "{1B5E0373-826B-4074-A9E7-20CB0CA66D34}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ITGigs.LogService", "ITGigs.LogService\ITGigs.LogService.csproj", "{07EA0EDA-12FC-482E-8C95-56AD2600E077}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ITGigs.LogService", "ITGigs.LogService\ITGigs.LogService.csproj", "{07EA0EDA-12FC-482E-8C95-56AD2600E077}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domains", "Domains", "{A298A8EE-01B6-490C-92FE-AB17DA3801A4}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{E83B188E-0389-43D5-97C6-61B2987548C2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ITGigs.NotificationService.Domain", "ITGigs.NotificationService.Domain\ITGigs.NotificationService.Domain.csproj", "{DCAF24FB-2A90-4942-9F6F-3624CD4B669D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ITGigs.NotificationService", "ITGigs.NotificationService\ITGigs.NotificationService.csproj", "{8A9D0643-FED2-4DCF-83BD-3A7924E5B49B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -67,6 +71,14 @@ Global
 		{07EA0EDA-12FC-482E-8C95-56AD2600E077}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{07EA0EDA-12FC-482E-8C95-56AD2600E077}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{07EA0EDA-12FC-482E-8C95-56AD2600E077}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DCAF24FB-2A90-4942-9F6F-3624CD4B669D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DCAF24FB-2A90-4942-9F6F-3624CD4B669D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DCAF24FB-2A90-4942-9F6F-3624CD4B669D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DCAF24FB-2A90-4942-9F6F-3624CD4B669D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8A9D0643-FED2-4DCF-83BD-3A7924E5B49B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A9D0643-FED2-4DCF-83BD-3A7924E5B49B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A9D0643-FED2-4DCF-83BD-3A7924E5B49B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A9D0643-FED2-4DCF-83BD-3A7924E5B49B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -78,6 +90,8 @@ Global
 		{90CFD8D5-B462-4190-9792-AE4F59F34430} = {E83B188E-0389-43D5-97C6-61B2987548C2}
 		{1B5E0373-826B-4074-A9E7-20CB0CA66D34} = {A298A8EE-01B6-490C-92FE-AB17DA3801A4}
 		{07EA0EDA-12FC-482E-8C95-56AD2600E077} = {E83B188E-0389-43D5-97C6-61B2987548C2}
+		{DCAF24FB-2A90-4942-9F6F-3624CD4B669D} = {A298A8EE-01B6-490C-92FE-AB17DA3801A4}
+		{8A9D0643-FED2-4DCF-83BD-3A7924E5B49B} = {E83B188E-0389-43D5-97C6-61B2987548C2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {089A8AD5-3739-4CA1-891F-455165B916FC}

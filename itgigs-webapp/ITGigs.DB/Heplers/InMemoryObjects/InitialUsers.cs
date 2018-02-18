@@ -39,6 +39,7 @@ namespace ITGigs.DB.Heplers.InMemoryObjects
                     "Фейки Фейк",
                     "feiki@feik.co.uk",
                     HashUtils.CreateHashCode("1"),
+                    TypeOfUser.Performer,
                     HashUtils.CreateReferralCode(),
                     true,
                     new CustomId(new Guid("fe3006d3-9e69-477f-ab96-638bc230a439")),
