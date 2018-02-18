@@ -1,5 +1,6 @@
 ﻿using ITGigs.Common.Extensions;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace ITGigs.UserService.Domain.Models
@@ -18,12 +19,13 @@ namespace ITGigs.UserService.Domain.Models
             this.DateChanged = dateChanged ?? DateTime.MinValue;
             this._id = id ?? new CustomId();
         }
-        public User(string username, string email, string password, string validationCode = null,
+        public User(string username, string email, string password, TypeOfUser typeOfUser, string validationCode = null,
             bool isEmailConfirmed = false, CustomId id = null, string imgUrl = null, DateTime? dateChanged = null)
         {
             this.Username = username;
             this.Email = email;
             this.Password = password;
+            this.TypeOfUser = typeOfUser;
             this.ValidationCode = validationCode;
             this.EmailConfirmed = isEmailConfirmed;
             this.DateCreated = DateTime.Now;
@@ -46,6 +48,8 @@ namespace ITGigs.UserService.Domain.Models
         public string Email { get; private set; }
 
         public string Password { get; private set; }
+
+        public TypeOfUser TypeOfUser { get; private set; }
 
         public string ValidationCode { get; private set; }
 
