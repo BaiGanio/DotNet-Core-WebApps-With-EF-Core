@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ITGigs.Common\ITGigs.Common.csproj" />
+    <ProjectReference Include="..\ITGigs.LogService.Domain\ITGigs.LogService.Domain.csproj" />
+    <ProjectReference Include="..\ITGigs.LogService\ITGigs.LogService.csproj" />
+    <ProjectReference Include="..\ITGigs.NotificationService.Domain\ITGigs.NotificationService.Domain.csproj" />
+    <ProjectReference Include="..\ITGigs.UserService.Domain\ITGigs.UserService.Domain.csproj" />
+  </ItemGroup>
+
+</Project>
