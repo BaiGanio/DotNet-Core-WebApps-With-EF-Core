@@ -32,11 +32,6 @@ namespace ITGigs.UserService
             return users.FirstOrDefault(u => u.Id == id);
         }
 
-        public Task LoginAsync()
-        {
-            throw new NotImplementedException();
-        }
-
         public async Task RegisterAsync(User user)
         {
             await _ctx.Users.AddAsync(user);
