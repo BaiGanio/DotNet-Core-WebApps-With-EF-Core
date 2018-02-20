@@ -140,6 +140,16 @@ namespace ITGigs.WebApp.Controllers
             return View("ConfirmEmail");
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Logout()
+        {
+            HttpContext.Session.SetObjectAsJson<string>("UserId", null);
+            HttpContext.Session.SetObjectAsJson<string>("UserName", null);
+            return RedirectToAction(nameof(HomeController.Index), "Home");
+        }
+
+
         #region PrivateMethods
 
         private User UpdateUserEmailConfirmation(User user)
