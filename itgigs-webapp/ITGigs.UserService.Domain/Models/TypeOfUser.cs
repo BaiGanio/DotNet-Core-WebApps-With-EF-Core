@@ -5,7 +5,6 @@ using System.Runtime.Serialization;
 
 namespace ITGigs.UserService.Domain.Models
 {
-    [JsonConverter(typeof(StringEnumConverter))]
     public enum TypeOfUser
     {
         [EnumMember(Value = "Visitor")]
