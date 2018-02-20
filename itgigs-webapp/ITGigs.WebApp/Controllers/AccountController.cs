@@ -9,10 +9,10 @@ using ITGigs.UserService;
 using ITGigs.UserService.Domain;
 using ITGigs.UserService.Domain.Models;
 using ITGigs.WebApp.DTOs;
+using ITGigs.WebApp.Extensions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace ITGigs.WebApp.Controllers
@@ -59,7 +59,7 @@ namespace ITGigs.WebApp.Controllers
                 var user = await _userManager.GetUserByEmailAsync(entry.Email);
                 if (user != null)
                 {
-                    if (!user.EmailConfirmed)
+                    if (!user.IsEmailConfirmed)
                     {
                         ViewData["WrongLogin"] = "Email is not confirmed!";
                         return View(entry);
@@ -72,13 +72,16 @@ namespace ITGigs.WebApp.Controllers
 
                     }
                 }
-               // await SetSessionVariables(user);
+
+                HttpContext.Session.SetObjectAsJson<string>("UserId", user.Id);
+                HttpContext.Session.SetObjectAsJson<string>("UserName", user.Username);
             }
             catch (Exception ex)
             {
                 await _logger.LogCustomExceptionAsync(ex, null);
                 return RedirectToAction("Error", "Home");
             }
+
             return RedirectToAction("Index", "Manage");
         }
 
@@ -125,7 +128,7 @@ namespace ITGigs.WebApp.Controllers
                 {
                     return RedirectToAction(nameof(HomeController.Index), "Home");
                 }
-                user = UpdateUser(user);
+                user = UpdateUserEmailConfirmation(user);
                 _ctx.Update(user);
                 await _ctx.SaveChangesAsync();
             }
@@ -139,7 +142,7 @@ namespace ITGigs.WebApp.Controllers
 
         #region PrivateMethods
 
-        private User UpdateUser(User user)
+        private User UpdateUserEmailConfirmation(User user)
         {
             var updatedUser = new User(
                 user.Username,
@@ -153,12 +156,6 @@ namespace ITGigs.WebApp.Controllers
                 DateTime.Now
             );
             return updatedUser;
-        }
-
-        private async Task SetSessionVariables(User user)
-        {
-            //TODO: Set user Id & Name for first try
-            throw new NotImplementedException();
         }
 
         #endregion

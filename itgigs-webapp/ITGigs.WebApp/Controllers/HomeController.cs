@@ -3,6 +3,7 @@ using ITGigs.LogService;
 using ITGigs.LogService.Domain;
 using ITGigs.LogService.Domain.Models;
 using ITGigs.UserService.Domain.Models;
+using ITGigs.WebApp.Extensions;
 using ITGigs.WebApp.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -15,23 +16,40 @@ namespace ITGigs.WebApp.Controllers
 {
     public class HomeController : Controller
     {
-        private bool _isSignedIn;
+        #region Private Fields
+
+        private string _userId;
+        private string _username;
+        private string _imgUrl;
         private ILog _logger = Logger.GetInstance;
         private AppDbContext _ctx = new AppDbContext();
-        public HomeController()
+
+        #endregion
+
+        public HomeController() { }
+
+        public IActionResult Index()
         {
-            _isSignedIn = false;// HttpContext.Session.GetObjectFromJson<string>("IsSignedIn");           
-        }
-        public async Task<IActionResult> Index()
-        {
-            ViewData["IsSignedIn"] = _isSignedIn;
+            _userId = HttpContext.Session.GetObjectFromJson<string>("UserId");
+            _username = HttpContext.Session.GetObjectFromJson<string>("UserName");
+            _imgUrl = HttpContext.Session.GetObjectFromJson<string>("ImgUrl");
+            ViewData["UserId"] = _userId;
+            ViewData["UserName"] = _username;
+            ViewData["ImgUrl"] = _imgUrl;
             return View();
         }
 
         public IActionResult Error()
         {
-            ViewData["IsSignedIn"] = _isSignedIn;
+            ViewData["UserId"] = _userId;
+            ViewData["UserName"] = _username;
+            ViewData["ImgUrl"] = _imgUrl;
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        public IActionResult AccessDenied()
+        {
+            return View();
         }
 
         public async Task<IActionResult> AllUsers()
@@ -48,7 +66,7 @@ namespace ITGigs.WebApp.Controllers
                 await _logger.LogCustomExceptionAsync(ex, null);
             }
 
-            ViewData["IsSignedIn"] = _isSignedIn;
+            ViewData["IsSignedIn"] = _userId;
             return View(users);
         }
 
@@ -66,7 +84,7 @@ namespace ITGigs.WebApp.Controllers
             {
                 await _logger.LogCustomExceptionAsync(ex, null);
             }
-            ViewData["IsSignedIn"] = _isSignedIn;
+            ViewData["IsSignedIn"] = _userId;
             return View(exceptions);
         }
     }
