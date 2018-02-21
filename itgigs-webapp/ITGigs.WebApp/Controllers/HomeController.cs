@@ -19,8 +19,6 @@ namespace ITGigs.WebApp.Controllers
         #region Private Fields
 
         private string _userId;
-        private string _username;
-        private string _imgUrl;
         private ILog _logger = Logger.GetInstance;
         private AppDbContext _ctx = new AppDbContext();
 
@@ -31,24 +29,19 @@ namespace ITGigs.WebApp.Controllers
         public IActionResult Index()
         {
             _userId = HttpContext.Session.GetObjectFromJson<string>("UserId");
-            _username = HttpContext.Session.GetObjectFromJson<string>("UserName");
-            _imgUrl = HttpContext.Session.GetObjectFromJson<string>("ImgUrl");
             ViewData["UserId"] = _userId;
-            ViewData["UserName"] = _username;
-            ViewData["ImgUrl"] = _imgUrl;
             return View();
         }
 
         public IActionResult Error()
         {
             ViewData["UserId"] = _userId;
-            ViewData["UserName"] = _username;
-            ViewData["ImgUrl"] = _imgUrl;
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
         public IActionResult AccessDenied()
         {
+            ViewData["UserId"] = _userId;
             return View();
         }
 
@@ -66,7 +59,7 @@ namespace ITGigs.WebApp.Controllers
                 await _logger.LogCustomExceptionAsync(ex, null);
             }
 
-            ViewData["IsSignedIn"] = _userId;
+            ViewData["UserId"] = _userId;
             return View(users);
         }
 
@@ -84,7 +77,7 @@ namespace ITGigs.WebApp.Controllers
             {
                 await _logger.LogCustomExceptionAsync(ex, null);
             }
-            ViewData["IsSignedIn"] = _userId;
+            ViewData["UserId"] = _userId;
             return View(exceptions);
         }
     }

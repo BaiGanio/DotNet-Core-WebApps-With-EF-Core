@@ -88,7 +88,12 @@ namespace ITGigs.WebApp.Controllers
         [HttpPost]
         public async Task<IActionResult> Register(RegisterEntry entry)
         {
-            ViewData["WrongRegister"] = null;
+            if (!entry.Email.Contains("@gmail.com"))
+            {
+                ViewData["WrongRegister"] = "Only gmail.com accounts are allowed!";
+                return View(entry);
+            }
+
             try
             {
                 User user = await _userManager.GetUserByEmailAsync(entry.Email);

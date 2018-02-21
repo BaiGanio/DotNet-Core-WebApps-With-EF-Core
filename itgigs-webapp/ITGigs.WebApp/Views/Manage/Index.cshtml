@@ -21,11 +21,16 @@
     <hr>
     <div class="row">
         <div class="col-md-3" style="text-align:left">
-            <ul style="">
+            <ul>
                 <li> <a asp-area="" asp-controller="" asp-action="">Performer request</a></li>
                 <li> <a asp-area="" asp-controller="" asp-action="">Venue owner request</a></li>
                 <li> <a asp-area="" asp-controller="" asp-action="">Set new password</a></li>
                 <li><a asp-area="" asp-controller="" asp-action="">Edit profile</a></li>
+            </ul>
+            <ul>
+                <li><a asp-area="" asp-controller="Home" asp-action="Index">if user is admin:</a></li>
+                <li><a asp-area="" asp-controller="Home" asp-action="AllUsers">All Users</a></li>
+                <li><a asp-area="" asp-controller="Home" asp-action="AllExceptions">All Exceptions</a></li>
             </ul>
         </div>
         <div class="col-md-9">

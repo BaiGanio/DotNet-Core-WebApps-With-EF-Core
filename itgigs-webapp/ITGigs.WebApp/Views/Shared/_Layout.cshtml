@@ -9,6 +9,8 @@
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
         <link rel="stylesheet" href="~/css/site.css" />
         <link href="~/css/login-register.css" rel="stylesheet" />
+        <!-- Font Awesome Icon Library -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </environment>
     <environment exclude="Development">
         <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
@@ -32,11 +34,8 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="AllUsers">All Users</a></li>
                     <li><a asp-area="" asp-controller="Venues" asp-action="Index">All Venues</a></li>
                     <li><a asp-area="" asp-controller="ITGigs" asp-action="Index">All ITGigs</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="AllExceptions">All Exceptions</a></li>
                 </ul>
                 @await Html.PartialAsync("_LoginPartial")
             </div>
@@ -49,7 +48,7 @@
             <div>
                 <br>
                 <br>
-                <p>(C) itgigs - @DateTime.Now</p>
+                <p>(C) itgigs - @DateTime.Now.ToLocalTime()</p>
                 <p> All rights reserved. <br />Developed by BG Team</p>
                 <div>
                     <a href="https://github.com/BaiGanio/PU-DB-Apps-with-EF/tree/itgigs-webapp" target="_blank">

@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Properties\PublishProfiles\itgigs - FTP.pubxml" />
     <None Remove="Properties\PublishProfiles\itgigs - Web Deploy.pubxml" />
   </ItemGroup>
 
@@ -25,6 +26,10 @@
     <ProjectReference Include="..\ITGigs.NotificationService\ITGigs.NotificationService.csproj" />
     <ProjectReference Include="..\ITGigs.UserService.Domain\ITGigs.UserService.Domain.csproj" />
     <ProjectReference Include="..\ITGigs.UserService\ITGigs.UserService.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Properties\PublishProfiles\" />
   </ItemGroup>
 
 </Project>
