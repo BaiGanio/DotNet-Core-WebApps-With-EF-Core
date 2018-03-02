@@ -32,6 +32,11 @@ namespace ITGigs.DB.Heplers.InMemoryObjects
                 ),
                 new User(
                     "Пинко Розовата Пантера",
+                    "pink@pinko.com",
+                    HashUtils.CreateHashCode("1"),
+                    TypeOfUser.Admin,
+                    HashUtils.CreateReferralCode(),
+                    true,
                     new CustomId(new Guid("e42837c5-96f1-436d-9688-44f4ce1817d8")),
                     "http://media.avtora.com/images/cut/660x495/articles/2014/04/41277.jpg"
                 ),

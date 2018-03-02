@@ -1,6 +1,7 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "Manage";
+    var username = ViewData["UserName"];
+    var typeOfuser = ViewData["TypeOfUser"];
 }
 <style>
     a {
@@ -13,7 +14,7 @@
 </style>
 <div style="text-align:center;">
     <h1 class="theMonkiesAteMySoul" style="color: #c0a16b">
-        <b>Welcome back, @ViewData["UserName"]</b>
+        <b>Welcome back, @username @typeOfuser</b>
     </h1>
     <h4 class="theMonkiesAteMySoul" style="color: #c0a16b">
         <b>This is your personal admin page</b>
@@ -22,15 +23,31 @@
     <div class="row">
         <div class="col-md-3" style="text-align:left">
             <ul>
-                <li> <a asp-area="" asp-controller="" asp-action="">Performer request</a></li>
-                <li> <a asp-area="" asp-controller="" asp-action="">Venue owner request</a></li>
+                @if (typeOfuser.ToString() != "Performer"
+&& typeOfuser.ToString() != "Venue owner"
+&& typeOfuser.ToString() != "Admin")
+                {
+                    <li> <a asp-area="" asp-controller="" asp-action="">Performer request</a></li>
+                    <li> <a asp-area="" asp-controller="" asp-action="">Venue owner request</a></li>
+                }
+                @if (typeOfuser.ToString() == "Admin")
+                {
+                    <li> <a asp-area="" asp-controller="" asp-action="">All Users</a></li>
+                    <li><a asp-area="" asp-controller="" asp-action="">All Exceptions</a></li>
+                }
+                <br />
+                @if (typeOfuser.ToString() == "Performer")
+                {
+                    <li> <a asp-area="" asp-controller="ITGigs" asp-action="Create">Create new ITGig event</a></li>
+
+                }
+                @if (typeOfuser.ToString() == "VenueOwner")
+                {
+                    <li> <a asp-area="" asp-controller="Venues" asp-action="Create">Create new Venue</a></li>
+
+                }
                 <li> <a asp-area="" asp-controller="" asp-action="">Set new password</a></li>
                 <li><a asp-area="" asp-controller="" asp-action="">Edit profile</a></li>
-            </ul>
-            <ul>
-                <li><a asp-area="" asp-controller="Home" asp-action="Index">if user is admin:</a></li>
-                <li><a asp-area="" asp-controller="Home" asp-action="AllUsers">All Users</a></li>
-                <li><a asp-area="" asp-controller="Home" asp-action="AllExceptions">All Exceptions</a></li>
             </ul>
         </div>
         <div class="col-md-9">

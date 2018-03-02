@@ -37,7 +37,8 @@ namespace ITGigs.NotificationService
                 SmtpClient client = new SmtpClient("smtp.gmail.com", 587)
                 {
                     UseDefaultCredentials = false,
-                    Credentials = new NetworkCredential("your-name@gmail.com", "your-pass")
+                    //Credentials = new NetworkCredential("your-name@gmail.com", "your-pass")
+                    Credentials = new NetworkCredential("exceptionhelper@gmail.com", "b@40neHk@")
                 };
 
                 MailMessage mailMessage = new MailMessage

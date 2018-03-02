@@ -75,6 +75,7 @@ namespace ITGigs.WebApp.Controllers
 
                 HttpContext.Session.SetObjectAsJson<string>("UserId", user.Id);
                 HttpContext.Session.SetObjectAsJson<string>("UserName", user.Username);
+                HttpContext.Session.SetObjectAsJson("TypeOfUser", user.TypeOfUser);
             }
             catch (Exception ex)
             {

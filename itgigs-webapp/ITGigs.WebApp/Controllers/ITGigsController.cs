@@ -52,7 +52,7 @@ namespace ITGigs.WebApp.Controllers
         public IActionResult Create()
         {
             ViewData["PerformerId"] = new SelectList(_context.Users, "Id", "Id");
-            ViewData["VenueId"] = new SelectList(_context.Venues, "Id", "Id");
+            ViewData["VenueId"] = new SelectList(_context.Venues, "Name", "Name");
             return View();
         }
 
@@ -70,7 +70,7 @@ namespace ITGigs.WebApp.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["PerformerId"] = new SelectList(_context.Users, "Id", "Id", iTGig.PerformerId);
-            ViewData["VenueId"] = new SelectList(_context.Venues, "Id", "Id", iTGig.VenueId);
+            ViewData["VenueId"] = new SelectList(_context.Venues, "Name", "Name", iTGig.Venue.Name);
             return View(iTGig);
         }
 

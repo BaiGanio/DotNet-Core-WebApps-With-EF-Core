@@ -1,7 +1,4 @@
-﻿
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
-using System.Runtime.Serialization;
+﻿using System.Runtime.Serialization;
 
 namespace ITGigs.UserService.Domain.Models
 {
