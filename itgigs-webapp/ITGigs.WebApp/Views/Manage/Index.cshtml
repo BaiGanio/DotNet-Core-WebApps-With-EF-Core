@@ -1,8 +1,10 @@
 ﻿@{
     ViewData["Title"] = "Manage";
+    var userId = ViewData["UserId"];
     var username = ViewData["UserName"];
     var typeOfuser = ViewData["TypeOfUser"];
 }
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
 <style>
     a {
         text-decoration: none !important;
@@ -27,7 +29,7 @@
 && typeOfuser.ToString() != "Venue owner"
 && typeOfuser.ToString() != "Admin")
                 {
-                    <li> <a asp-area="" asp-controller="" asp-action="">Performer request</a></li>
+                    @Html.ActionLink("Performer request", "PerformerRequest")
                     <li> <a asp-area="" asp-controller="" asp-action="">Venue owner request</a></li>
                 }
                 @if (typeOfuser.ToString() == "Admin")
@@ -38,6 +40,7 @@
                 <br />
                 @if (typeOfuser.ToString() == "Performer")
                 {
+
                     <li> <a asp-area="" asp-controller="ITGigs" asp-action="Create">Create new ITGig event</a></li>
 
                 }
@@ -52,10 +55,18 @@
         </div>
         <div class="col-md-9">
             <h4 class="theMonkiesAteMySoul" style="color: #c0a16b">
-                <b>You don't have any activity yet!</b>
-                <br />
-                <br />
-                <img src="../images/no-activities.jpg" />
+                @if (ViewData["CustomMessage"] != null)
+                {
+                    <b>@ViewData["CustomMessage"]</b>
+                }
+                else
+                {
+                    <b>You don't have any activity yet!</b>
+                    <br />
+                    <br />
+                    <img src="../images/no-activities.jpg" />
+                }
+
             </h4>
         </div>
     </div>

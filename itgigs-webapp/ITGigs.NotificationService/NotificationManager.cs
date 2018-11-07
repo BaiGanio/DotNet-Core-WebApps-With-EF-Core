@@ -13,21 +13,35 @@ namespace ITGigs.NotificationService
     {
         private ILog _logger = Logger.GetInstance;
         private string confirmationEmailUrl = "http://localhost:55766/account/ValidateEmail";
-        private string passwordResetUrl = "https://itgigs.azurewebsites.net/account/PasswordReset";
+        private string performerConfirmationUrl = "http://localhost:55766/account/performer";
+        private string venueOwnerConfirmationUrl = "http://localhost:55766/account/venueOwner";
+        //private string confirmationEmailUrl = "https://itgigs.azurewebsites.net/account/ValidateEmail";
+        //private string performerConfirmationUrl = "https://itgigs.azurewebsites.net/account/performer";
+        //private string venueOwnerConfirmationUrl = "https://itgigs.azurewebsites.net/account/venueOwner";
 
 
         public async Task SendChangePasswordEmailAsync(User user)
         {
-            string callbackUrl = $"{passwordResetUrl}?userId={user.Id}&validationCode={user.ValidationCode}";
-            string link = $"<a href='{ callbackUrl}'>here</a>!";
-            await SendEmailAsync(user.Email, "ITGigs change password request", $"Please reset your password by clicking {link}");
+            //TODO
         }
 
         public async Task SendConfirmationEmailAsync(User user)
         {
             string callbackUrl = $"{confirmationEmailUrl}?userId={user.Id}&validationCode={user.ValidationCode}";
             string link = $"<a href='{ callbackUrl}'>here</a>!";
-            await SendEmailAsync(user.Email, "ITGigs registration request", $"To confirm your account click  -> {link}");
+            await SendEmailAsync(user.Email, "ITGigs registration request", $"Dear, {user.Username}. To confirm your account click  -> {link}");
+        }
+        public async Task SendPerformerRequestEmailAsync(User user)
+        {
+            string callbackUrl = $"{performerConfirmationUrl}?userId={user.Id}&validationCode={user.ValidationCode}";
+            string link = $"<a href='{ callbackUrl}'>here</a>!";
+            await SendEmailAsync(user.Email, "ITGigs performer request", $"Dear, {user.Username}. To confirm your request for performer in ITGigs click  -> {link}");
+        }
+        public async Task SendVenueOwnerRequestEmailAsync(User user)
+        {
+            string callbackUrl = $"{venueOwnerConfirmationUrl}?userId={user.Id}&validationCode={user.ValidationCode}";
+            string link = $"<a href='{ callbackUrl}'>here</a>!";
+            await SendEmailAsync(user.Email, "ITGigs venue owner request", $"To confirm your request for venue owner in ITGigs click  -> {link}");
         }
 
         private async Task SendEmailAsync(string email, string subject, string message)
