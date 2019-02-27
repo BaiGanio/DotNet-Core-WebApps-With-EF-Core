@@ -24,7 +24,8 @@ namespace Chorap4e.ConsoleClient
 
         public override string ToString()
         {
-            string output = $"4orap4e with price {this.Price} have color {this.Color}! ";
+            string output = 
+                $"Чорап with ID: {this.Id} & price {this.Price} have color {this.Color}, size {this.Size} and is produced by {this.Material} material! ";
             return output;
         }
     }

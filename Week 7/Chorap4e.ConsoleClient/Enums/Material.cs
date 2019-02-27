@@ -5,7 +5,7 @@
         Nylon,
         Cotton,
         Silk,
-        Stincky,
+        Stinky,
         Woolean
     }
 }

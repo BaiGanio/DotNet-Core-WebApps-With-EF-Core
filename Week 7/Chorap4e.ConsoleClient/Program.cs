@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading;
 
 namespace Chorap4e.ConsoleClient
 {
@@ -39,43 +40,54 @@ namespace Chorap4e.ConsoleClient
         private static void InitializeUsers()
         {
             Console.WriteLine("Starting User initialization!");
-
+            Thread.Sleep(1500);
             var me = new User("Lyuben", "fakeP@ss");
             var other = new User("Lyuben-Other", "P@ssfake");
             var other2 = new User("Lyuben-Other2", "P@ssfake2");
             _users.AddRange(new List<User>() { me, other, other2 });
-
             Console.WriteLine("DONE with User initialization!");
+            Thread.Sleep(1500);
         }
 
         private static void InitializeSocks()
         {
             Console.WriteLine("Starting Socks initialization!");
+            Thread.Sleep(1500);
             Sock woolenSock = new Sock(10.99, Color.Pink, Size.L, Material.Woolean);
-            Sock stinkySock = new Sock(19.99, Color.Mixed, Size.L, Material.Stincky);
+            Sock stinkySock = new Sock(19.99, Color.Mixed, Size.L, Material.Stinky);
             _socks.AddRange(new List<object>() { woolenSock, stinkySock });
             Console.WriteLine("DONE with Socks initialization!");
+            Thread.Sleep(1500);
         }
 
         private static void PrintCollection(List<object> collection)
         {
             Console.WriteLine($"Printing collection:");
+            Console.WriteLine();
+            Thread.Sleep(1500);
             foreach (var item in collection)
             {
                 Console.WriteLine(item.ToString());
+                Thread.Sleep(500);
             }
+            Console.WriteLine();
+            Thread.Sleep(1500);
             Console.WriteLine($"DONE with printing collection!");
             Console.WriteLine(new string('-', 20));
         }
 
         private static void AddCollectionToDb(List<object> collection)
         {
+            Console.WriteLine("Adding collection into database table! Please wait....");
             foreach (var item in collection)
             {
                 if (item is User user) _ctx.Users.Add(user);
                 else if (item is Sock sock) _ctx.Socks.Add(sock);
             }
             _ctx.SaveChanges();
+            Thread.Sleep(1500);
+            Console.WriteLine("DONE adding collection into database table!");
+            Console.WriteLine(new string('-', 20));
         }
 
         #endregion

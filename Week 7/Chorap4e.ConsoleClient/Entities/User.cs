@@ -17,7 +17,7 @@ namespace Chorap4e.ConsoleClient
 
         public override string ToString()
         {
-            string output = $"Az имам име: {this.Name} и страшната парола: {this.Password}! ";
+            string output = $"Юзер with ID: {this.Id} have име: {this.Name} и страшната парола: {this.Password}! ";
             return output;
         }
     }
