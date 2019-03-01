@@ -1,4 +1,4 @@
-﻿namespace Chorap4e.ConsoleClient
+﻿namespace Chorap4e.Domain
 {
     public enum Material
     {

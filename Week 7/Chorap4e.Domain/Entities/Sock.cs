@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Chorap4e.ConsoleClient
+namespace Chorap4e.Domain
 {
     public sealed class Sock
     {
