@@ -31,6 +31,5 @@ namespace Geography.Db1st.Local
         public virtual DbSet<Currency> Currencies { get; set; }
         public virtual DbSet<Monastery> Monasteries { get; set; }
         public virtual DbSet<River> Rivers { get; set; }
-        public virtual DbSet<User> Users { get; set; }
     }
 }
