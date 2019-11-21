@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Utils\Utils.csproj" />
+    <ProjectReference Include="..\WeatherFinder.DB\WeatherFinder.DB.csproj" />
+    <ProjectReference Include="..\WeatherFinder.Models\WeatherFinder.Models.csproj" />
+  </ItemGroup>
+
+</Project>
