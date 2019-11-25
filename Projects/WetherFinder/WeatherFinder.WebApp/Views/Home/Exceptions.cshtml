@@ -1,0 +1,60 @@
+﻿@model IEnumerable<WeatherFinder.Models.CustomException>
+@{
+    ViewData["Title"] = "Exceptions";
+}
+<style>
+    hr {
+        background: aqua !important;
+    }
+
+    .card {
+        padding: 20px;
+        margin: 5px;
+        color: black;
+        text-align: left;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    }
+
+    h6 {
+        text-align: right;
+    }
+</style>
+
+<br />
+<h2>Custom Exceptions</h2>
+<br />
+<hr />
+<div class="row">
+
+    @foreach (var element in Model)
+    {
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">ID: @element.Id</h5>
+                    @*<p>
+                            <a href="#" class="card-link">Source: </a> @element.Source
+                        </p>*@
+                    <p class="card-text">
+                        <a href="#" class="card-link">Message: </a>@element.ClientErrorMessage
+                    </p>
+                    <p class="card-text">
+                        <a href="#" class="card-link">Stack Trace: </a>@element.CustomStackTrace
+                    </p>
+                    <p class="card-text">
+                        <a href="#" class="card-link">Inner Stack Trace: </a>@element.InnerStackTrace
+                    </p>
+                    <p class="card-text">
+                        <a href="#" class="card-link">Inner Source: </a>@element.InnerSource
+                    </p>
+                    <p class="card-text">
+                        <a href="#" class="card-link">InnerMessage: </a>@element.InnerMessage
+                    </p>
+                    <h6 class="card-subtitle mb-2 text-muted">
+                        <a href="#" class="card-link"> Date: @element.DateCreated </a>
+                    </h6>
+                </div>
+            </div>
+        </div>
+    }
+</div>
