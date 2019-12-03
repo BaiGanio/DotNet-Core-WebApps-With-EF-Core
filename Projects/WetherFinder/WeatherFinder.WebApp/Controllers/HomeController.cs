@@ -7,17 +7,16 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using WeatherFinder.DB;
 using WeatherFinder.Models;
-using WeatherFinder.WebApp.Models;
+using WeatherFinder.Services;
 
 namespace WeatherFinder.WebApp.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        private readonly WeatherServiceManager _weatherManager;
+        public HomeController()
         {
-            _logger = logger;
+            _weatherManager = new WeatherServiceManager();
         }
 
         public IActionResult Index()
@@ -60,11 +59,17 @@ namespace WeatherFinder.WebApp.Controllers
             return View(exceptions);
         }
 
-        public async Task<IActionResult> MyWeather()
+        public async Task<IActionResult> MyWeather(string searchString1)
         {
             try
             {
-                throw new NotImplementedException("Should implement some logic in the near future!!! Right?!?!?");
+                // throw new NotImplementedException("Should implement some logic in the near future!!! Right?!?!?");
+                var result = await _weatherManager.GetAllForecastsAsync();
+                if (!String.IsNullOrEmpty(searchString1))
+                {
+                    result = result.Where(s => s.City.Contains(searchString1));
+                }
+                return View(result);
             }
             catch (Exception ex)
             {

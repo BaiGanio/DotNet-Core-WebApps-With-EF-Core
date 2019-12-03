@@ -3,21 +3,27 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">
-        Welcome
-        <br />  
-        <br />
-        to the one & only
-        <br />
-        <br />  
-        WeatherFinder
-        <br />  
-        <br />
-        web app
-        <br />
-        <br />
-        Enjoy clicking around ;)
+    <br />
+    <h1>
+        Welcome  to the one & only
     </h1>
     <br />
+    <h1 class="display-3">
+        <span style="font-family:Algerian">WeatherFinder.WebApp</span>
+    </h1>
+    <br />
+    <br />
+    <h3>  Enjoy clicking around ;)</h3>
+    <br />
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+<br /><br /><br />
+<div class="text-center">
+    <form asp-controller="Home" asp-action="MyWeather" method="Get">
+        <h1>
+            City :
+            <input type="text" name="SearchString">
+            <input type="submit" value="Search" />
+        </h1>
+    </form>
 </div>

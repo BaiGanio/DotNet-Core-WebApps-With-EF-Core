@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WatherFinder.ConsoleClient"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeatherFinder.Models", "WeatherFinder.Models\WeatherFinder.Models.csproj", "{AE3361D5-40A9-4D55-A085-00BDDD272294}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeatherFinder.WebApp", "WeatherFinder.WebApp\WeatherFinder.WebApp.csproj", "{13D957FC-7F06-4ED4-9441-1772D6DEA71D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeatherFinder.WebApp", "WeatherFinder.WebApp\WeatherFinder.WebApp.csproj", "{13D957FC-7F06-4ED4-9441-1772D6DEA71D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeatherFinder.Services", "WeatherFinder.Services\WeatherFinder.Services.csproj", "{2E51232D-01DB-4B83-AB31-256971BF78E3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{13D957FC-7F06-4ED4-9441-1772D6DEA71D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{13D957FC-7F06-4ED4-9441-1772D6DEA71D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{13D957FC-7F06-4ED4-9441-1772D6DEA71D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2E51232D-01DB-4B83-AB31-256971BF78E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E51232D-01DB-4B83-AB31-256971BF78E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E51232D-01DB-4B83-AB31-256971BF78E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E51232D-01DB-4B83-AB31-256971BF78E3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
