@@ -20,9 +20,8 @@ namespace WeatherFinder.Services
         }
         public async Task<IEnumerable<WeatherForecast>> GetAllForecastsAsync()
         {
-            List<WeatherForecast> result = null;
-
-            result = await _ctx.Forecasts.ToListAsync();
+            List<WeatherForecast> result = 
+                await _ctx.Forecasts.ToListAsync();
 
             return result;
         }
