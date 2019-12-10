@@ -13,14 +13,42 @@ namespace WeatherFinder.WebApp.Controllers
     public class HomeController : Controller
     {
         private readonly WeatherServiceManager _weatherManager;
+        private readonly LogServiceManager _logManager;
         public HomeController()
         {
             _weatherManager = new WeatherServiceManager();
+            _logManager = new LogServiceManager();
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index(string searchString)
         {
-            return View();
+            try
+            {
+                if (!String.IsNullOrEmpty(searchString))
+                {
+                    var result = await _weatherManager.GetAllForecastsAsync();
+
+                    var forecast = 
+                        result
+                        .Where(s => s.City.ToLower() == searchString.ToLower())
+                        .FirstOrDefault();
+
+                    if (forecast == null/* || forecast.Date > forecast.Date.AddMinutes(-11)*/)
+                    {
+                        forecast =
+                            await _weatherManager.GetIndustryForecast(searchString);
+                    }
+
+                    return View(forecast);
+                }
+                return View();
+            }
+            catch (Exception ex)
+            {
+                CustomException ce = new CustomException(ex);
+                await _logManager.LogCustomException(ce);
+                return View("Error");
+            }
         }
 
         public async Task<IActionResult> Privacy()
@@ -32,13 +60,10 @@ namespace WeatherFinder.WebApp.Controllers
             catch (Exception ex)
             {
                 CustomException ce = new CustomException(ex);
-                var ctx = new WeatherFinderDbContext();
-                await ctx.Exceptions.AddAsync(ce);
-                await ctx.SaveChangesAsync();
+                await _logManager.LogCustomException(ce);
 
                 return View("Error");
             }
-            //return View();
         }
 
         public IActionResult Error()
@@ -48,39 +73,28 @@ namespace WeatherFinder.WebApp.Controllers
 
         public async Task<IActionResult> Exceptions()
         {
-            var ctx = new WeatherFinderDbContext();
-
-            List<CustomException> exceptions =
-                await ctx.Exceptions
-                .OrderByDescending(ex => ex.DateCreated)
-                .ToListAsync();
-
+            var exceptions  = 
+                await _logManager.GetAllCustomExceptions();
             return View(exceptions);
         }
 
-        public async Task<IActionResult> MyWeather(string searchString1)
+        public async Task<IActionResult> MyWeather(string searchString)
         {
             try
             {
-                // throw new NotImplementedException("Should implement some logic in the near future!!! Right?!?!?");
                 var result = await _weatherManager.GetAllForecastsAsync();
-                if (!String.IsNullOrEmpty(searchString1))
+                if (!String.IsNullOrEmpty(searchString))
                 {
-                    result = result.Where(s => s.City.Contains(searchString1));
+                    result = result.Where(s => s.City.Contains(searchString));
                 }
                 return View(result);
             }
             catch (Exception ex)
             {
                 CustomException ce = new CustomException(ex);
-                var ctx = new WeatherFinderDbContext();
-                await ctx.Exceptions.AddAsync(ce);
-                await ctx.SaveChangesAsync();
-
+                await _logManager.LogCustomException(ce);
                 return View("Error");
             }
-
-            //return View();
         }
 
     }

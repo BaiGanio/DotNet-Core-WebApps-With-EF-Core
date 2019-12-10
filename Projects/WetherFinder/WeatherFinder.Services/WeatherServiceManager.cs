@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using WeatherFinder.DB;
@@ -9,14 +10,14 @@ namespace WeatherFinder.Services
     public class WeatherServiceManager
     {
         private readonly WeatherFinderDbContext _ctx;
-
         public WeatherServiceManager()
         {
             _ctx = new WeatherFinderDbContext();
          }
-        public void LogForecast(WeatherForecast weatherForecast)
+
+        public async Task LogForecast(WeatherForecast weatherForecast)
         {
-            //TODO: Log forecast into database
+            await _ctx.Forecasts.AddAsync(weatherForecast);
         }
         public async Task<IEnumerable<WeatherForecast>> GetAllForecastsAsync()
         {
@@ -24,6 +25,20 @@ namespace WeatherFinder.Services
                 await _ctx.Forecasts.ToListAsync();
 
             return result;
+        }
+
+        public async Task<WeatherForecast> GetIndustryForecast(string searchString)
+        {
+            try
+            {
+                //TODO: ask industry provider for the forecast & log it into datbase
+
+                throw new NotImplementedException();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }

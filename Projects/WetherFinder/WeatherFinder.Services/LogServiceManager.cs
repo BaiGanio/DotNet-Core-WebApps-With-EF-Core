@@ -1,20 +1,33 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using WeatherFinder.DB;
 using WeatherFinder.Models;
 
 namespace WeatherFinder.Services
 {
     public class LogServiceManager
     {
-        public void LogCustomException(CustomException ce)
+        private readonly WeatherFinderDbContext _ctx;
+
+        public LogServiceManager()
         {
-            //TODO: Log exception into database
+            _ctx = new WeatherFinderDbContext();
         }
 
-        public IEnumerable<CustomException> GetAllCustomExceptions()
+        public async Task LogCustomException(CustomException ce)
         {
-            List<CustomException> result = null;
+            await _ctx.Exceptions.AddAsync(ce);
+            await _ctx.SaveChangesAsync();
+        }
 
-            //TODO: Get exceptions from database
+        public async Task<IEnumerable<CustomException>> GetAllCustomExceptions()
+        {
+            List<CustomException> result = 
+                await _ctx.Exceptions
+                    .OrderByDescending(ce => ce.DateCreated)
+                    .ToListAsync();
 
             return result;
         }
