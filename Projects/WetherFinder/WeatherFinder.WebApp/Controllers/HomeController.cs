@@ -22,26 +22,25 @@ namespace WeatherFinder.WebApp.Controllers
 
         public async Task<IActionResult> Index(string searchString)
         {
+            if (String.IsNullOrEmpty(searchString))
+                return View();
+
             try
             {
-                if (!String.IsNullOrEmpty(searchString))
+                var result = await _weatherManager.GetAllForecastsAsync();
+
+                var forecast =
+                    result
+                    .Where(s => s.City.ToLower() == searchString.ToLower())
+                    .FirstOrDefault();
+
+                if (forecast == null/* || forecast.Date > forecast.Date.AddMinutes(-11)*/)
                 {
-                    var result = await _weatherManager.GetAllForecastsAsync();
-
-                    var forecast = 
-                        result
-                        .Where(s => s.City.ToLower() == searchString.ToLower())
-                        .FirstOrDefault();
-
-                    if (forecast == null/* || forecast.Date > forecast.Date.AddMinutes(-11)*/)
-                    {
-                        forecast =
-                            await _weatherManager.GetIndustryForecast(searchString);
-                    }
-
-                    return View(forecast);
+                    forecast =
+                        await _weatherManager.GetIndustryForecast(searchString);
                 }
-                return View();
+
+                return View(forecast);
             }
             catch (Exception ex)
             {

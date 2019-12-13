@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Nancy" Version="2.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\WeatherFinder.DB\WeatherFinder.DB.csproj" />
     <ProjectReference Include="..\WeatherFinder.Models\WeatherFinder.Models.csproj" />
   </ItemGroup>
