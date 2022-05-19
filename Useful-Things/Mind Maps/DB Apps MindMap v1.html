@@ -1,0 +1,774 @@
+
+
+ 
+ 
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
+    <meta charset='utf-8' />
+
+	<meta name='Author' content='content generated with espresso Mind Map'>
+	<meta name='description' content='Mind Map generated with espresso MindMap'>
+	<meta name='keywords' content='espresso Mind Map, espressoApps.ch'>
+    <title>espresso MindMap</title>
+    <style>
+        body {
+            margin: 0px;
+            padding: 0px;
+            font-size: 1em;
+            font-family: 'Segoe UI', Arial, Helvetica;
+            text-align: left;
+        }
+    </style>
+</head>
+ 
+
+
+<body>
+
+
+<!---espresso HTML5 Mind-Map viewer (c) sourcecode espressoApps.ch 2012-2013 -->      
+<div id='espressodiv' style='text-align:left; font-family:"Segoe UI", Arial, Helvetica; font-size:medium; font-weight:400; color:black;' >
+<div id='espressoMindMap' style='position:relative; width:800px; height:600px; border:none;' >
+   <script type='text/javascript'>
+       // Parameters 
+       var zoom = 1/1.1;          // Zoom of MindMap normal: zoom=1;
+       var m_hideMenu = false;  // Menu on start On/Off
+       var mind_offset_x = 0;  // Relative position of mind-map (x=0,y=0): 1node in center 
+       var mind_offset_y = 0;
+       // Text of all Nodes visible in footer?
+       var m_showTextToggle = true; // togle text as menue element? Attention: Size of the div-element will become larger when text is expanded.
+       var h_textvisile = false;
+
+       // Canvas positioning
+
+       var c_marginx = 24;   // Horizontal Margin 
+       var c_marginy = 24;   // Vertical Margin 
+
+       var c_fixsizeX = false;  // true: for fix-size -> use size of this <div> -element
+       // false: auto-size ->  adjust with c_varwidth      
+       var c_varwidth = -10;      // auto size: window size + this value
+       var c_varwidthmin = 250; // minimum size 
+
+       var c_fixsizeY = false;  // true: for fix-size -> use size of this <div> -element
+       // false: auto-size -> adjust with c_varheight
+       var c_varheight = -10;  // auto size: window size + this value
+       var c_varheightmin = 250;// minimum size
+
+       var c_bgcolor = 'rgba(240, 240, 240, 1)'    // background color
+       var c_conectioncolor = '#909090';           // color of conection lines
+
+       // TextBox (Displays Node Text)
+       var b_FontSize = 16;
+       var b_linespace = 1.2;
+       var b_txtBox_zoom = 1;  // =1
+       var b_txtBox_marginx = 16;
+       var b_txtBox_marginy = 8;
+       var b_offsetx = 50;
+       var b_offsety = 30;
+       var b_iconspacer = 4;
+       // Navigation Elements.
+       var navigation_x = -26; navigation_y = -26;
+
+       // for Text-Content style see .textitem css-style
+   </script>
+
+   <style>
+       div.twindow {
+           text-align: right;
+           padding: 20px;
+           background-color: none;
+           opacity: 1;
+           width: Auto;
+           max-width: 800px;
+           min-width: 280px;
+           height: auto;
+           position: absolute;
+           top: 200px;
+           left: 50px;
+           clip: rect(auto, auto, auto, auto);
+       }
+
+       div.textitem {
+           text-align: left;
+           padding: 20px;
+           margin: 0px;
+           opacity: 1;
+           background-color: white;
+           border-color: black;
+           width: Auto;
+           height: auto;
+           box-shadow: 8px 8px 8px 8px rgba(0,0,0,0.4);
+       }
+       .textitem h1 {
+           font-size: medium;
+           font-weight: 700;
+           text-align: left;
+       }
+       div.mapdata {
+           padding: 16px;           
+       }
+       div.tarx {
+           font-weight: 700;
+           border-top: solid;
+           border-top-color: gray;
+           border-top-width: 1px;
+           padding: 4px;
+       }
+       div.arx { clear:both;
+           padding-left: 12px;
+       }
+   </style>
+
+  <div id='nesting' style='position: relative; text-align:left; height: auto;'  >
+
+    <canvas id='espressoCanvas' style='border: 1px solid #ffffff; background-color: rgba(240, 240, 240, 1); box-shadow: 5px 5px 8px #222; font-family: "Segoe UI", Arial, Helvetica;' >  
+        Sorry your brwoser doesn't support HTML5 Canvas / Java Script. Only text version available.
+    </canvas>
+
+    <script type='text/javascript'>
+        function roundRect(ctx, x, y, width, height, radius, fill, stroke, color, bgcolor, line) {
+            ctx.save();
+            if (typeof stroke == 'undefined') {
+                stroke = true;
+            }
+            if (typeof radius === 'undefined') {
+                radius = 5;
+            }
+            if (height < 2 * radius) radius = height / 2;
+            if (width < 2 * radius) radius = width / 2;
+            ctx.lineWidth = line;
+            ctx.strokeStyle = color;
+            ctx.beginPath();
+            ctx.moveTo(x + radius, y);
+            ctx.lineTo(x + width - radius, y);
+            ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
+            ctx.lineTo(x + width, y + height - radius);
+            ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
+            ctx.lineTo(x + radius, y + height);
+            ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
+            ctx.lineTo(x, y + radius);
+            ctx.quadraticCurveTo(x, y, x + radius, y);
+            ctx.closePath();
+            if (stroke) {
+                ctx.stroke();
+            }
+            if (fill) {
+                ctx.fillStyle = bgcolor;
+                ctx.fill();
+            }
+            ctx.restore();
+        }
+
+        function wText(ctx, i) {
+            var bord = 4; var s = b_txtBox_zoom; if (over == i) { bord = 7; s = s * 1.05; }
+            ctx.save();
+            ctx.translate(MD[i].x, MD[i].y);
+            ctx.scale(s, s);
+
+            var text = MD[i].txt;
+            var x = MD[i].cx - MD[i].x;
+            var y = MD[i].cy - MD[i].y;
+            var w = MD[i].wx - MD[i].cx;
+            var h = MD[i].wy - MD[i].cy;
+            roundRect(ctx, 7 + x, 7 + y, w, h, MD[i].rad, true, false, 'rgba(0, 0, 0, 0.4)', 'rgba(0, 0, 0, 0.4)', 4);
+            if (MD[i].hastext) {
+                ctx.beginPath();
+                var xa = x + w / 5;
+                var ya = y + h;
+                roundRect(ctx, 3 + xa, 6 + ya, 18, 13, 1, true, false, 'rgba(0, 0, 0, 0.4)', 'rgba(0, 0, 0, 0.4)', 1);
+                roundRect(ctx, xa, ya, 18, 15, 1, true, true, 'black', MD[i].col, 1);
+                ctx.lineWidth = 0.5;
+                ctx.moveTo(xa + 4, ya + 4);
+                ctx.lineTo(xa + 13, ya + 4);
+                ctx.stroke();
+                ctx.beginPath();
+                ctx.moveTo(xa + 4, ya + 7);
+                ctx.lineTo(xa + 15, ya + 7);
+                ctx.stroke();
+                ctx.beginPath();
+                ctx.moveTo(xa + 4, ya + 10);
+                ctx.lineTo(xa + 14, ya + 10);
+                ctx.stroke();
+            }
+            if (MD[i].hlink=='true') {
+                ctx.beginPath();
+                var xa = x + w / 5+22;
+                var ya = y + h;
+                roundRect(ctx, 3 + xa, 6 + ya, 18, 13, 1, true, false, 'rgba(0, 0, 0, 0.4)', 'rgba(0, 0, 0, 0.4)', 1);
+                roundRect(ctx, xa, ya, 18, 15, 1, true, true, 'black', MD[i].col, 1);
+                ctx.lineWidth = 0.5;
+                ctx.save();                
+                ctx.lineWidth = 1.5; ctx.strokeStyle = '#333'; ctx.beginPath();
+                ctx.arc(xa + 6, ya + 8, 3, 0, 6.28, false)
+                ctx.stroke(); ctx.closePath(); ctx.beginPath();
+                ctx.arc(xa + 12, ya + 8, 3, 0, 6.28, false)
+                ctx.stroke(); ctx.closePath(); 
+                ctx.beginPath();
+                ctx.moveTo(xa + 6, ya + 8);
+                ctx.lineTo(xa + 12, ya + 8);
+                ctx.stroke();
+                ctx.restore();
+            }
+            roundRect(ctx, x, y, w, h, MD[i].rad, true, true, 'black', MD[i].col, bord);
+            writeMessage(ctx, text, MD[i].tx, MD[i].ty);
+
+            if (MD[i].iconImg != null) {
+                ctx.drawImage(MD[i].iconImg, MD[i].icnx, MD[i].icny);
+            }
+            ctx.restore();
+        }
+
+        function writeMessage(ctx, message, x, y) {
+            ctx.save();
+            ctx.textAlign = 'left';
+            ctx.textBaseline = 'top';
+            ctx.font = b_FontSize + 'px Arial';
+            ctx.fillStyle = 'black';
+            mlineText(ctx, message, x, y, b_linespace * b_FontSize);
+            ctx.restore();
+        }
+
+        function mlineText(ctx, fulltext, x, y, lineHeight) {
+            var y0 = y;
+            var line = '';
+            var text = fulltext.split('<br>');
+            for (var li = 0; li < text.length; li++) {
+                var line = '' + text[li];
+                ctx.fillText(line, x, y);
+                //ctx.strokeText(line, x, y);
+                y += lineHeight;
+            }
+        }
+
+        function TextBoxSize(ctx, fulltext, lineHeight) {
+            var width = 0;
+            var y = 0;
+            ctx.save();
+            ctx.textAlign = 'left';
+            ctx.textBaseline = 'top';
+            ctx.font = b_FontSize + 'px Arial';
+            ctx.fillStyle = 'black';
+            var text = fulltext.split('<br>');
+            for (var li = 0; li < text.length; li++) {
+                var line = '' + text[li];
+                var metrics = ctx.measureText(line);
+                var w = metrics.width;
+                if (width < w) width = w;
+                y += lineHeight;
+            }
+            ctx.restore();
+            return [width, y];
+        }
+
+        function overItem(x, y) {
+            x = x / zoom; y = y / zoom;
+            for (i = 0; i < MD.length; i++) {
+                if (MD[i].cx < x && MD[i].wx > x && MD[i].cy < y && MD[i].wy > y) { return i; }
+            }
+            return -1;
+        }
+
+        function drawMind(x, y) {
+            var canvas = document.getElementById('espressoCanvas');
+            var context = canvas.getContext('2d');
+            context.fillStyle = c_conectioncolor;
+
+ 			context.beginPath();context.moveTo(642,619);context.lineTo(642,619);context.lineTo(647,613);context.lineTo(747,707);context.lineTo(745,709);context.closePath(); context.fill();
+ 			context.beginPath();context.moveTo(640,615);context.lineTo(640,615);context.lineTo(648,616);context.lineTo(637,752);context.lineTo(634,752);context.closePath(); context.fill();
+ 			context.beginPath();context.moveTo(641,613);context.lineTo(641,613);context.lineTo(648,618);context.lineTo(514,799);context.lineTo(512,798);context.closePath(); context.fill();
+ 			context.beginPath();context.moveTo(643,612);context.lineTo(643,612);context.lineTo(646,619);context.lineTo(445,711);context.lineTo(444,709);context.closePath(); context.fill();
+ 			context.beginPath();context.moveTo(554,443);context.lineTo(554,443);context.lineTo(562,439);context.lineTo(646,615);context.lineTo(643,616);context.closePath(); context.fill();
+ 			context.beginPath();context.moveTo(181,376);context.lineTo(181,376);context.lineTo(174,372);context.lineTo(266,233);context.lineTo(268,234);context.closePath(); context.fill();
+ 			context.beginPath();context.moveTo(181,374);context.lineTo(181,374);context.lineTo(173,375);context.lineTo(152,257);context.lineTo(154,256);context.closePath(); context.fill();
+ 			context.beginPath();context.moveTo(180,371);context.lineTo(180,371);context.lineTo(175,377);context.lineTo(59,274);context.lineTo(61,272);context.closePath(); context.fill();
+ 			context.beginPath();context.moveTo(559,437);context.lineTo(559,437);context.lineTo(557,445);context.lineTo(177,376);context.lineTo(177,373);context.closePath(); context.fill();
+ 			context.beginPath();context.moveTo(721,190);context.lineTo(721,190);context.lineTo(713,189);context.lineTo(738,48);context.lineTo(740,48);context.closePath(); context.fill();
+ 			context.beginPath();context.moveTo(715,193);context.lineTo(715,193);context.lineTo(718,186);context.lineTo(937,278);context.lineTo(936,281);context.closePath(); context.fill();
+ 			context.beginPath();context.moveTo(717,194);context.lineTo(717,194);context.lineTo(717,186);context.lineTo(926,181);context.lineTo(926,184);context.closePath(); context.fill();
+ 			context.beginPath();context.moveTo(719,193);context.lineTo(719,193);context.lineTo(715,186);context.lineTo(923,84);context.lineTo(925,86);context.closePath(); context.fill();
+ 			context.beginPath();context.moveTo(561,443);context.lineTo(561,443);context.lineTo(555,439);context.lineTo(716,189);context.lineTo(718,190);context.closePath(); context.fill();
+            context.textAlign = 'center';
+            context.font = '16px Arial';
+            for (i = 0; i < MD.length; i++) wText(context, i);
+        }
+        itemcounter = 0;
+        var atleastonehastext = false;
+        function Item(txt, x, y, col, rad, cont, has, c1, c2, c3,hlink) {
+            this.x = x;
+            this.y = y;
+            this.col = col;
+            this.rad = rad;
+            this.content = '';
+            this.id = cont;
+            this.hastext = has;
+            this.icol1 = c1;
+            this.icol2 = c2;
+            this.icol3 = c3;                        
+            this.hlink = hlink;
+
+            if (has) { atleastonehastext = true; }
+            var getTitle = (document.getElementById('T' + cont)).innerHTML;
+            getTitle = getTitle.replace('&lt;', '<').replace('&gt;', '>').replace('&quot;', '"').replace('&amp;', '&')
+            this.txt = '' + getTitle;
+
+            this.iconImg = document.getElementById('I' + cont);
+            var ix = 0; iy = 0;
+            if (this.iconImg != null) {
+                ix = this.iconImg.width + b_iconspacer;
+                iy = this.iconImg.height;
+                try {
+                    var image = new Image();
+                    var img = this.iconImg;
+                    var c = img_getCanvas(img.width, img.height);
+                    var ictx = c.getContext('2d');
+                    ictx.drawImage(img, 0, 0);
+                    var imgdata = ictx.getImageData(0, 0, c.width, c.height);
+                    var img2 = img_colorize(imgdata, this.icol1, this.icol2, this.icol3);
+                    ictx.putImageData(img2, 0, 0);
+                    image.src = c.toDataURL();
+                    this.iconImg = image;
+                } catch (e) {
+                }
+            }
+            var context = canvas.getContext('2d');
+            var size = TextBoxSize(context, this.txt, b_linespace * b_FontSize);
+            this.tw = size[0];
+            this.th = size[1];
+            this.cx = this.x - this.tw / 2 - b_txtBox_marginx - ix / 2;
+            this.cy = this.y - this.th / 2 - b_txtBox_marginy;
+            this.wx = this.x + this.tw / 2 + b_txtBox_marginx + ix;
+            this.wy = this.y + this.th / 2 + b_txtBox_marginy;
+            this.tx = this.cx - this.x + b_txtBox_marginx + ix;
+            this.ty = this.cy - this.y + 1.2 * b_txtBox_marginy;
+            this.icnx = this.cx - this.x + b_txtBox_marginx;
+            this.icny = this.cy - this.y + (this.wy - this.cy - iy) / 2;
+
+            itemcounter++;
+        }
+        function img_colorize(imgdata, c1, c2, c3) {
+            var d = imgdata.data;
+            for (var i = 0; i < d.length; i += 4) {
+                d[i] = c1;
+                d[i + 1] = c2;
+                d[i + 2] = c3;
+            }
+            return imgdata;
+        }
+        function img_getCanvas(w, h) {
+            var c = document.createElement('canvas');
+            c.width = w;
+            c.height = h;
+            return c;
+        };
+
+        var MD;
+        function initData() {
+            MD = [
+			new Item("x",558,441,'#FFFFB4',2,"ARX0",false,0,0,0,'false'), 
+			new Item("x",717,190,'#FFA0A0',20,"ARX1",false,0,0,0,'false'), 
+			new Item("x",924,85,'#FFD296',28,"ARX2",false,0,0,0,'false'), 
+			new Item("x",926,182,'#FFD296',28,"ARX3",false,0,0,0,'false'), 
+			new Item("x",937,279,'#FFD296',28,"ARX4",false,0,0,0,'false'), 
+			new Item("x",177,374,'#AABBFF',20,"ARX5",false,0,0,0,'false'), 
+			new Item("x",60,273,'#FFFFFF',20,"ARX6",false,0,0,0,'false'), 
+			new Item("x",153,256,'#FFFFFF',20,"ARX7",false,0,0,0,'false'), 
+			new Item("x",267,234,'#FFFFFF',20,"ARX8",false,0,0,0,'false'), 
+			new Item("x",644,616,'#FFD296',2,"ARX9",false,0,0,0,'false'), 
+			new Item("x",444,710,'#A5E2A5',2,"ARX10",false,0,0,0,'false'), 
+			new Item("x",513,798,'#A5E2A5',2,"ARX11",false,0,0,0,'false'), 
+			new Item("x",635,752,'#A5E2A5',2,"ARX12",false,0,0,0,'false'), 
+			new Item("x",746,708,'#A5E2A5',2,"ARX13",false,0,0,0,'false'), 
+			new Item("x",739,48,'#FFD296',28,"ARX14",false,0,0,0,'false'), 
+
+            ];
+        }
+
+        function updateCanvas() {
+            canvas.style.backgroundColor = c_bgcolor;
+            context.clearRect(0, 0, canvas.width, canvas.height);
+var ctxt ="espresso Mind Map Light - www.espressoApps.ch";  var ctxt2 ="espresso Mind Map Light - www.espressoApps.ch";
+            context.save();
+            var cwx=canvas.width/2;
+            var cwy= canvas.height/2;
+            if (cwx<100) cwx=100;
+            var d=Math.sqrt(4*cwx*cwx+4*cwy*cwy)
+            context.lineWidth = 1;
+            context.translate(cwx, 0.3*cwy);                    
+            context.font = '72px Arial';           
+            context.textAlign = 'center';                    
+            context.fillStyle = '#bbb';
+            context.strokeStyle = '#dfdfdf';
+            var metrics = context.measureText(ctxt);                                    
+            var widthtxt = metrics.width;       
+            context.scale(0.95*2*cwx/widthtxt, 0.95*2*cwx/widthtxt);                     
+            context.fillText(ctxt, 0,0 ); 
+            context.fillStyle = '#fafafa';
+            context.fillText(ctxt, 0, 0); 
+            context.strokeText(ctxt, 0, 0); 
+            context.restore();
+            context.save();
+            context.textAlign = 'right';
+            context.font = '18px Arial';                               
+            context.fillStyle = '#222200';                    
+            var metrics = context.measureText(ctxt2);                                    
+            widthtxt = metrics.width;                           
+            context.fillText(ctxt2, 0.95*cwx*2,cwy*2-10); 
+            context.fillStyle = '#222200';                    
+            context.restore();
+            context.save();
+            context.translate(posx, posy);
+            context.scale(zoom, zoom);
+            drawMind(0, 0);
+            if (over >= 0) {
+                var id = MD[over].id;
+                var divelement = document.getElementById(id);
+                message = 'none';
+                if (divelement != null) {
+                    message = divelement.innerHTML;
+                }
+            }
+            context.restore();
+        }
+
+        var posx = 30; posy = 40;
+        var poscenterx = 0; poscentery = 0;
+        var mouse_down = false; mouse_x = 0; mouse_y = 0;
+        var mouse_was_x = 0; mouse_was_y = 0;
+        var down_mousewasOver = -1;
+        var canvas;
+        var context;
+        var over = -1;
+        var node_textvisible = true;
+
+        function setCenter() {
+            posx = canvas.width / 2 - MD[0].x * zoom + mind_offset_x;
+            posy = canvas.height / 2 - MD[0].y * zoom + mind_offset_y;
+            poscenterx = posx;
+            poscentery = posy;
+        }
+
+        function init() {
+            initData();
+            //if (atleastonehastext == false) { txtWin_close(); } else txtWin_visible();
+            txtWin_close();
+            canvas = document.getElementById('espressoCanvas');
+            context = canvas.getContext('2d');
+            on_change();
+            setCenter();
+
+            drawCloseButton();
+            var txtWin = document.getElementById('txtWindow');
+            txtWin.style.top = 50 + 'px';
+            txtWin.style.left = 50 + 'px';
+            if (m_hideMenu) { Scroll_close(); } else Scroll_open;
+            updateCanvas();
+
+            // mouse events
+            canvas.addEventListener('mouseup', function (evt) {
+                mouse_down = false;
+                click = false;
+                var mousePos = getMousePos(canvas, evt);
+                if (mousePos.x - mouse_was_x < 3 && mousePos.y - mouse_was_y < 3 && -mousePos.x + mouse_was_x < 3 && -mousePos.y + mouse_was_y < 3) click = true;
+                var up = overItem(mousePos.x - posx, mousePos.y - posy);
+
+                if (down_mousewasOver == up && click) {
+                    if (up >= 0) {                        
+                        if (!MD[up].hastext && MD[up].hlink=='true') {
+                            //var hl = document.getElementById('T' + MD[up].id);                                                        
+                            //parent.location.href = hl.href;
+                        }
+                        if (SetItemText(up)) { txtWin_visible(); }
+                        else txtWin_close();
+                    }
+                    else txtWin_close();
+                }
+            }, false);
+
+            canvas.addEventListener('mouseout', function (event) { mouse_down = false; }, false);
+
+            canvas.addEventListener('mousemove', function (evt) {
+                var mousePos = getMousePos(canvas, evt);
+                var nowover = overItem(mousePos.x - posx, mousePos.y - posy);
+
+                if (mouse_down) {
+                    posx += mousePos.x - mouse_x;
+                    posy += mousePos.y - mouse_y;
+                    mouse_x = mousePos.x;
+                    mouse_y = mousePos.y;
+                }
+                if (nowover == over || mouse_down) {
+                    updateCanvas(posx, posy);
+                } else { over = nowover; }
+
+            }, false);
+
+            canvas.addEventListener('mousedown', function (evt) {
+                mouse_down = true;
+                var mousePos = getMousePos(canvas, evt);
+                mouse_x = mousePos.x; mouse_y = mousePos.y;
+                mouse_was_x = mouse_x; mouse_was_y = mouse_y;
+                down_mousewasOver = overItem(mousePos.x - posx, mousePos.y - posy);
+            }, false);
+
+
+            if (!h_textvisile) {
+                Scroll_TextOnOff('off');
+            }
+            if (!m_showTextToggle) { var st = document.getElementById('ScrollTextOnOff'); st.style.visibility = 'collapse'; }
+        }
+
+        function getMousePos(canvas, evt) {
+            var rect = canvas.getBoundingClientRect();
+            return {
+                x: evt.clientX - rect.left,
+                y: evt.clientY - rect.top
+            };
+        }
+
+        function drawCloseButton() {
+            var canvas = document.getElementById('txtWindowCanv'); var ctx = canvas.getContext('2d');
+            ctx.lineWidth = 1.5;
+            ctx.strokeStyle = '#666';
+            ctx.beginPath();
+            ctx.moveTo(4, 4);
+            ctx.lineTo(14, 14);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(4, 14);
+            ctx.lineTo(14, 4);
+            ctx.stroke();
+        }
+
+        function SetItemText(itemnr) {
+            drawCloseButton();
+            var textc = document.getElementById('textcontent');
+            var text = (document.getElementById(MD[itemnr].id)).innerHTML;
+            var getTitle = (document.getElementById('T' + MD[itemnr].id));
+            var txtWin = document.getElementById('txtWindow');
+            var h = MD[itemnr].hlink;
+            if (h == 'true') {
+                textc.innerHTML = '<h1><a href=\'' + getTitle.href + '\'>' + getTitle.innerHTML + '</a></h1>' + text;
+            }
+            else {
+                textc.innerHTML = '<h1>' + getTitle.innerHTML + '</h1>' + text;
+            }
+            var onscreenx = posx + MD[itemnr].x * zoom + c_marginx - b_offsetx;  // canvas.offsetLeft
+            var onscreeny = posy + MD[itemnr].y * zoom + c_marginy - b_offsety; // canvas.offsetTop
+            txtWin.style.top = onscreeny + 'px';
+            txtWin.style.left = onscreenx + 'px';
+            return true;
+        }
+
+        function on_change() {
+
+            var canvas = document.getElementById('espressoCanvas');
+            canvas.style.marginTop = c_marginy.toString() + 'px';
+            canvas.style.marginLeft = c_marginx.toString() + 'px';
+            var mind = document.getElementById('espressoMindMap');
+            var footer = document.getElementById('espressofooter');
+            if (c_fixsizeX == false) {
+                var cw = window.innerWidth + c_varwidth;
+                if (c_varwidthmin > cw) cw = c_varwidthmin;
+
+                mind.style.width = cw.toString() + 'px';
+            }
+            if (c_fixsizeY == false) {
+                var ch = window.innerHeight + c_varheight
+                if (c_varheightmin > ch) ch = c_varheightmin;
+                mind.style.height = ch.toString() + 'px';
+            }
+
+            var width = mind.offsetWidth - 2 * c_marginx;
+            var height = mind.offsetHeight - 2 * c_marginy - footer.offsetHeight;
+            if (width < 1) width = 1;
+            if (height < 1) height = 1;
+            canvas.width = width;
+            canvas.height = height;
+            updateCanvas(posx, posy);
+
+
+            var canvasx = document.getElementById('CanvasCenter'); canvasx.style.left = (c_marginx + navigation_x).toString() + 'px'; canvasx.style.top = (c_marginy + navigation_y).toString() + 'px';
+            var canvasx = document.getElementById('CanvasUp'); canvasx.style.left = (c_marginx + canvas.width / 2 + navigation_x).toString() + 'px'; canvasx.style.top = (c_marginy + navigation_y).toString() + 'px';
+            var canvasx = document.getElementById('CanvasRight'); canvasx.style.left = (c_marginx + canvas.width + navigation_x).toString() + 'px'; canvasx.style.top = (c_marginy + canvas.height / 2 + navigation_y).toString() + 'px';
+            var canvasx = document.getElementById('CanvasLeft'); canvasx.style.left = (c_marginx + navigation_x).toString() + 'px'; canvasx.style.top = (c_marginy + canvas.height / 2 + navigation_y).toString() + 'px';
+            var canvasx = document.getElementById('CanvasDown'); canvasx.style.left = (c_marginx + canvas.width / 2 + navigation_x).toString() + 'px'; canvasx.style.top = (c_marginy + canvas.height + navigation_y).toString() + 'px';
+            var canvasx = document.getElementById('CanvasClose'); canvasx.style.left = (c_marginx + canvas.width + navigation_x).toString() + 'px'; canvasx.style.top = (c_marginy + canvas.height + navigation_y).toString() + 'px';
+            var canvasx = document.getElementById('CanvasOpen'); canvasx.style.left = (c_marginx + canvas.width + navigation_x).toString() + 'px'; canvasx.style.top = (c_marginy + canvas.height + navigation_y).toString() + 'px';
+            var canvasx = document.getElementById('CanvasTextOnOff'); canvasx.style.left = (c_marginx + navigation_x).toString() + 'px'; canvasx.style.top = (c_marginy + canvas.height + navigation_y).toString() + 'px';
+            var canvasx = document.getElementById('CanvasZoomIn'); canvasx.style.left = (c_marginx + canvas.width + navigation_x).toString() + 'px'; canvasx.style.top = (c_marginy + navigation_y).toString() + 'px';
+            var canvasx = document.getElementById('CanvasZoomOut'); canvasx.style.left = (c_marginx + canvas.width + navigation_x).toString() + 'px'; canvasx.style.top = (c_marginy + navigation_y + 75).toString() + 'px';
+
+        }
+      </script>
+                   <!-- Scrolling -->
+        <div id='Scrollers'  > 
+            
+           <script type='text/javascript'>
+               function Scroll_up() { posy += 150; updateCanvas(posx, posy); }
+               function Scroll_down() { posy += -150; updateCanvas(posx, posy); }
+               function Scroll_left() { posx += 150; updateCanvas(posx, posy); }
+               function Scroll_right() { posx += -150; updateCanvas(posx, posy); }
+               function Scroll_center() { posx = poscenterx; posy = poscentery; updateCanvas(posx, posy); }
+               function Scroll_close() { var sb = document.getElementById('ScrollButtons'); sb.style.visibility = 'collapse'; var sb = document.getElementById('ScrollButtonsOn'); sb.style.visibility = 'visible'; }
+               function Scroll_open() { var sb = document.getElementById('ScrollButtons'); sb.style.visibility = 'visible'; var sb = document.getElementById('ScrollButtonsOn'); sb.style.visibility = 'collapse' }
+               function Scroll_zoomin() { zoom = zoom * 1.1; updateCanvas(posx, posy); }
+               function Scroll_zoomout() { zoom = zoom / 1.1; updateCanvas(posx, posy); }
+               function drawArrow(ctx, angle) {
+                   ctx.save();
+                   ctx.translate(25, 25);
+                   ctx.rotate(angle / 180 * Math.PI);
+                   ctx.scale(2, 2); ctx.lineWidth = 1.5; ctx.strokeStyle = '#999'; ctx.beginPath(); ctx.moveTo(-8, -4); ctx.lineTo(2, -4); ctx.lineTo(2, -10); ctx.lineTo(11, 0); ctx.lineTo(2, 10); ctx.lineTo(2, 4); ctx.lineTo(-8, 4); ctx.stroke(); ctx.fillStyle = 'rgba(255,255,255,1)'; ctx.closePath(); ctx.fill();
+                   ctx.restore();
+               }
+               function drawViewNav(ctx) { drawArrowS(ctx, 0, 0.8, 8, 0); drawArrowS(ctx, 180, 0.8, -8, 0); drawArrowS(ctx, 90, 0.8, 0, 8); drawArrowS(ctx, 270, 0.8, 0, -8); }
+               function drawloseNav(ctx) { drawArrowS(ctx, 0, 0.8, -14, 0); drawArrowS(ctx, 180, 0.8, 14, 0); drawArrowS(ctx, 90, 0.8, 0, -14); drawArrowS(ctx, 270, 0.8, 0, 14); }
+               function drawArrowS(ctx, angle, size, x, y) {
+                   ctx.save();
+                   ctx.translate(25 + x, 25 + y);
+                   ctx.rotate(angle / 180 * Math.PI);
+                   ctx.scale(size, size); ctx.lineWidth = 1.5; ctx.strokeStyle = '#999'; ctx.beginPath(); ctx.moveTo(-8, -4); ctx.lineTo(2, -4); ctx.lineTo(2, -10); ctx.lineTo(11, 0); ctx.lineTo(2, 10); ctx.lineTo(2, 4); ctx.lineTo(-8, 4); ctx.stroke(); ctx.fillStyle = 'rgba(255,255,255,1)'; ctx.closePath(); ctx.fill();
+                   ctx.restore();
+               }
+               function drawCircle(ctx, rad) {
+                   ctx.save();
+                   ctx.translate(24, 24);
+                   ctx.scale(2, 2); ctx.lineWidth = 1.5; ctx.strokeStyle = '#333'; ctx.beginPath();
+                   ctx.arc(0, 0, rad, 0, 2 * Math.PI, false)
+                   ctx.stroke(); ctx.fillStyle = '#fff'; ctx.closePath(); ctx.fill();
+                   ctx.restore();
+               }
+               function drawTextOnOff(ctx) {
+                   drawArrowS(ctx, 90, 0.8, 0, 4); ctx.font = ctx.font = '10px Arial'; ctx.fillStyle = 'gray'; ctx.fillText('text', 14, 18);
+               }
+               function drawZoom(ctx, t) {
+                   ctx.save();
+                   ctx.translate(0, 0);
+                   ctx.strokeStyle = '#999'; ctx.lineWidth = 8; ctx.beginPath(); ctx.moveTo(24,24); ctx.lineTo(40, 40); ctx.closePath(); ctx.stroke();
+                   drawCircle(ctx, 5);
+                   ctx.font = ctx.font = '24px Arial'; ctx.fillStyle = 'gray'; ctx.fillText(t, 18, 32);
+                   ctx.restore();
+               }
+               function Scroll_TextOnOff(seton) {
+                   var txt = document.getElementById('mapdatax');
+                   if (typeof seton == 'undefined') {
+                       seton = 'on';
+                       if (node_textvisible) seton = 'off';
+                   }
+                   if (seton == 'off') {
+                       node_textvisible = false;
+                       txt.style.visibility = 'collapse'; txt.style.width = '0px'; txt.style.height = '0px';
+                       txt.style.clip = 'rect(0px, 0px, 1px, 1px)';
+                       txt.style.cssFloat = 'left';
+                       txt.style.position = 'absolute';
+
+                   }
+                   else {
+                       node_textvisible = true;
+                       txt.style.width = 'auto'; txt.style.height = 'auto';
+                       txt.style.visibility = 'visible';
+                       txt.style.position = 'relative';
+                   }
+               }
+            </script>
+           
+        <div id='ScrollButtons'>
+            <div onclick='Scroll_center()'> <canvas id='CanvasCenter' width='48' height='48' style='position: absolute; left: 0px; top:0px; background-color: rgba(200,200,200,0.3); border: 0px solid gray; box-shadow: none'>  <script type='text/javascript'>var canvas = document.getElementById('CanvasCenter'); var ctx = canvas.getContext('2d'); drawCircle(ctx, 7); drawCircle(ctx, 1) </script> </canvas>    </div>                             
+            <div onclick='Scroll_up()'> <canvas id='CanvasUp' width='48' height='48' style='position: absolute; left: 0px; top:0px; background-color: rgba(200,200,200,0.3); border: 0px solid gray; box-shadow: none;'>  <script type='text/javascript'>var canvas = document.getElementById('CanvasUp'); var ctx = canvas.getContext('2d'); drawArrow(ctx, -90);  </script> </canvas>    </div>                             
+            <div onclick='Scroll_left()'> <canvas id='CanvasLeft' width='48' height='48' style='position: absolute; left: 0px; top:60px; background-color: rgba(200,200,200,0.3); border: 0px solid gray; box-shadow: none' >  <script type='text/javascript'>var canvas = document.getElementById('CanvasLeft'); var ctx = canvas.getContext('2d'); drawArrow(ctx, 180);  </script> </canvas>    </div>                             
+            <div onclick='Scroll_right()'> <canvas id='CanvasRight' width='48' height='48' style='position: absolute;  left: 0px; top:0px;  background-color: rgba(200,200,200,0.3); border: 0px solid gray; box-shadow: none'>  <script type='text/javascript'>var canvas = document.getElementById('CanvasRight'); var ctx = canvas.getContext('2d'); drawArrow(ctx, 0);  </script> </canvas>    </div>                             
+            <div onclick='Scroll_down()'> <canvas id='CanvasDown' width='48' height='48' style='position: absolute; left: 0px; top:0px; background-color: rgba(200,200,200,0.3); border: 0px solid gray; box-shadow: none'>  <script type='text/javascript'>var canvas = document.getElementById('CanvasDown'); var ctx = canvas.getContext('2d'); drawArrow(ctx, 90);  </script> </canvas>    </div>                             
+            <div onclick='Scroll_close()'> <canvas id='CanvasClose' width='48' height='48' style='position: absolute; left: 0px; top:0px; background-color: rgba(200,200,200,0.3); border: 0px solid gray; box-shadow: none'>  <script type='text/javascript'>var canvas = document.getElementById('CanvasClose'); var ctx = canvas.getContext('2d'); drawloseNav(ctx);</script> </canvas>    </div>                              
+            <div onclick='Scroll_zoomin()'> <canvas id='CanvasZoomIn' width='48' height='48' style='position: absolute; left: 0px; top:0px; background-color: rgba(200,200,200,0.3); border: 0px solid gray; box-shadow: none'>  <script type='text/javascript'>var canvas = document.getElementById('CanvasZoomIn'); var ctx = canvas.getContext('2d'); drawZoom(ctx,'+');</script> </canvas>    </div>                              
+            <div onclick='Scroll_zoomout()'> <canvas id='CanvasZoomOut' width='48' height='48' style='position: absolute; left: 0px; top:0px; background-color: rgba(200,200,200,0.3); border: 0px solid gray; box-shadow: none'>  <script type='text/javascript'>var canvas = document.getElementById('CanvasZoomOut'); var ctx = canvas.getContext('2d'); drawZoom(ctx,'-');</script> </canvas>    </div>                              
+        </div>
+        <div id='ScrollButtonsOn' style='visibility:collapse;'>
+            <div onclick='Scroll_open()'> <canvas id='CanvasOpen' width='48' height='48' style='position: absolute; left: 0px; top:0px; background-color: rgba(200,200,200,0.3); border: 0px solid gray; box-shadow: none'>  <script type='text/javascript'>var canvas = document.getElementById('CanvasOpen'); var ctx = canvas.getContext('2d'); drawViewNav(ctx); </script> </canvas>    </div>                              
+        </div>
+        <div id='ScrollTextOnOff'>
+            <div onclick='Scroll_TextOnOff()'> <canvas id='CanvasTextOnOff' width='48' height='48' style='position: absolute; left: 0px; top:0px; background-color: rgba(200,200,200,0.3); border: 0px solid gray; box-shadow: none'>  <script type='text/javascript'>var canvas = document.getElementById('CanvasTextOnOff'); var ctx = canvas.getContext('2d'); drawTextOnOff(ctx);</script> </canvas>    </div>                              
+        </div>
+
+      </div>  <!--  end Scroolling -->  
+
+
+  
+      </div>  <!--  end nesting -->    
+    
+       
+    <div id='datanesting'>
+        <div id='mapdatax' class='mapdata'  >
+<div> <div class='tarx'> <div id='TARX0'><br />DB Apps with EF <br /></div></div><div id='ARX0' class='arx'></div></div> 
+<div> <div class='tarx'> <div id='TARX1'><br />Frameworks<br /></div></div><div id='ARX1' class='arx'></div></div> 
+<div> <div class='tarx'> <div id='TARX2'><br />.NET 4.5.x <br /></div></div><div id='ARX2' class='arx'></div></div> 
+<div> <div class='tarx'> <div id='TARX3'><br />.NET Core 1.x, 2.x<br /></div></div><div id='ARX3' class='arx'></div></div> 
+<div> <div class='tarx'> <div id='TARX4'><br />EF 6<br />EF Core<br /></div></div><div id='ARX4' class='arx'></div></div> 
+<div> <div class='tarx'> <div id='TARX5'><br />What languages are   <br />the minimnum requirement<br /></div></div><div id='ARX5' class='arx'></div></div> 
+<div> <div class='tarx'> <div id='TARX6'><br />C#<br /></div></div><div id='ARX6' class='arx'></div></div> 
+<div> <div class='tarx'> <div id='TARX7'><br />TypeScript<br /></div></div><div id='ARX7' class='arx'></div></div> 
+<div> <div class='tarx'> <div id='TARX8'><br />JavaScript<br /></div></div><div id='ARX8' class='arx'></div></div> 
+<div> <div class='tarx'> <div id='TARX9'><br />What technologies are needed?<br /></div></div><div id='ARX9' class='arx'></div></div> 
+<div> <div class='tarx'> <div id='TARX10'><br />GitHub<br />- github-pages<br /></div></div><div id='ARX10' class='arx'></div></div> 
+<div> <div class='tarx'> <div id='TARX11'>Microsoft Azure</div></div><div id='ARX11' class='arx'></div></div> 
+<div> <div class='tarx'> <div id='TARX12'>AppHarbor</div></div><div id='ARX12' class='arx'></div></div> 
+<div> <div class='tarx'> <div id='TARX13'>New node</div></div><div id='ARX13' class='arx'></div></div> 
+<div> <div class='tarx'> <div id='TARX14'><br />Node JS<br /></div></div><div id='ARX14' class='arx'></div></div> 
+
+        </div> 
+    </div>
+    <script type='text/javascript'>
+        function attachEventHandler(element, eventToHandle, eventHandler) {
+            if (element.attachEvent) {
+                element.attachEvent(eventToHandle, eventHandler);
+            } else if (element.addEventListener) {
+                element.addEventListener(eventToHandle.replace('on', ''), eventHandler, false);
+            } else {
+                element[eventToHandle] = eventHandler;
+            }
+        }
+
+        attachEventHandler(window, 'onresize', function () {
+            on_change();
+        });
+        attachEventHandler(window, 'onload', function () {
+            init();
+        });
+    </script>
+
+    <div id='espressofooter'>
+              <div id='txtWindow' class='twindow' style='visibility:collapse;'> 
+            <div onclick='txtWin_close()'>
+                <canvas id='txtWindowCanv' width='18' height='18' style='position: relative; right:12px; left: auto; top:12px; background-color: rgba(200,200,200,0.8); border: 1px solid gray;'> 
+                </canvas>
+            </div>                             
+            <script type='text/javascript'>
+                function txtWin_close() {
+                    var tw = document.getElementById('txtWindow');
+                    tw.style.visibility = 'collapse';
+
+                }
+                function txtWin_visible() {
+                    var tw = document.getElementById('txtWindow');
+                    tw.style.visibility = 'visible';
+                }
+
+            </script>
+            <div id='textcontent' class='textitem'  > Klicken Sie auf einen Knoten, um den Text zu lesen.           
+            </div>    
+        </div>
+        <!--espressoNote-->
+        <div id='espresso' style='font-size: 1em; font-family: "Segoe UI", Arial, Helvetica; text-align: center;' >  
+            <br />              
+            This html5 mind map file can be opened and edited with <a href='http://www.espressoApps.ch/windows/en/mindmap/'>espresso Mind Map</a>             
+            <!-- espresso Mind Map - espressoApps.ch Q0FNTYsyLjAuMC4wAcYgzB+LCAAAAAAABADVWdtuI8cRfQ/gfxjQQF6Snu2q7uoLvfJio92N42AXgVewnce+SoRJDk1SXm1+LQ/5pPxCakit1kNTACXCivRCcDjkdJ+qU1XnNP/77/88f3E1mza/lOVq0s1PRtDKUVPmqcuT+fnJ6HJdhRu9+PqLPzw/7ZaLsJ6Gt5N5fhsWzdlkPS0no7JaLMtq1TX95w3fGDWvyiotJ4v15oF82aXLWZmvv/+0BvIa/MSmef6uy6U5vQjz8/IqrMvLeT6bzPihKMEKQCHtmZRj7cfAvzGWCOyfJI4l7/Hv5SPvtlKQIK0gQ1FoLE54FUAolUNGX5X3afRpp3/88urVV/zy8qtXf2leLhar5sNkfdG8ftN8vvObzb8Ny5/KklcaNW+65Yy3Nmref5zFbnraTTu+wVv52+q0my2mZV3yyaiG6aps4V0DXF1fHIyXzBhlSxqNAj/Am6RWOdoqEmRkvBVEjCaK6FIuTgYZIu3B+8NFWDfrki7mvOfzSVk1YVmaeSm55BcHgMd7gd8TgLsFQVELToFFGgQh6JhsKVFIB0pomZ0IBYOIORgPLlGu4SYI78qHZs4L3opN3xvbDZh/dKtJ/9jVzs2d2wdg1mNQrSaprXRDzLVUb7EIFTMIrRMJV3US1lnIRWbtVB41309Wkzgt33Xdul/4DiXyI39RMsf/eTLyHIhnuzCf3Y5ze+++KYYWCS0OaQ5SU4qKRAmhCF1cEF4nFKkmxWjJm/A5w1zJ34Rl7JZPJsWydZpTbIcpthSoeJQiKsargZE7D5wyBSVGH0qU5sgUC7/JMCjzgClG2xqDxu/AdcHGmiMKcoZzXJ0UztosIpKRQQebIt7k+O0kLbtVV9fNy39dLp9MMUvfKuutJBhAR5llsVYyn50Rmnp6m1JFpppCdkyE5I7NNKhtNYN7yHJG7l7IY8sOO3YCo1IoSpjqPROax5b3mvGroLxTnoLWe8bWXyfrby7j52vRnPPAvoxiEc7L6oC59cjoQKZFbm3W4yA65DVStloQKi10VChCXw6qAE97lZkg8mg6+G3pe30kG7YfrHZH/C2/vmOIzFiq1hBqoOFAoERWBoyiRskhCoa7pHWJp0LwLocafcYjQ+TMtl7sToRui85OZA6tEbuRdsTCbocFYLL22QbhQrbMAuZDrMYLqAV6IpA1/jZpN+VVL/ua2Oi65ld6dn1RmtlkPpnNL2fNsvx8OVmWXosfUDz0qXjkA4o+GGts0XlFOBwXBQtgdCz1KCaWBJxRX6znxqmdIxt5gKg94fk2/BLeb9AdgFjeG/Hv0C5grLAFLn0nh7WQmfKqJC0cSJa/1SjhdCGBGXXWyVfTe4DjamHbLARo+WDDA8ZIrfcerBl6vGJS9Qa0UJp66auNCFwrwrNKsDYZm9O+4XH2cVGeauZBtwYdcBUMu2BhdeCgiiArXtdA5BZhAlTpA4/dcLRuQH2denAPmHoWSsY4Qzuuh5SzLBl4HvrKPTGoLNjgsYzIXBcqg469sftN6k+/fHopl9A6b1koD1NuEalyDESxwOSnaIUzygupQXEIqjFUj9YGYK9z3jvAx6sObH8goDyyXtw5EMiUZGZlWSVloTP/xEl2yMklK5NxdXMgcFyQVK/B+iAZ87vqAzPWskWtEHeOurIxUhq2SmRZSOtoggjoMpcGhkI6BKp1Ty28WYZZ+dAtfzpEL6v/x8g3Y3KtVIxYqgFiicQNgVVeoMyuQfYOUbPyMxZZHVn2Exn3IN4s++37uxxrwSNoATRG36IH4AE3CIPBEBT3BhFl6sOQ+F0soW+HWHk4Gl3ikexG/DTvj20AdxHCUrcelNZu6I5dwph1f7IHmbjlVU47eCdU9lWqkp3MZk/aX79pzODqtFuWJ0YC7cYIrZfkeBYOa0Fxo1cURAa2hzokFB4jXyYtI0tfKnSsAeL627CgF38PxwFsNZshhKEZ4l2yvUMjrAXHRNDMeZRBYPIl6hC1rbCHA+2712ebvDfQXv25wfbqqRHA9s1QOyJndqtCsTZw/MWUOY1OReFYGwhISWvMLtRgjyWAvJb99gFPjMgz3xUoGiq/WmPNnq2NNIV1j6+RDT9rQKzJaW94FoZ9ym9DAN1Se3XIfzqPKvNuDLYFS9aa4Rg0soJNJYrQH3toKUlEw5ExzBHpkD1QfzBwZOZvFOCjPh+ini78GakdBQgAGIuPwnOdcL9gt+jZHwqJWYUsqzblWGfEVnwbIyS4hwIcxuWWmNydM9q0kgxb5l3OJEYNrJWAXzgeXvhExKigkGGvaOOx/yVsfeKvzgf2heEmBM+f7fx9/PX/AO4oce17HgAA espresso Mind Map - espressoApps.ch -->
+        </div>            
+        <!--espressoNote-->
+    </div>     
+</div> 
+</div>    <!-- end of espresso HTML5 Mind-Map viewer  -->
+
+
+</body>
+</html>
+

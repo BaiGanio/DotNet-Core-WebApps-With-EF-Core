@@ -1,0 +1,42 @@
+Step 1 :
+– Make sure you have installed Node.js® and npm
+- Demo @ https://github.com/angular-buch/angular-cli-ghpages
+
+Step 2 :
+- Switch to a more familiar directory/folder on C:// drive.
+- Switch to C drive:
+cd C://
+- You can create new directory/folder with: 
+mkdir my-cool-demos
+- Switch to newly created directory:
+cd C://my-cool-demos
+- Create new angular app and wait 3-4 mins for the project to be build.
+ng new my-app
+- Get into the app directory:
+cd C://my-cool-demos/my-app
+-----------------------------------------------------
+
+And then launch the app in your browser for testing with: 
+
+ng serve -o
+-----------------------------------------------------
+
+For instance if you want to create a new Angular component in the current folder, you could use the following command:
+
+ng generate component my-new-component
+-----------------------------------------------------
+
+git remote add origin https://github.com/baiganio/PROJECT_NAME.git
+git push origin master
+
+npm i -g angular-cli-ghpages // in case it's not install yet
+
+ng build --prod --base-href "https://baiganio.github.io/angular/"
+angular-cli-ghpages [OPTIONS]
+
+or
+
+ng build --prod
+ngh [OPTIONS]
+like
+ngh -m "Something was done!"

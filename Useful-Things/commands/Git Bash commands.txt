@@ -1,0 +1,72 @@
+﻿/* If we have Error 403: Access denied for the user...
+   Search in Control Panel -> Credential Manager
+   Look for github user and delete the instance.
+   When commit you will be promt for new credentials.
+   
+   Cool way to send email directly from HTML page using
+   Google spreadsheet
+   https://github.com/dwyl/html-form-send-email-via-google-script-without-server
+*/
+/* in angular mode */
+ng serve --environment=local
+
+/* delete folder and files in it */
+remove-item -path d://working-folder -recurse
+
+/* invoke-item in the current directory */
+ii .
+
+git log --topo-order
+
+/* Check where you are */
+$ pwd
+
+/* Change to Directory */
+$ cd "c://demos"
+
+/* Create new Directory for the project in the current one */
+$ mkdir "folder 1"
+
+/* Create file */
+$ touch index.html
+
+/* If you want you can open the file with this command. Type in adn save. */
+$ notepad index.html
+
+/* List all items in current Directory */
+$ ls or dir
+
+/* Commit to local repo to external host*/
+$ git init
+$ git add . 
+$ git commit -m "message"
+$ git remote add origin repo-url(this is the adress of your hosted repository)
+$ git push -u origin master
+
+/* Clone repo from external host */
+$ git clone repo-url(this is the adress provided by the host)
+
+/*Change your name and email address */
+$ git config --global user.name "YOUR-USER-NAME"
+$ git config --global user.email YOUR-EMAIL-ADDRESS
+
+/* Commit to repo at AppHarbor */
+$ git remote add appharbor repo-url(this is the adress of your hosted repository provided by AppHarbor)
+$ git push appharbor master
+
+/* Check you current branch */
+$ git status
+
+Открих две интересни житейски мъдрости:
+1) "Ако няма къде да отидеш, ела на себе си"
+2) "Всеки шут в гъза е крачка напред"
+Авторите не са ми известни, но са си чисто по БГ 
+
+/* Cool Intro to CSS 3D transforms */
+https://desandro.github.io/3dtransforms/docs/introduction.html
+http://desandro.com/
+
+
+/* Build CMS Admin panel with Bootstrap */
+https://www.youtube.com/watch?v=pXbEcGUtHgo
+

@@ -1,0 +1,17 @@
+Step 1 – Create your app with the Angular CLI
+
+ng new groceries
+cd groceries
+-----------------------------------------------------
+
+// To deploy to Github Pages 
+npm i -g angular-cli-ghpages
+
+// Creating the folder as git repository
+git init
+git add .
+git commit -m "Initial commit"
+git remote add origin https://github.com/BaiGanio/my-cool-app.git
+git push -u origin master
+
+ng build --prod --base-href https://github-username.github.io/my-cool-app/
